@@ -69,7 +69,8 @@ export default {
   created() {
     const newsStore = useNewsStore();
     newsStore.getNews().then((news) => {
-      this.news = news;
+      // assign 5 news to the news array
+      this.news = news.slice(0, 5);
     });
   },
 };

@@ -46,7 +46,7 @@ export default {
   created() {
     const activitiesStore = useActivitiesStore();
     activitiesStore.getActivities().then((activities) => {
-      this.activities = activities;
+      this.activities = activities.slice(0, 3);
     });
   },
 };
