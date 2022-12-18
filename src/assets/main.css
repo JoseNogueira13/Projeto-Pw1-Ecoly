@@ -1,0 +1,13 @@
+.sidebar {
+  flex: 0 0 80px;
+  width: 80px;
+  position: fixed;
+  left: 0;
+  height: 100%;
+}
+
+.main {
+  flex: 1 1 auto;
+  overflow: auto;
+  margin-left: 80px;
+}

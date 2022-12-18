@@ -1,0 +1,32 @@
+[
+	{
+		"id": "1",
+		"images": [
+			"./data/images/bancos.png"
+		],
+		"title": "Construção de Bancos de Jardim",
+		"theme": "Espaços Exteriores",
+		"initialDate": 1670973744743,
+		"finalDate": 1671052422918
+	},
+	{
+		"id": "2",
+		"images": [
+			"./data/images/lixo.png"
+		],
+		"title": "Colocação de Caixotes de Lixo",
+		"theme": "Espaços Exteriores",
+		"initialDate": 1670973744743,
+		"finalDate": 1671052422918
+	},
+	{
+		"id": "3",
+		"images": [
+			"./data/images/praia.png"
+		],
+		"title": "Limpeza de Praia + Separação de Resíduos",
+		"theme": "Mar",
+		"initialDate": 1670973744743,
+		"finalDate": 1671052422918
+	}
+]

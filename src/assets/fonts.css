@@ -1,0 +1,86 @@
+/* * Alkes * */
+/* @font-face */
+/* import all the family inside of "../assets/fonts/Alkes-serif" (.woff and .woff2) */
+/* ? Regular ? */
+@font-face {
+  font-family: "Alkes";
+  src: url("../assets/fonts/Alkes-serif/WEB/Alkes-Regular.woff2")
+      format("woff2"),
+    url("../assets/fonts/Alkes-serif/WEB/Alkes-Regular.woff2") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ? Bold ? */
+@font-face {
+  font-family: "Alkes";
+  src: url("../assets/fonts/Alkes-serif/WEB/Alkes-Bold.woff2") format("woff2"),
+    url("../assets/fonts/Alkes-serif/WEB/Alkes-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* ? Semibold ? */
+@font-face {
+  font-family: "Alkes";
+  src: url("../assets/fonts/Alkes-serif/WEB/Alkes-Semibold.woff2")
+      format("woff2"),
+    url("../assets/fonts/Alkes-serif/WEB/Alkes-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ? Light ? */
+@font-face {
+  font-family: "Alkes";
+  src: url("../assets/fonts/Alkes-serif/WEB/Alkes-Light.woff2") format("woff2"),
+    url("../assets/fonts/Alkes-serif/WEB/Alkes-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* * Panton * */
+/* @font-face */
+/* import all the family inside of "../assets/fonts/Panton" (.woff and .woff2) */
+/* ? Regular ? */
+@font-face {
+  font-family: "Panton";
+  src: url("../assets/fonts/Panton-sans-serif/WEB/Panton-Regular.woff2")
+      format("woff2"),
+    url("../assets/fonts/Panton-sans-serif/WEB/Panton-Regular.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ? Bold ? */
+@font-face {
+  font-family: "Panton";
+  src: url("../assets/fonts/Panton-sans-serif/WEB/Panton-Bold.woff2")
+      format("woff2"),
+    url("../assets/fonts/Panton-sans-serif/WEB/Panton-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* ? Semibold ? */
+@font-face {
+  font-family: "Panton";
+  src: url("../assets/fonts/Panton-sans-serif/WEB/Panton-Semibold.woff2")
+      format("woff2"),
+    url("../assets/fonts/Panton-sans-serif/WEB/Panton-Semibold.woff")
+      format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ? Light ? */
+@font-face {
+  font-family: "Panton";
+  src: url("../assets/fonts/Panton-sans-serif/WEB/Panton-Light.woff2")
+      format("woff2"),
+    url("../assets/fonts/Panton-sans-serif/WEB/Panton-Light.woff")
+      format("woff");
+  font-weight: 300;
+  font-style: normal;
+}

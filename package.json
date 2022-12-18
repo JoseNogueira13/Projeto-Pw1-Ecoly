@@ -1,0 +1,23 @@
+{
+  "name": "ecoly",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vue/compat": "^3.2.45",
+    "bootstrap-vue": "npm:@ankurk91/bootstrap-vue@^3.0.2",
+    "pinia": "^2.0.23",
+    "vue": "^3.2.41",
+    "vue-router": "^4.1.5",
+    "vue-uuid": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.2",
+    "sass": "^1.56.1",
+    "vite": "^3.1.8"
+  }
+}
