@@ -10,7 +10,7 @@ These instructions will help you get ECOLY running on your local machine for dev
 
 Before you can run ECOLY locally, you'll need to install the following tools:
 
-- Node.js (npm)
+- Node.js (with npm)
 - An IDE (such as VS Code or Atom)
 
 ### Installing
