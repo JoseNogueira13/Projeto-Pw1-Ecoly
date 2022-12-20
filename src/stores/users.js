@@ -28,6 +28,7 @@ function fetchUsers() {
 export const useUsersStore = defineStore("users", {
   state: () => ({
     users: fetchUsers(),
+    loggedUserID: null,
   }),
 
   actions: {
@@ -55,13 +56,12 @@ export const useUsersStore = defineStore("users", {
 
     // Authentication methods
     isUserLogged() {
-      return getLocalStorage("loggedUser" !== null);
+      return this.loggedUser !== null;
     },
 
     getLoggedUser() {
-      const loggedUserId = getLocalStorage("loggedUser");
-      if (!loggedUserId) return null;
-      return getUser.value(loggedUserId);
+      const user = this.users.find((user) => user.id === this.loggedUser);
+      return user ? user : null;
     },
 
     // Add user
@@ -91,42 +91,49 @@ export const useUsersStore = defineStore("users", {
     },
 
     // Update Highlighted Badge
-    updateHighlightedBadge(id, badgeId) {
-      this.users.value.find((user) => user.id === id).highlightedBadge =
-        badgeId;
+    updateHighlightedBadge(badgeId) {
+      this.users.value.find(
+        (user) => user.id === this.loggedUserID
+      ).highlightedBadge = badgeId;
       setLocalStorage("users", this.users);
     },
 
-    unlockBadge(id, badgeId) {
-      this.users.value.find((user) => user.id === id).badges.push(badgeId);
+    // Unlock a new Badge
+    unlockBadge(badgeId) {
+      this.users.value
+        .find((user) => user.id === this.loggedUserID)
+        .badges.push(badgeId);
       setLocalStorage("users", this.users);
     },
 
+    // Login
     login(email, password) {
       const user = this.users.value.find(
         (user) => user.email === email && user.password === password
       );
-
-      if (!user) return "User not found or wrong password.";
+      if (!user) return false;
 
       setLocalStorage("loggedUser", user.id);
-      return user;
+      this.loggedUserID = user.id;
+
+      return true;
     },
 
+    // Logout
     logout() {
-      setLocalStorage("loggedUser", null);
+      this.loggedUserID = null;
     },
 
     // Create new user
     createNewUser(newUser) {
       // check if user already exists
       if (this.users.value.find((user) => user.email === newUser.email))
-        return "User already exists.";
+        return false;
 
       // create new user
       this.users.value.push({ id: uuid.v4(), ...newUser });
       setLocalStorage("users", this.users);
-      return "User created successfully.";
+      return true;
     },
   },
 });
