@@ -56,11 +56,11 @@ export const useUsersStore = defineStore("users", {
 
     // Authentication methods
     isUserLogged() {
-      return this.loggedUser !== null;
+      return this.loggedUserID !== null;
     },
 
     getLoggedUser() {
-      const user = this.users.find((user) => user.id === this.loggedUser);
+      const user = this.users.find((user) => user.id === this.loggedUserID);
       return user ? user : null;
     },
 

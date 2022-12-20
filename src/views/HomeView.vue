@@ -57,6 +57,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$primary-color: #343e3d;
+$secondary-color: #aedcc0;
+$tertiary-color: #ffffff;
+
 .title {
   font-family: "Alkes", sans-serif;
   font-weight: bold;
@@ -78,11 +82,10 @@ export default {
   font-family: "Panton", sans-serif;
   font-weight: bold;
   font-size: 27px;
-  color: #343e3d;
+  color: $primary-color;
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
-  text-align: left;
 }
 
 .author {
@@ -90,14 +93,18 @@ export default {
   font-family: "Panton", sans-serif;
   font-weight: 300;
   font-size: 15px;
-  color: #343e3d;
+  color: $primary-color;
   text-align: center;
   margin-top: 10px;
+}
+
+.citation,
+.author {
   text-align: left;
 }
 
 .FAQ-section {
-  background-color: #aedcc0;
+  background-color: $secondary-color;
   background-image: url("../assets/images/illustrationFAQ.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -112,8 +119,8 @@ export default {
 }
 
 .footer {
-  background-color: #343e3d;
-  color: #fff;
+  background-color: $primary-color;
+  color: $tertiary-color;
   padding: 20px;
   text-align: center;
   font-size: 12px;

@@ -59,6 +59,8 @@ $searchbar-selected-color: #3fc380;
 
   &:focus {
     box-shadow: none;
+    background-color: $searchbar-bg;
+    color: $searchbar-text-color;
   }
 }
 

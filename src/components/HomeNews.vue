@@ -123,7 +123,6 @@ article {
 .read-more-btn {
   font-family: "Panton", sans-serif;
   font-weight: 600;
-  color: $new-btn;
   font-size: 0.9rem;
   color: #aedcc0;
   background-color: $new-btn;

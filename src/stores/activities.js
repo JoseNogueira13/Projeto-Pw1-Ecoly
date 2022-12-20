@@ -22,8 +22,8 @@ export const useActivitiesStore = defineStore("activities", {
 
   actions: {
     async getActivities() {
-      const activities = await fetchActivities();
-      this.activities = activities;
+      if (this.activities.length === 0)
+        this.activities = await fetchActivities();
       return this.activities;
     },
 

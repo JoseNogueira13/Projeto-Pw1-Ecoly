@@ -22,8 +22,7 @@ export const useNewsStore = defineStore("news", {
 
   actions: {
     async getNews() {
-      const news = await fetchNews();
-      this.news = news;
+      if (this.news.length === 0) this.news = await fetchNews();
       return this.news;
     },
 
@@ -38,6 +37,15 @@ export const useNewsStore = defineStore("news", {
       news.push({ id: uuid.v4(), date: Date.now(), ...newNew });
       setLocalStorage("news", news);
       this.news = news;
+      return this.news;
+    },
+
+    // Remove new
+    async removeNew(id) {
+      const news = await fetchNews();
+      const newNews = news.filter((news) => news.id !== id);
+      setLocalStorage("news", newNews);
+      this.news = newNews;
       return this.news;
     },
   },
