@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { uuid } from "vue-uuid";
 import { getLocalStorage, setLocalStorage } from "../hooks/localStorage";
 
 function fetchUsers() {
@@ -9,7 +8,7 @@ function fetchUsers() {
     ? users
     : [
         {
-          id: uuid.v4(),
+          id: crypto.randomUUID(),
           internalId: null,
           name: "Alice Smith",
           email: "alice.smith@gmail.com",
@@ -66,7 +65,7 @@ export const useUsersStore = defineStore("users", {
 
     // Add user
     addUser(newUser) {
-      this.users.push({ id: uuid.v4(), ...newUser });
+      this.users.push({ id: crypto.randomUUID(), ...newUser });
       setLocalStorage("users", this.users);
     },
 
@@ -131,7 +130,7 @@ export const useUsersStore = defineStore("users", {
         return false;
 
       // create new user
-      this.users.value.push({ id: uuid.v4(), ...newUser });
+      this.users.value.push({ id: crypto.randomUUID(), ...newUser });
       setLocalStorage("users", this.users);
       return true;
     },

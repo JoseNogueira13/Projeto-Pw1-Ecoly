@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { uuid } from "vue-uuid";
 import { getLocalStorage, setLocalStorage } from "../hooks/localStorage";
 
 async function fetchNews() {
@@ -34,7 +33,7 @@ export const useNewsStore = defineStore("news", {
     // Add new
     async addNew(newNew) {
       const news = await fetchNews();
-      news.push({ id: uuid.v4(), date: Date.now(), ...newNew });
+      news.push({ id: crypto.randomUUID(), date: Date.now(), ...newNew });
       setLocalStorage("news", news);
       this.news = news;
       return this.news;

@@ -1,7 +1,6 @@
 import { createPinia } from "pinia";
 // Change the createApp line to this
 import Vue, { createApp } from "@vue/compat";
-import withUUID from "vue-uuid";
 import App from "./App.vue";
 import router from "./router";
 
@@ -17,7 +16,7 @@ import "./assets/fonts.css";
 import "./assets/main.css";
 
 const pinia = createPinia();
-const app = withUUID(createApp(App));
+const app = createApp(App);
 
 app.use(pinia);
 app.use(router);

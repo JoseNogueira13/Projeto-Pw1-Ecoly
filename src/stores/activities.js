@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { uuid } from "vue-uuid";
 import { getLocalStorage, setLocalStorage } from "../hooks/localStorage";
 
 async function fetchActivities() {
@@ -36,7 +35,11 @@ export const useActivitiesStore = defineStore("activities", {
     // Add activity activity
     async addActivity(newActivity) {
       const activities = await fetchActivities();
-      activities.push({ id: uuid.v4(), date: Date.now(), ...newActivity });
+      activities.push({
+        id: crypto.randomUUID(),
+        date: Date.now(),
+        ...newActivity,
+      });
       setLocalStorage("activities", activities);
       this.activities = activities;
       return this.activities;
