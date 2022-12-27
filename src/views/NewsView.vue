@@ -94,18 +94,22 @@ import Searchbar from "../components/Searchbar.vue";
       </div>
     </section>
 
-    <!-- Load more News -->
-    <div class="mt-5">
-      <button
-        type="button"
-        class="see-more-btn btn btn-sm rounded-pill mb-3"
-        @click="loadMoreNews"
-        :style="{
-          visibility: numberOfNews < totalNumberOfNews ? 'visible' : 'hidden',
-        }"
-      >
-        <span class="px-3"> Ver mais </span>
-      </button>
+    <!-- Load more News Icon animation -->
+    <div v-if="numberOfNews < totalNumberOfNews">
+      <img
+        src="../assets/icons/loading.svg"
+        alt="load more"
+        width="50"
+        loading="lazy"
+        class="load-more-icon"
+      />
+    </div>
+
+    <!-- If there's no more news to be displayed -->
+    <div v-else>
+      <h2 class="new-title text-center mt-3">
+        Não existem mais notícias para mostrar
+      </h2>
     </div>
   </div>
 </template>
@@ -145,6 +149,16 @@ export default {
     if (this.userInfo.isLogged) {
       this.userInfo.isAdmin = usersStore.getLoggedUser().role === "admin";
     }
+
+    // when the user scrolls to the bottom of the page, the number of news to be displayed increases by 5
+    window.onscroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight
+      ) {
+        this.loadMoreNews();
+      }
+    };
   },
 
   methods: {
@@ -162,11 +176,14 @@ export default {
     },
 
     loadMoreNews() {
-      this.numberOfNews += 5;
-      const newsStore = useNewsStore();
-      newsStore.getNews().then((news) => {
-        this.news = news.slice(0, this.numberOfNews);
-      });
+      // wait 1 second before loading more news
+      setTimeout(() => {
+        this.numberOfNews += 5;
+        const newsStore = useNewsStore();
+        newsStore.getNews().then((news) => {
+          this.news = news.slice(0, this.numberOfNews);
+        });
+      }, 500);
     },
 
     removeNew(id) {
@@ -299,6 +316,20 @@ $fourth-color: #ffffff;
     background-color: $secondary-color;
     color: $primary-color;
     cursor: not-allowed;
+  }
+}
+
+.load-more-icon {
+  // rotate the icon (loading animation)
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>
