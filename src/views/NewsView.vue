@@ -5,7 +5,7 @@ import Searchbar from "../components/Searchbar.vue";
 
 <template>
   <Sidebar route="news" />
-  <div class="main text-center p-3 px-5">
+  <div class="main text-center p-3 px-5" id="news-page">
     <Searchbar route="news" />
 
     <header class="mx-5 mt-4 mb-4">
@@ -20,20 +20,11 @@ import Searchbar from "../components/Searchbar.vue";
     <router-link
       to="/news/create"
       :style="{
-        visibility:
-          userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
+        visibility: userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
       }"
     >
-      <button
-        type="button"
-        class="add-new-btn btn btn-sm rounded-pill ml-5 mb-4"
-      >
-        <img
-          src="../assets/icons/add.svg"
-          alt="add"
-          width="20"
-          loading="lazy"
-        />
+      <button type="button" class="add-new-btn btn btn-sm rounded-pill ml-5 mb-4">
+        <img src="../assets/icons/add.svg" alt="add" width="20" loading="lazy" />
         <span class="px-3"> Adicionar Notícia </span>
       </button>
     </router-link>
@@ -41,9 +32,7 @@ import Searchbar from "../components/Searchbar.vue";
     <section class="news-section">
       <!-- If there's no news -->
       <div v-if="news.length === 0">
-        <h2 class="new-title text-center mt-3">
-          Não existem notícias para mostrar
-        </h2>
+        <h2 class="new-title text-center mt-3">Não existem notícias para mostrar</h2>
       </div>
 
       <!-- If there's news -->
@@ -52,8 +41,7 @@ import Searchbar from "../components/Searchbar.vue";
           type="button"
           class="remove-btn btn btn-sm rounded-pill float-right py-1 px-2"
           :style="{
-            visibility:
-              userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
+            visibility: userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
           }"
           @click="removeNew(item.id)"
         >
@@ -151,14 +139,11 @@ export default {
     }
 
     // when the user scrolls to the bottom of the page, the number of news to be displayed increases by 5
-    window.onscroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight
-      ) {
-        this.loadMoreNews();
-      }
-    };
+    window.addEventListener("scroll", this.loadMoreNews);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.loadMoreNews);
   },
 
   methods: {
@@ -176,14 +161,19 @@ export default {
     },
 
     loadMoreNews() {
-      // wait 1 second before loading more news
-      setTimeout(() => {
-        this.numberOfNews += 5;
-        const newsStore = useNewsStore();
-        newsStore.getNews().then((news) => {
-          this.news = news.slice(0, this.numberOfNews);
-        });
-      }, 500);
+      const windowHeight = window.innerHeight + document.documentElement.scrollTop;
+      const documentHeight = document.documentElement.offsetHeight;
+
+      if (windowHeight === documentHeight) {
+        // wait half second before loading more news
+        setTimeout(() => {
+          this.numberOfNews += 5;
+          const newsStore = useNewsStore();
+          newsStore.getNews().then((news) => {
+            this.news = news.slice(0, this.numberOfNews);
+          });
+        }, 500);
+      }
     },
 
     removeNew(id) {
