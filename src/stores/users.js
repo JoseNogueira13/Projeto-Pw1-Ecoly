@@ -27,7 +27,7 @@ function fetchUsers() {
 export const useUsersStore = defineStore("users", {
   state: () => ({
     users: fetchUsers(),
-    loggedUserID: 69,
+    loggedUserID: null,
   }),
 
   actions: {
