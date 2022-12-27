@@ -27,7 +27,7 @@ function fetchUsers() {
 export const useUsersStore = defineStore("users", {
   state: () => ({
     users: fetchUsers(),
-    loggedUserID: null,
+    loggedUserID: 69,
   }),
 
   actions: {
@@ -118,8 +118,8 @@ export const useUsersStore = defineStore("users", {
       return true;
     },
 
-    // Logout
-    logout() {
+    // SignOut
+    signOut() {
       this.loggedUserID = null;
     },
 

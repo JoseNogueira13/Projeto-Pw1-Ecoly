@@ -93,7 +93,7 @@
     </div>
 
     <div class="bottom-link">
-      <router-link to="/account">
+      <router-link :to="isUserLogged ? '/account' : '/authenticate'">
         <img
           src="../assets/icons/account.svg"
           alt="Account"
@@ -102,14 +102,23 @@
           :class="{
             'route-icon': true,
             'mt-2': showText,
-            'selected-icon': route === 'account',
+            'selected-icon': route === 'account' || route === 'authenticate',
+          }"
+          :style="{
+            marginTop: !showText && isUserLogged ? '-23px' : '0',
+            marginTop: !showText && !isUserLogged ? '-10px' : '-10px',
           }"
         />
         <span v-if="showText" :class="{ 'selected-link': route === 'account' }">
-          Account
+          {{ isUserLogged ? "Account" : "Sign In" }}
         </span>
       </router-link>
-      <button v-if="showText" class="sign-out-btn" @click="signOut">
+      <button
+        v-if="showText && isUserLogged"
+        class="sign-out-btn"
+        @click="signOut"
+        :style="{ visibility: showText ? 'visible' : 'hidden' }"
+      >
         Sign Out
       </button>
     </div>
@@ -117,20 +126,26 @@
 </template>
 
 <script>
+import { useUsersStore } from "@/stores/users";
 export default {
   name: "Sidebar",
+
   props: {
     route: String,
   },
 
   data() {
     const currentRoute = this.$route.path;
+
+    const isUserLogged = useUsersStore().isUserLogged();
+
     return {
       currentRoute,
       showText: false,
       openAnimation: false,
       closeAnimation: false,
       isExpanded: false,
+      isUserLogged,
     };
   },
 
@@ -167,7 +182,8 @@ export default {
     },
 
     signOut() {
-      alert("Sign Out");
+      useUsersStore().signOut();
+      this.$router.go("/");
     },
   },
 };

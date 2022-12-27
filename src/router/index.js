@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AccountView from "../views/AccountView.vue";
 import ActivitiesView from "../views/ActivitiesView.vue";
+import AuthenticateView from "../views/AuthenticateView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import HomeView from "../views/HomeView.vue";
 import ManageView from "../views/ManageView.vue";
@@ -39,6 +40,11 @@ const router = createRouter({
       path: "/account",
       name: "Account",
       component: AccountView,
+    },
+    {
+      path: "/authenticate",
+      name: "Authenticate",
+      component: AuthenticateView,
     },
   ],
 });
