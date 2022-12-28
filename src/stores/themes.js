@@ -37,12 +37,27 @@ export const useThemesStore = defineStore("themes", {
 
     // Add theme theme
     async addTheme(newTheme) {
+      // convert to lowercase, capitalize first letter and replace spaces with 1 space
+      newTheme = newTheme
+        .toLowerCase()
+        .replace(/\b[a-z]/g, (letter) => letter.toUpperCase())
+        .replace(/\s+/g, " ")
+        .trim();
+
       const themes = await this.getThemes();
-      themes.push({
-        id: crypto.randomUUID(),
-        name: newTheme,
-        status: "active", // active: can be used, inactive: can't be used anymore
-      });
+
+      // Check if theme already exists
+      const themeExists = themes.find((theme) => theme.name === newTheme);
+      if (themeExists) {
+        // change the status to active
+        themeExists.status = "active";
+      } else {
+        themes.push({
+          id: crypto.randomUUID(),
+          name: newTheme,
+          status: "active", // active: can be used, inactive: can't be used anymore
+        });
+      }
 
       setLocalStorage("themes", themes);
       this.themes = themes;
