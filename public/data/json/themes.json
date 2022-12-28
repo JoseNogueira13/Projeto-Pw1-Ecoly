@@ -1,0 +1,37 @@
+[
+	{
+		"id": "1",
+		"name": "Mar",
+		"status": "active"
+	},
+	{
+		"id": "2",
+		"name": "Espaços Exteriores",
+		"status": "active"
+	},
+	{
+		"id": "3",
+		"name": "Água",
+		"status": "active"
+	},
+	{
+		"id": "4",
+		"name": "Resíduos",
+		"status": "active"
+	},
+	{
+		"id": "5",
+		"name": "Energia",
+		"status": "inactive"
+	},
+	{
+		"id": "6",
+		"name": "Mobilidade / Transportes",
+		"status": "inactive"
+	},
+	{
+		"id": "7",
+		"name": "Outro",
+		"status": "active"
+	}
+]
