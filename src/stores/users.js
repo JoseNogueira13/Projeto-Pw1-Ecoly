@@ -8,7 +8,7 @@ function fetchUsers() {
     ? users
     : [
         {
-          id: crypto.randomUUID(),
+          id: 1,
           internalId: null,
           name: "Alice Smith",
           email: "alice.smith@gmail.com",
@@ -27,7 +27,7 @@ function fetchUsers() {
 export const useUsersStore = defineStore("users", {
   state: () => ({
     users: fetchUsers(),
-    loggedUserID: null,
+    loggedUserID: 1,
   }),
 
   actions: {

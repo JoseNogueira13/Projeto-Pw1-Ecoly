@@ -11,8 +11,8 @@
         disponível.
       </h2>
       <p class="error-description">
-        Mas não se preocupe, há muitas outras maneiras de se envolver na
-        comunidade ecológica e ajudar a proteger o planeta.
+        Mas não se preocupe, há muitas outras maneiras de se envolver na comunidade
+        ecológica e ajudar a proteger o planeta.
       </p>
 
       <!-- gift of a tree -->
@@ -22,7 +22,7 @@
         alt="animated tree"
       />
 
-      <router-link class="error-link" to="/">
+      <router-link class="error-link" :to="{ name: 'Home' }">
         Voltar para a página inicial
       </router-link>
     </div>

@@ -11,7 +11,7 @@
     @mouseleave="close"
   >
     <div class="top-logo">
-      <router-link to="/">
+      <router-link :to="{ name: 'Home' }">
         <!-- if (isExpanded === true) show -->
         <img
           v-if="showText"
@@ -32,7 +32,7 @@
       </router-link>
     </div>
     <div class="nav-links">
-      <router-link to="/news">
+      <router-link :to="{ name: 'News' }">
         <img
           src="../assets/icons/news.svg"
           alt="News"
@@ -45,7 +45,7 @@
           News
         </span>
       </router-link>
-      <router-link to="/activities"
+      <router-link :to="{ name: 'Activities' }"
         ><img
           src="../assets/icons/activities.svg"
           alt="Activities"
@@ -54,14 +54,11 @@
           class="route-icon"
           :class="{ 'selected-icon': route === 'activities' }"
         />
-        <span
-          v-if="showText"
-          :class="{ 'selected-link': route === 'activities' }"
-        >
+        <span v-if="showText" :class="{ 'selected-link': route === 'activities' }">
           Activities
         </span>
       </router-link>
-      <router-link to="/dashboard"
+      <router-link :to="{ name: 'Dashboard' }"
         ><img
           src="../assets/icons/dashboard.svg"
           alt="Dashboard"
@@ -70,14 +67,11 @@
           class="route-icon"
           :class="{ 'selected-icon': route === 'dashboard' }"
         />
-        <span
-          v-if="showText"
-          :class="{ 'selected-link': route === 'dashboard' }"
-        >
+        <span v-if="showText" :class="{ 'selected-link': route === 'dashboard' }">
           Dashboard
         </span>
       </router-link>
-      <router-link to="/manage"
+      <router-link :to="{ name: 'Manage' }"
         ><img
           src="../assets/icons/manage.svg"
           alt="Manage"
@@ -93,7 +87,11 @@
     </div>
 
     <div class="bottom-link">
-      <router-link :to="isUserLogged ? '/account' : '/authenticate'">
+      <router-link
+        :to="{
+          name: isUserLogged ? 'Account' : 'Authenticate',
+        }"
+      >
         <img
           src="../assets/icons/account.svg"
           alt="Account"

@@ -26,7 +26,11 @@
           </p>
           <div class="bottom-elements">
             <span class="date-created">{{ formatDate(item.date) }}</span>
-            <b-button variant="primary" class="read-more-btn btn btn-primary">
+            <b-button
+              variant="primary"
+              class="read-more-btn btn btn-primary"
+              @click="goToNewsDetails(item.id)"
+            >
               Ler mais
             </b-button>
           </div>
@@ -63,6 +67,10 @@ export default {
     formatDate(date) {
       const newDate = new Date(date);
       return newDate.toLocaleDateString("pt-PT");
+    },
+
+    goToNewsDetails(id) {
+      this.$router.push({ name: "NewsDetails", params: { id: id } });
     },
   },
 

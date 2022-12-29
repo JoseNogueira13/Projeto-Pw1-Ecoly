@@ -21,14 +21,16 @@ import Footer from "../components/Footer.vue";
       <HomeNews />
     </section>
     <section id="activities-section" class="activities-section mx-5 mt-4">
-      <div class="activities">
-        <HomeActivities />
+      <div class="activities cards py-5">
+        <div v-for="activity in activities">
+          <HomeActivities :activity="activity" />
+        </div>
       </div>
     </section>
     <section id="citation-section" class="my-4 py-5">
       <div class="citation">
-        "A ecologia deve estar inscrita no ADN de tudo o que fazemos diariamente
-        e ainda não entrou nos costumes."
+        "A ecologia deve estar inscrita no ADN de tudo o que fazemos diariamente e
+        ainda não entrou nos costumes."
         <span class="author">Yann Arthus Bertrand</span>
       </div>
     </section>
@@ -44,6 +46,7 @@ import Footer from "../components/Footer.vue";
 </template>
 
 <script>
+import { useActivitiesStore } from "@/stores/activities";
 export default {
   name: "Home",
   components: {
@@ -52,6 +55,17 @@ export default {
     HomeNews,
     HomeActivities,
     HomeFAQ,
+  },
+
+  data() {
+    return { activities: [] };
+  },
+
+  created() {
+    const activitiesStore = useActivitiesStore();
+    activitiesStore.getActivities().then((activities) => {
+      this.activities = activities.slice(0, 3);
+    });
   },
 };
 </script>
@@ -76,6 +90,15 @@ $tertiary-color: #ffffff;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
 }
 
 .citation {

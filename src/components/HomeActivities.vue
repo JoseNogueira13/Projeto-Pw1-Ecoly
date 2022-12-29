@@ -1,38 +1,42 @@
 <template>
-  <div class="cards py-5">
-    <b-card
-      v-for="activity in activities"
-      :key="activity.id"
-      :img-src="activity.images[0]"
-      img-alt="Image"
-      img-top
-      tag="article"
-      style="max-width: 20rem"
-      class="activity-card mb-2 p-3"
-    >
-      <h4 class="title">{{ activity.title.toUpperCase() }}</h4>
-      <span class="theme p-1">{{ activity.theme }}</span>
-      <b-card-text class="date mt-5 pt-4">
-        CALENDARIZAÇÃO
-        <span class="date-value"
-          >{{ formatDate(activity.initialDate) }} -
-          {{ formatDate(activity.finalDate) }}</span
-        >
-      </b-card-text>
+  <b-card
+    :key="activity.id"
+    :img-src="activity.images[0]"
+    img-alt="Image"
+    img-top
+    tag="article"
+    style="max-width: 20rem"
+    class="activity-card mb-2 p-3"
+  >
+    <h4 class="title">{{ activity.title.toUpperCase() }}</h4>
+    <span class="theme p-1">{{ theme }}</span>
+    <b-card-text class="date mt-5 pt-4">
+      CALENDARIZAÇÃO
+      <span class="date-value"
+        >{{ formatDate(activity.initialDate) }} -
+        {{ formatDate(activity.finalDate) }}</span
+      >
+    </b-card-text>
 
-      <b-button class="see-more-btn mt-4" href="#">Ver Mais</b-button>
-    </b-card>
-  </div>
+    <b-button class="see-more-btn mt-4" href="#">Ver Mais</b-button>
+  </b-card>
 </template>
 
 <script>
-import { useActivitiesStore } from "@/stores/activities";
+import { useThemesStore } from "@/stores/themes";
 export default {
   name: "HomeActivities",
 
+  props: {
+    activity: {
+      type: Object,
+      required: true,
+    },
+  },
+
   data() {
     return {
-      activities: [],
+      theme: "",
     };
   },
 
@@ -44,9 +48,10 @@ export default {
   },
 
   created() {
-    const activitiesStore = useActivitiesStore();
-    activitiesStore.getActivities().then((activities) => {
-      this.activities = activities.slice(0, 3);
+    const themes = useThemesStore();
+
+    themes.getThemeById(this.activity.themeID).then((theme) => {
+      this.theme = theme.name;
     });
   },
 };
@@ -57,15 +62,6 @@ $activity-btn: #343e3d;
 $activity-bg: #aedcc0;
 $activity-selected-color: #3fc380;
 $activity-hover-color: #18516f;
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 0 1rem;
-}
 
 .activity-card {
   background-color: $activity-bg;
