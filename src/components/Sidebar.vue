@@ -188,13 +188,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$sidebar-bg: #343e3d;
-$sidebar-text-color: #aedcc0;
-$sidebar-selected-color: #3fc380;
+$primary-color: #343e3d;
+$secondary-color: #aedcc0;
+$tertiary-color: #3fc380;
 
 .sidebar {
-  background-color: $sidebar-bg;
-  color: $sidebar-text-color;
+  background-color: $primary-color;
+  color: $secondary-color;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -208,7 +208,7 @@ $sidebar-selected-color: #3fc380;
 
   a {
     text-decoration: none;
-    color: $sidebar-text-color;
+    color: $secondary-color;
     display: block;
     padding: 16px;
     transition: 0.3s;
@@ -247,7 +247,7 @@ $sidebar-selected-color: #3fc380;
 }
 
 .selected-link {
-  color: $sidebar-selected-color;
+  color: $tertiary-color;
 }
 
 .selected-icon {
@@ -256,7 +256,7 @@ $sidebar-selected-color: #3fc380;
 
 .sign-out-btn {
   background-color: transparent;
-  color: $sidebar-text-color;
+  color: $secondary-color;
   opacity: 40%;
   border: none;
   font-size: 1.2rem;

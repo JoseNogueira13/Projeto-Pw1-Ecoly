@@ -95,7 +95,6 @@ $footer-selected-color: #3fc380;
 .slogan {
   color: $footer-text;
   font-size: 25px;
-  font-weight: 600;
   font-family: "Panton", sans-serif;
   font-weight: 400;
 }
@@ -104,7 +103,6 @@ $footer-selected-color: #3fc380;
   display: block;
   color: #ffffff;
   font-size: 15px;
-  font-weight: 600;
   font-family: "Panton", sans-serif;
   font-weight: 400;
   margin-bottom: 10px;
@@ -116,7 +114,6 @@ $footer-selected-color: #3fc380;
 .sub-title {
   color: $footer-text;
   font-size: 20px;
-  font-weight: 600;
   font-family: "Panton", sans-serif;
   font-weight: 400;
   margin-bottom: 10px;
@@ -129,7 +126,6 @@ $footer-selected-color: #3fc380;
   background-color: $footer-text;
   color: $footer-bg;
   font-size: 14px;
-  font-weight: 400;
   font-family: "Panton", sans-serif;
   font-weight: 400;
   &:focus {
@@ -147,7 +143,6 @@ $footer-selected-color: #3fc380;
   background-color: $footer-selected-color;
   color: #ffffff;
   font-size: 14px;
-  font-weight: 400;
   font-family: "Panton", sans-serif;
   font-weight: 400;
 
@@ -162,7 +157,6 @@ $footer-selected-color: #3fc380;
 .cr-name {
   color: #ffffff;
   font-size: 14px;
-  font-weight: 400;
   font-family: "Panton", sans-serif;
   font-weight: 400;
   margin-left: 10px;
@@ -180,7 +174,6 @@ $footer-selected-color: #3fc380;
   display: block;
   color: #ffffff;
   font-size: 14px;
-  font-weight: 400;
   font-family: "Panton", sans-serif;
   font-weight: 400;
   margin-bottom: 10px;

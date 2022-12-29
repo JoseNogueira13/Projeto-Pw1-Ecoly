@@ -58,13 +58,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$activity-btn: #343e3d;
-$activity-bg: #aedcc0;
-$activity-selected-color: #3fc380;
-$activity-hover-color: #18516f;
+$primary-color: #343e3d;
+$secondary-color: #aedcc0;
+$tertiary: #3fc380;
+$fourth: #18516f;
 
 .activity-card {
-  background-color: $activity-bg;
+  background-color: $secondary-color;
   border: none;
   border-radius: 15px;
   min-height: 450px;
@@ -74,7 +74,7 @@ $activity-hover-color: #18516f;
   font-family: "Alkes", sans-serif;
   font-weight: bold;
   font-size: 20px;
-  color: $activity-btn;
+  color: $primary-color;
   text-align: left;
   margin-left: -17px;
 }
@@ -83,7 +83,7 @@ $activity-hover-color: #18516f;
   font-family: "Panton", sans-serif;
   font-weight: 600;
   font-size: 12px;
-  background-color: $activity-btn;
+  background-color: $primary-color;
   color: #aedcc0;
   border-radius: 10px;
   position: absolute;
@@ -95,7 +95,7 @@ $activity-hover-color: #18516f;
   font-family: "Panton", sans-serif;
   font-weight: bold;
   font-size: 16px;
-  color: $activity-btn;
+  color: $primary-color;
   position: absolute;
   top: 63%;
   left: 50%;
@@ -107,15 +107,15 @@ $activity-hover-color: #18516f;
   font-family: "Panton", sans-serif;
   font-weight: 400;
   font-size: 12px;
-  color: $activity-btn;
+  color: $primary-color;
 }
 
 .see-more-btn {
   font-family: "Panton", sans-serif;
   font-weight: 600;
   font-size: 15px;
-  color: $activity-bg;
-  background-color: $activity-btn;
+  color: $secondary-color;
+  background-color: $primary-color;
   border: none;
   border-radius: 15px;
   // place it in the bottom of the card
@@ -125,7 +125,7 @@ $activity-hover-color: #18516f;
   transform: translate(-50%, -50%);
 
   &:hover {
-    background-color: $activity-hover-color;
+    background-color: $fourth;
   }
 }
 </style>

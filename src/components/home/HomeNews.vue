@@ -85,10 +85,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$new-btn: #343e3d;
-$new-bg: #aedcc0;
-$new-selected-color: #3fc380;
-$new-hover-color: #18516f;
+$primary-color: #343e3d;
+$secondary-color: #aedcc0;
+$tertiary-color: #3fc380;
+$fourth-color: #18516f;
 
 .homeNews {
   max-width: 1000px;
@@ -96,8 +96,8 @@ $new-hover-color: #18516f;
 }
 
 article {
-  // use $new-bg as background but with 50% opacity
-  background-color: rgba($new-bg, 0.95);
+  // use $secondary-color as background but with 50% opacity
+  background-color: rgba($secondary-color, 0.95);
   padding: 1rem;
   border-radius: 10px;
 }
@@ -105,14 +105,14 @@ article {
 .title {
   font-family: "Alkes", sans-serif;
   font-weight: bold;
-  color: $new-btn;
+  color: $primary-color;
   font-size: 1.5rem;
 }
 
 .text {
   font-family: "Panton", sans-serif;
   font-weight: normal;
-  color: $new-btn;
+  color: $primary-color;
 }
 
 .bottom-elements {
@@ -124,7 +124,7 @@ article {
 .date-created {
   font-family: "Panton", sans-serif;
   font-weight: 600;
-  color: $new-btn;
+  color: $primary-color;
   font-size: 0.8rem;
 }
 
@@ -133,12 +133,12 @@ article {
   font-weight: 600;
   font-size: 0.9rem;
   color: #aedcc0;
-  background-color: $new-btn;
+  background-color: $primary-color;
   border: none;
   border-radius: 15px;
 
   &:hover {
-    background-color: $new-hover-color;
+    background-color: $fourth-color;
   }
 }
 </style>

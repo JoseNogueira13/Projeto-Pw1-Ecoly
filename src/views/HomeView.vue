@@ -3,7 +3,7 @@ import Sidebar from "@/components/Sidebar.vue";
 import Searchbar from "@/components/Searchbar.vue";
 import HomeNews from "@/components/home/HomeNews.vue";
 import HomeActivities from "@/components/home/HomeActivities.vue";
-import HomeFAQ from "@/components/home/HomeFAQ.vue";
+import HomeFAQ from "@/components/home/FAQ/HomeFAQ.vue";
 import Footer from "@/components/home/Footer.vue";
 </script>
 

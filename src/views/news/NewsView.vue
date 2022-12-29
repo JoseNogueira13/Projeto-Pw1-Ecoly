@@ -71,6 +71,7 @@ export default {
   components: {
     Sidebar,
     Searchbar,
+    New,
   },
 
   data() {

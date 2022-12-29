@@ -4,11 +4,7 @@
       <template #prepend>
         <b-input-group-text class="searchbar-input searchbar-icon">
           <strong>
-            <img
-              src="../assets/icons/search.svg"
-              alt="search"
-              width="20"
-            /> </strong
+            <img src="../assets/icons/search.svg" alt="search" width="20" /> </strong
         ></b-input-group-text>
       </template>
       <b-form-input
@@ -41,9 +37,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$searchbar-bg: #343e3d;
-$searchbar-text-color: #aedcc0;
-$searchbar-selected-color: #3fc380;
+$primary-color: #343e3d;
+$secondary-color: #aedcc0;
 
 .searchbar {
   max-width: 700px;
@@ -52,21 +47,21 @@ $searchbar-selected-color: #3fc380;
 }
 
 .searchbar-input {
-  background-color: $searchbar-bg;
-  color: $searchbar-text-color;
+  background-color: $primary-color;
+  color: $secondary-color;
   border: none;
   border-radius: 13px;
 
   &:focus {
     box-shadow: none;
-    background-color: $searchbar-bg;
-    color: $searchbar-text-color;
+    background-color: $primary-color;
+    color: $secondary-color;
   }
 }
 
 .searchbar-icon {
-  background-color: $searchbar-bg;
-  color: $searchbar-text-color;
+  background-color: $primary-color;
+  color: $secondary-color;
 }
 
 @media (max-width: 620px) {
