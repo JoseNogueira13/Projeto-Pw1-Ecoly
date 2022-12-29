@@ -1,7 +1,7 @@
 <script setup>
-import Sidebar from "../components/Sidebar.vue";
-import Searchbar from "../components/Searchbar.vue";
-import New from "../components/New.vue";
+import Sidebar from "@/components/Sidebar.vue";
+import Searchbar from "@/components/Searchbar.vue";
+import New from "@/components/New.vue";
 </script>
 
 <template>
@@ -22,7 +22,7 @@ import New from "../components/New.vue";
       }"
     >
       <button type="button" class="add-new-btn btn btn-sm rounded-pill ml-5 mb-4">
-        <img src="../assets/icons/add.svg" alt="add" width="20" loading="lazy" />
+        <img src="@/assets/icons/add.svg" alt="add" width="20" loading="lazy" />
         <span class="px-3"> Adicionar Notícia </span>
       </button>
     </router-link>
@@ -42,7 +42,7 @@ import New from "../components/New.vue";
     <!-- Load more News Icon animation -->
     <div v-if="numberOfNews < totalNumberOfNews">
       <img
-        src="../assets/icons/loading.svg"
+        src="@/assets/icons/loading.svg"
         alt="load more"
         width="50"
         loading="lazy"
@@ -96,7 +96,9 @@ export default {
     // Load User Info
     this.userInfo.isLogged = usersStore.isUserLogged();
     if (this.userInfo.isLogged) {
-      this.userInfo.isAdmin = usersStore.getLoggedUser().role === "admin";
+      usersStore.getLoggedUser().then((user) => {
+        this.userInfo.isAdmin = user.role === "admin";
+      });
     }
 
     // when the user scrolls to the bottom of the page, the number of news to be displayed increases by 5

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-sm-4 left-content">
           <img
-            src="../assets/logo/logo_exp.png"
+            src="@/assets/logo/logo_exp.png"
             alt="Ecoly"
             width="170"
             class="logo img-fluid mb-3 text-left mr-5"
@@ -34,17 +34,9 @@
         </div>
         <div class="col-sm-4 mid-content">
           <div class="social-media text-left mb-4">
-            <img
-              class="px-2"
-              src="../assets/icons/instagram.svg"
-              alt="instagram"
-            />
-            <img
-              class="px-2"
-              src="../assets/icons/facebook.svg"
-              alt="facebook"
-            />
-            <img class="px-2" src="../assets/icons/twitter.svg" alt="twitter" />
+            <img class="px-2" src="@/assets/icons/instagram.svg" alt="instagram" />
+            <img class="px-2" src="@/assets/icons/facebook.svg" alt="facebook" />
+            <img class="px-2" src="@/assets/icons/twitter.svg" alt="twitter" />
           </div>
 
           <a href="#" class="route-link text-left">plano de atividades</a>
@@ -61,12 +53,11 @@
 
           <h5 class="text-left">SOBRE NÓS</h5>
           <span class="text-left">
-            ECOLY tem como objetivo reunir pessoas interessadas em tornar o
-            planeta um espaço verde de forma a sustentar o ecossistema que nos
-            rodeia. Para o efeito, é disponibilizado ferramentas para os membros
-            do conselho poderem gerir o conselho Eco-escolas e á criação de
-            atividades para o plano de ação e poderá ter interação com outros
-            utilizadores.
+            ECOLY tem como objetivo reunir pessoas interessadas em tornar o planeta
+            um espaço verde de forma a sustentar o ecossistema que nos rodeia. Para o
+            efeito, é disponibilizado ferramentas para os membros do conselho poderem
+            gerir o conselho Eco-escolas e á criação de atividades para o plano de
+            ação e poderá ter interação com outros utilizadores.
           </span>
         </div>
       </div>
@@ -91,7 +82,7 @@ $footer-selected-color: #3fc380;
   font-weight: 400;
 
   // background image
-  background-image: url("../assets/images/FooterIllustration.png");
+  background-image: url("@/assets/images/FooterIllustration.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;

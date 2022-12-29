@@ -1,10 +1,10 @@
 <script setup>
-import Sidebar from "../components/Sidebar.vue";
-import Searchbar from "../components/Searchbar.vue";
-import HomeNews from "../components/HomeNews.vue";
-import HomeActivities from "../components/HomeActivities.vue";
-import HomeFAQ from "../components/HomeFAQ.vue";
-import Footer from "../components/Footer.vue";
+import Sidebar from "@/components/Sidebar.vue";
+import Searchbar from "@/components/Searchbar.vue";
+import HomeNews from "@/components/home/HomeNews.vue";
+import HomeActivities from "@/components/home/HomeActivities.vue";
+import HomeFAQ from "@/components/home/HomeFAQ.vue";
+import Footer from "@/components/home/Footer.vue";
 </script>
 
 <template>
@@ -86,7 +86,7 @@ $tertiary-color: #ffffff;
   max-width: 905px;
   margin: 0 auto;
   min-height: 400px;
-  background-image: url("../assets/images/illustration.png");
+  background-image: url("@/assets/images/illustration.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -128,7 +128,7 @@ $tertiary-color: #ffffff;
 
 .FAQ-section {
   background-color: $secondary-color;
-  background-image: url("../assets/images/illustrationFAQ.png");
+  background-image: url("@/assets/images/illustrationFAQ.png");
   background-repeat: no-repeat;
   background-position: center;
   background-position-y: -170px;

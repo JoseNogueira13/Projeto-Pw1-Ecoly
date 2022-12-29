@@ -1,18 +1,6 @@
 import { defineStore } from "pinia";
-import { getLocalStorage, setLocalStorage } from "../hooks/localStorage";
-
-async function fetchActivities() {
-  const activities = getLocalStorage("activities");
-  if (activities) return activities;
-
-  return await fetch("./data/json/activities.json")
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((err) => {
-      console.log(err);
-      return [];
-    });
-}
+import { fetchData } from "../hooks/fetchData";
+import { setLocalStorage } from "../hooks/localStorage";
 
 export const useActivitiesStore = defineStore("activities", {
   state: () => ({
@@ -22,19 +10,18 @@ export const useActivitiesStore = defineStore("activities", {
   actions: {
     async getActivities() {
       if (this.activities.length === 0)
-        this.activities = await fetchActivities();
+        this.activities = await fetchData("activities");
       return this.activities;
     },
 
     async getActivityById(id) {
-      if (this.activities.length === 0)
-        this.activities = await fetchActivities();
-      return this.activities.find((activities) => activities.id === id);
+      const activities = await this.getActivities();
+      return activities.find((activities) => activities.id === id);
     },
 
     // Add activity activity
     async addActivity(newActivity) {
-      const activities = await fetchActivities();
+      const activities = await this.getActivities();
       activities.push({
         id: crypto.randomUUID(),
         date: Date.now(),
@@ -47,7 +34,7 @@ export const useActivitiesStore = defineStore("activities", {
 
     // Finish activity
     async finishActivity(id) {
-      const activities = await fetchActivities();
+      const activities = await this.getActivities();
       // Find the activity and set finished to true
       activities.find((activity) => activity.id === id).finished = true;
       this.activities = activities;
@@ -56,7 +43,7 @@ export const useActivitiesStore = defineStore("activities", {
 
     // Add a report
     async addReport(id, report) {
-      const activities = await fetchActivities();
+      const activities = await this.getActivities();
       activities.find((activity) => activity.id === id).report.push(report);
       this.activities = activities;
       setLocalStorage("activities", activities);

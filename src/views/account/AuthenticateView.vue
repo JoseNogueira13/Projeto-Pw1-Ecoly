@@ -1,5 +1,5 @@
 <script setup>
-import Sidebar from "../components/Sidebar.vue";
+import Sidebar from "@/components/Sidebar.vue";
 </script>
 
 <!-- TODO: Make the Login and Register Components to be displayed here -->

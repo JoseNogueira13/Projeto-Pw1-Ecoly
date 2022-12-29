@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AccountView from "../views/AccountView.vue";
-import ActivitiesView from "../views/ActivitiesView.vue";
-import AuthenticateView from "../views/AuthenticateView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import HomeView from "../views/HomeView.vue";
-import ManageView from "../views/ManageView.vue";
-import NewsView from "../views/NewsView.vue";
+import AccountView from "../views/account/AccountView.vue";
+import AuthenticateView from "../views/account/AuthenticateView.vue";
+import ActivitiesView from "../views/activities/ActivitiesView.vue";
+import ManageView from "../views/manage/ManageView.vue";
+import NewsView from "../views/news/NewsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,12 +24,12 @@ const router = createRouter({
     {
       path: "/news/:id",
       name: "NewsDetails",
-      component: () => import("../views/NewsDetailView.vue"),
+      component: () => import("../views/news/NewsDetailView.vue"),
     },
     {
       path: "/news/create",
       name: "NewsCreate",
-      component: () => import("../views/NewsCreateView.vue"),
+      component: () => import("../views/news/NewsCreateView.vue"),
     },
     {
       path: "/activities",

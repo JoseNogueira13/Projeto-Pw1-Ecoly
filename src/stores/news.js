@@ -1,18 +1,6 @@
 import { defineStore } from "pinia";
-import { getLocalStorage, setLocalStorage } from "../hooks/localStorage";
-
-async function fetchNews() {
-  const news = getLocalStorage("news");
-  if (news) return news;
-
-  return await fetch("./data/json/news.json")
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((err) => {
-      console.log(err);
-      return [];
-    });
-}
+import { fetchData } from "../hooks/fetchData";
+import { setLocalStorage } from "../hooks/localStorage";
 
 export const useNewsStore = defineStore("news", {
   state: () => ({
@@ -21,18 +9,18 @@ export const useNewsStore = defineStore("news", {
 
   actions: {
     async getNews() {
-      if (this.news.length === 0) this.news = await fetchNews();
+      if (this.news.length === 0) this.news = await fetchData("news");
       return this.news;
     },
 
     async getNewById(id) {
-      if (this.news.length === 0) this.news = await fetchNews();
-      return this.news.find((news) => news.id === id);
+      const news = await this.getNews();
+      return news.find((news) => news.id === id);
     },
 
     // Add new
     async addNew(newNew) {
-      const news = await fetchNews();
+      const news = await this.getNews();
       news.push({ id: crypto.randomUUID(), date: Date.now(), ...newNew });
       setLocalStorage("news", news);
       this.news = news;
@@ -41,7 +29,7 @@ export const useNewsStore = defineStore("news", {
 
     // Remove new
     async removeNew(id) {
-      const news = await fetchNews();
+      const news = await this.getNews();
       const newNews = news.filter((news) => news.id !== id);
       setLocalStorage("news", newNews);
       this.news = newNews;

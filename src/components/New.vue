@@ -104,10 +104,6 @@ $fourth-color: #ffffff;
 
   &:hover {
     background-color: $tertiary-color;
-
-    & span {
-      color: $fourth-color;
-    }
   }
 
   &:disabled {

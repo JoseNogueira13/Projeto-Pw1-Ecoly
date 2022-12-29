@@ -1,18 +1,6 @@
 import { defineStore } from "pinia";
-import { getLocalStorage, setLocalStorage } from "../hooks/localStorage";
-
-async function fetchThemes() {
-  const themes = getLocalStorage("themes");
-  if (themes) return themes;
-
-  return await fetch("./data/json/themes.json")
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((err) => {
-      console.log(err);
-      return [];
-    });
-}
+import { fetchData } from "../hooks/fetchData";
+import { setLocalStorage } from "../hooks/localStorage";
 
 export const useThemesStore = defineStore("themes", {
   state: () => ({
@@ -21,7 +9,7 @@ export const useThemesStore = defineStore("themes", {
 
   actions: {
     async getThemes() {
-      if (this.themes.length === 0) this.themes = await fetchThemes();
+      if (this.themes.length === 0) this.themes = await fetchData("themes");
       return this.themes;
     },
 

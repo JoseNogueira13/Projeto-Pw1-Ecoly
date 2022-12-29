@@ -1,113 +1,123 @@
 import { defineStore } from "pinia";
-import { getLocalStorage, setLocalStorage } from "../hooks/localStorage";
-
-function fetchUsers() {
-  const users = getLocalStorage("users");
-
-  return users
-    ? users
-    : [
-        {
-          id: 1,
-          internalId: null,
-          name: "Alice Smith",
-          email: "alice.smith@gmail.com",
-          password: "123",
-          role: "admin",
-          school: "ESMAD",
-          course: null,
-          year: null,
-          photo: null,
-          badges: [0, 2, 4], // badges ids
-          highlightedBadge: 2,
-        },
-      ];
-}
+import { fetchData } from "../hooks/fetchData";
+import {
+  getLocalStorage,
+  removeLocalStorage,
+  setLocalStorage,
+} from "../hooks/localStorage";
 
 export const useUsersStore = defineStore("users", {
   state: () => ({
-    users: fetchUsers(),
+    users: [],
     loggedUserID: 1,
   }),
 
   actions: {
     // Getters
-    getUsers() {
+    async getUsers() {
+      if (this.users.length === 0) this.users = await fetchData("users");
       return this.users;
     },
 
-    getUserById(id) {
-      return this.users.find((user) => user.id === id);
+    async getUserById(id) {
+      const users = await this.getUsers();
+      return users.find((user) => user.id === id);
     },
 
-    getUsersByRole(role) {
-      users.value.filter((user) => user.role === role);
+    async getUsersByRole(role) {
+      const users = await this.getUsers();
+      return users.filter((user) => user.role === role);
     },
 
-    getUsersBySchool(school, role = null) {
-      users.value
-        .filter((user) => user.school === school) // Filter by school
+    async getUsersBySchool(school, role = null) {
+      const users = await this.getUsers();
+      return users
+        .filter((user) => user.school === school)
         .filter((user) => {
-          if (role) return user.role === role; // Filter by role
+          if (role) return user.role === role;
           return true;
         });
     },
 
     // Authentication methods
     isUserLogged() {
-      return this.loggedUserID !== null;
+      if (this.loggedUserID !== null) return true;
+
+      const loggedUser = getLocalStorage("loggedUser");
+      if (loggedUser) {
+        this.loggedUserID = parseInt(loggedUser);
+        return true;
+      }
+
+      return false;
     },
 
-    getLoggedUser() {
-      const user = this.users.find((user) => user.id === this.loggedUserID);
-      return user ? user : null;
+    async getLoggedUser() {
+      const users = await this.getUsers();
+      return users.find((user) => user.id === this.loggedUserID);
     },
 
     // Add user
-    addUser(newUser) {
-      this.users.push({ id: crypto.randomUUID(), ...newUser });
+    async addUser(newUser) {
+      const users = await this.getUsers();
+      users.push({ id: crypto.randomUUID(), ...newUser });
+
+      this.users = users;
       setLocalStorage("users", this.users);
     },
 
     // Edit user data
-    editUser(id, newData) {
-      const index = this.users.findIndex((user) => user.id === id);
+    async editUser(id, newData) {
+      const users = await this.getUsers();
+
+      const index = users.findIndex((user) => user.id === id);
       if (index === -1) return;
 
-      this.users[index].email = newData.email;
-      this.users[index].password = newData.password;
-      this.users[index].course = newData.course;
-      this.users[index].year = newData.year;
-      this.users[index].photo = newData.photo;
+      users[index].email = newData.email;
+      users[index].password = newData.password;
+      users[index].course = newData.course;
+      users[index].year = newData.year;
+      users[index].photo = newData.photo;
 
+      this.users = users;
       setLocalStorage("users", this.users);
     },
 
     // Change user role
-    changeUserRole(id, newRole) {
-      this.users.value.find((user) => user.id === id).role = newRole;
+    async changeUserRole(id, newRole) {
+      const users = await this.getUsers();
+
+      users.find((user) => user.id === id).role = newRole;
+
+      this.users = users;
       setLocalStorage("users", this.users);
     },
 
     // Update Highlighted Badge
-    updateHighlightedBadge(badgeId) {
-      this.users.value.find(
-        (user) => user.id === this.loggedUserID
-      ).highlightedBadge = badgeId;
+    async updateHighlightedBadge(badgeId) {
+      const users = await this.getUsers();
+
+      users.find((user) => user.id === this.loggedUserID).highlightedBadge = badgeId;
+
+      this.users = users;
       setLocalStorage("users", this.users);
     },
 
     // Unlock a new Badge
-    unlockBadge(badgeId) {
-      this.users.value
-        .find((user) => user.id === this.loggedUserID)
-        .badges.push(badgeId);
+    async unlockBadge(badgeId) {
+      const users = await this.getUsers();
+
+      users.find((user) => user.id === this.loggedUserID).badges.push(badgeId);
+
+      this.users = users;
       setLocalStorage("users", this.users);
     },
 
     // Login
-    login(email, password) {
-      const user = this.users.value.find(
+    async login(email, password) {
+      const users = await this.getUsers();
+
+      const user = users.find(
         (user) => user.email === email && user.password === password
       );
       if (!user) return false;
@@ -121,16 +131,20 @@ export const useUsersStore = defineStore("users", {
     // SignOut
     signOut() {
       this.loggedUserID = null;
+      removeLocalStorage("loggedUser");
     },
 
     // Create new user
-    createNewUser(newUser) {
+    async createNewUser(newUser) {
+      const users = await this.getUsers();
+
       // check if user already exists
-      if (this.users.value.find((user) => user.email === newUser.email))
-        return false;
+      if (users.find((user) => user.email === newUser.email)) return false;
 
       // create new user
-      this.users.value.push({ id: crypto.randomUUID(), ...newUser });
+      users.push({ id: crypto.randomUUID(), ...newUser });
+
+      this.users = users;
       setLocalStorage("users", this.users);
       return true;
     },

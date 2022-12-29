@@ -1,17 +1,17 @@
 <script setup>
-import Sidebar from "../components/Sidebar.vue";
+import Sidebar from "@/components/Sidebar.vue";
 </script>
 
 <template>
-  <Sidebar route="account" />
+  <Sidebar route="manage" />
   <div>
-    <h1>Account</h1>
+    <h1>Manage</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Account",
+  name: "Manage",
 };
 </script>
 

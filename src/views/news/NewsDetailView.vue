@@ -18,8 +18,6 @@ export default {
     };
   },
 
-  //TODO: When typing the route manually or refreshing the page, the data is not loaded,
-  // while if you come from another page, it works fine
   async created() {
     // new id from the url
     const id = this.$route.params.id;
