@@ -6,7 +6,7 @@ import New from "@/components/New.vue";
 
 <template>
   <Sidebar route="news" />
-  <div class="main text-center p-3 px-5" id="news-page">
+  <div class="main text-center p-3 px-5">
     <Searchbar route="news" />
 
     <header class="mx-5 mt-4 mb-4">
