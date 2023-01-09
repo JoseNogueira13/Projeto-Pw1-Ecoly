@@ -31,7 +31,7 @@ import Searchbar from "@/components/Searchbar.vue";
         <Activity
           v-for="activity in activities"
           :key="activity.id"
-          :item="activity"
+          :activity="activity"
           :userInfo="userInfo"
           @removeActivity="removeActivity"
         />
