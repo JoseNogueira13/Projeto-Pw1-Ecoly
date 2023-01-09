@@ -2,37 +2,37 @@
 	{
 		"id": "1",
 		"images": [
-			"./data/images/bancos.png"
+			"./data/images/lixo.png"
 		],
-		"title": "Construção de Bancos de Jardim",
-		"diagnostic": "Falta de bancos de jardim no espaço exterior da escola",
-		"objective": "Construir bancos de jardim para que os alunos possam descansar e usufruir do espaço exterior da escola",
-		"meta": "Construir 4 bancos de jardim",
-		"resources": "Madeira, pregos, martelo, serras, lixas, tinta",
+		"title": "Colocação de Caixotes do Lixo",
+		"diagnostic": "Falta de local para colocação de lixo nas zonas ajardinadas",
+		"objective": "Contribuir para a limpeza dos espaços exteriores e estimular a utilização das zonas ajardinadas",
+		"meta": "Colocação de 10 caixotes do lixo nas zonas relvadas da ESAG ",
+		"resources": "Caixotes do lixo ",
 		"participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
-		"evaluationIndicator": "Número de bancos de jardim construídos",
-		"evaluationMethod": "Foto dos bancos de jardim construídos",
+		"evaluationIndicator": "Número de caixotes do lixo instalados",
+		"evaluationMethod": "Foto dos caixotes do lixo",
 		"themeID": "1",
 		"initialDate": 1670973744743,
 		"finalDate": 1671052422918,
 		"complexity": "3",
 		"status": "unfinished",
-		"school": "ESMAD",
+		"school": "ESAG",
 		"creatorID": "1"
 	},
 	{
 		"id": "2",
 		"images": [
-			"./data/images/lixo.png"
+			"./data/images/praia.png"
 		],
-		"title": "Construção de Bancos de Jardim",
-		"diagnostic": "Falta de bancos de jardim no espaço exterior da escola",
-		"objective": "Construir bancos de jardim para que os alunos possam descansar e usufruir do espaço exterior da escola",
-		"meta": "Construir 4 bancos de jardim",
-		"resources": "Madeira, pregos, martelo, serras, lixas, tinta",
-		"participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
-		"evaluationIndicator": "Número de bancos de jardim construídos",
-		"evaluationMethod": "Foto dos bancos de jardim construídos",
+		"title": "Limpeza praia + separação resíduos",
+		"diagnostic": "Lixo nas praias",
+		"objective": "Limpeza de modo a contribuir para o meio ambiente e a prevenir a poluição ambiental",
+		"meta": "Deixar a praia limpa",
+		"resources": "Sacos e luvas",
+		"participants": "AE ESMAD + C.M. VILA DO CONDE",
+		"evaluationIndicator": "Sacos recolhidos com residuos",
+		"evaluationMethod": "Foto dos sacos recolhidos",
 		"themeID": "2",
 		"initialDate": 1670973744743,
 		"finalDate": 1671052422918,
@@ -44,7 +44,7 @@
 	{
 		"id": "3",
 		"images": [
-			"./data/images/praia.png"
+			"./data/images/bancos.png"
 		],
 		"title": "Construção de Bancos de Jardim",
 		"diagnostic": "Falta de bancos de jardim no espaço exterior da escola",
