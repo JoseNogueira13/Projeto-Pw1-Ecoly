@@ -63,4 +63,4 @@ If you'd like to contribute to the project, please fork the repository and make 
 
 - [Tiago Ribeiro](https://github.com/TiagoRibeiro25)
 - [José Nogueira](https://github.com/JoseNogueira13)
-- [Pedro Teixeira](https://github.com/40210465)
+- [Pedro Teixeira](https://github.com/pedromst2000)
