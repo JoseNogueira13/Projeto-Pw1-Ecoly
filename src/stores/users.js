@@ -9,7 +9,7 @@ import {
 export const useUsersStore = defineStore("users", {
   state: () => ({
     users: [],
-    loggedUserID: 1,
+    loggedUserID: null,
   }),
 
   actions: {
