@@ -1,6 +1,7 @@
 <script setup>
 import Sidebar from "@/components/Sidebar.vue";
 import Searchbar from "@/components/Searchbar.vue";
+import Header from "@/components/Header.vue";
 import HomeNews from "@/components/home/HomeNews.vue";
 import HomeActivities from "@/components/home/HomeActivities.vue";
 import HomeFAQ from "@/components/home/FAQ/HomeFAQ.vue";
@@ -12,10 +13,7 @@ import Footer from "@/components/home/Footer.vue";
   <div class="main text-center p-3 px-5">
     <Searchbar route="home" />
 
-    <header class="mx-5 mt-4 mb-5">
-      <h1 class="title text-left mt-3">DESTAQUES</h1>
-      <div class="border border-2 border-dark mt-3"></div>
-    </header>
+    <Header title="DESTAQUES" />
 
     <section id="news-section">
       <HomeNews />
@@ -29,8 +27,8 @@ import Footer from "@/components/home/Footer.vue";
     </section>
     <section id="citation-section" class="my-4 py-5">
       <div class="citation">
-        "A ecologia deve estar inscrita no ADN de tudo o que fazemos diariamente e
-        ainda não entrou nos costumes."
+        "A ecologia deve estar inscrita no ADN de tudo o que fazemos diariamente e ainda
+        não entrou nos costumes."
         <span class="author">Yann Arthus Bertrand</span>
       </div>
     </section>
@@ -52,6 +50,7 @@ export default {
   components: {
     Sidebar,
     Searchbar,
+    Header,
     HomeNews,
     HomeActivities,
     HomeFAQ,

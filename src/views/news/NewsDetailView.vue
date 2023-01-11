@@ -34,6 +34,8 @@ import { useUsersStore } from "@/stores/users";
 export default {
   name: "NewsDetailView",
 
+  components: { Sidebar },
+
   data() {
     return {
       newDetails: {},

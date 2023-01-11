@@ -1,17 +1,20 @@
 <script setup>
 import Sidebar from "@/components/Sidebar.vue";
+import Header from "@/components/Header.vue";
 </script>
 
 <template>
   <Sidebar route="manage" />
-  <div>
-    <h1>Manage</h1>
+  <div class="main text-center p-3 px-5">
+    <Header title="ADICIONAR NOTÍCIA" />
   </div>
 </template>
 
 <script>
 export default {
   name: "Manage",
+
+  components: { Sidebar, Header },
 };
 </script>
 

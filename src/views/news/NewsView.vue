@@ -1,4 +1,5 @@
 <script setup>
+import Header from "@/components/Header.vue";
 import Sidebar from "@/components/Sidebar.vue";
 import Searchbar from "@/components/Searchbar.vue";
 import New from "@/components/New.vue";
@@ -9,10 +10,7 @@ import New from "@/components/New.vue";
   <div class="main text-center p-3 px-5">
     <Searchbar route="news" />
 
-    <header class="mx-5 mt-4 mb-4">
-      <h1 class="title text-left mt-3">NOTÍCIAS</h1>
-      <div class="border border-2 border-dark mt-3"></div>
-    </header>
+    <Header title="NOTÍCIAS" />
 
     <!-- Add new (only visible for admins) -->
     <router-link
@@ -69,6 +67,7 @@ import { useUsersStore } from "@/stores/users";
 export default {
   name: "News",
   components: {
+    Header,
     Sidebar,
     Searchbar,
     New,
@@ -154,8 +153,8 @@ $fourth-color: #ffffff;
 }
 
 .add-new-btn {
-  background-color: $secondary-color;
-  color: $primary-color;
+  background-color: $primary-color;
+  color: $fourth-color;
 
   font-family: "Panton", sans-serif;
   font-weight: 600;

@@ -1,33 +1,20 @@
 <template>
-  <div class="new mb-4">
+  <div class="new mb-5 shadow">
     <button
       type="button"
-      class="remove-btn btn btn-sm rounded-pill float-right py-1 px-2"
+      class="remove-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
       :style="{
         visibility: userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
       }"
       @click="removeNew(item.id)"
     >
-      <img
-        src="../assets/icons/remove.svg"
-        alt="remove"
-        width="20"
-        loading="lazy"
-        class="ml-2"
-      />
+      <img src="../assets/icons/remove.svg" alt="remove" width="20" class="ml-2" />
       <span class="px-3">Remover</span>
     </button>
 
     <div class="row">
-      <div class="col-5">
-        <img
-          :src="item.images[0]"
-          alt="imagem da notícia"
-          width="410"
-          height="250"
-          loading="lazy"
-          class="new-image"
-        />
+      <div class="col-5 px-0">
+        <img :src="item.images[0]" alt="imagem da notícia" class="new-image" />
       </div>
 
       <div class="col-7">
@@ -43,7 +30,7 @@
         <p class="new-text text-left mt-3">
           {{ reduceText(item.body) }}
         </p>
-        <p class="new-date text-left mt-4">
+        <p class="new-date text-left">
           {{ formatDate(item.date) }}
         </p>
       </div>
@@ -69,7 +56,7 @@ export default {
 
   methods: {
     reduceText(text) {
-      return text.substring(0, 550) + "...";
+      return text.substring(0, 400) + "...";
     },
 
     formatTitle(title) {
@@ -94,6 +81,7 @@ $primary-color: #343e3d;
 $secondary-color: #aedcc0;
 $tertiary-color: #3fc380;
 $fourth-color: #ffffff;
+$fifth-color: #e4f0e8;
 
 .remove-btn {
   font-family: "Panton", sans-serif;
@@ -114,9 +102,8 @@ $fourth-color: #ffffff;
 }
 
 .new {
-  background-color: $secondary-color;
+  background-color: $fifth-color;
   color: $primary-color;
-  padding: 10px;
   max-width: 1200px;
   margin: 0 auto;
   border-radius: 20px;
@@ -124,8 +111,11 @@ $fourth-color: #ffffff;
 }
 
 .new-image {
-  border-radius: 20px;
-  margin-top: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 440px;
+  height: 250px;
+  object-fit: cover;
 }
 
 .new-title {
@@ -148,7 +138,7 @@ $fourth-color: #ffffff;
   font-weight: 600;
   font-size: 14px;
   text-align: justify;
-  height: 133px;
+  height: 100px;
 }
 
 .new-date {
@@ -156,5 +146,9 @@ $fourth-color: #ffffff;
   font-weight: 800;
   font-size: 14px;
   text-align: left;
+
+  // place it in the bottom of the div
+  position: absolute;
+  bottom: 0;
 }
 </style>

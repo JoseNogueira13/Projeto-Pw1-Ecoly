@@ -2,6 +2,12 @@ import { defineStore } from "pinia";
 import { fetchData } from "../hooks/fetchData";
 import { setLocalStorage } from "../hooks/localStorage";
 
+function orderNewsByDate(news) {
+  return news.sort((a, b) => {
+    return b.date - a.date;
+  });
+}
+
 export const useNewsStore = defineStore("news", {
   state: () => ({
     news: [],
@@ -9,7 +15,7 @@ export const useNewsStore = defineStore("news", {
 
   actions: {
     async getNews() {
-      if (this.news.length === 0) this.news = await fetchData("news");
+      this.news = orderNewsByDate(await fetchData("news"));
       return this.news;
     },
 
