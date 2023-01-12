@@ -51,7 +51,7 @@ import Sidebar from "@/components/Sidebar.vue";
         <button
           type="submit"
           class="addNewBtn btn pl-5 pr-5"
-          :disabled="!new_title || !new_content || !new_images"
+          :disabled="!new_title || !new_content || new_images.length === 0"
         >
           Adicionar Notícia
         </button>

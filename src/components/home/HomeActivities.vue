@@ -6,7 +6,7 @@
     img-top
     tag="article"
     style="max-width: 20rem"
-    class="activity-card mb-2 p-3"
+    class="activity-card mb-2 p-3 shadow"
   >
     <h4 class="title">{{ activity.title.toUpperCase() }}</h4>
     <span class="theme p-1">{{ theme }}</span>

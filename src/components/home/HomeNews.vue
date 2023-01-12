@@ -3,7 +3,7 @@ import Arrow from "@/components/Arrow.vue";
 </script>
 
 <template>
-  <div class="news-card">
+  <div class="news-card shadow">
     <div class="row">
       <div class="col-1">
         <Arrow direction="left" @click="slide--" :disabled="slide === 0" />
