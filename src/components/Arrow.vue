@@ -30,11 +30,15 @@ export default {
 div {
   margin-top: 145px;
   cursor: pointer;
-}
+  transition: 0.3s;
 
-// when disabled
-div[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
+  &:hover {
+    scale: 1.05;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 </style>

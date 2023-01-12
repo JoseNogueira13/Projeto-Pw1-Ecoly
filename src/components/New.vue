@@ -108,6 +108,8 @@ $fifth-color: #e4f0e8;
   margin: 0 auto;
   border-radius: 20px;
   min-height: 250px;
+
+  animation: slideRight 0.5s ease-in-out;
 }
 
 .new-image {
@@ -146,9 +148,110 @@ $fifth-color: #e4f0e8;
   font-weight: 800;
   font-size: 14px;
   text-align: left;
-
-  // place it in the bottom of the div
   position: absolute;
   bottom: 0;
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1350px) {
+  .new {
+    max-width: 1000px;
+  }
+
+  .new-image {
+    width: 400px;
+  }
+
+  .col-7 {
+    padding-left: 50px;
+  }
+
+  // reduce all font size
+  .new-title {
+    font-size: 20px;
+  }
+
+  .new-text {
+    font-size: 12px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .new {
+    max-width: 800px;
+  }
+
+  .new-image {
+    width: 300px;
+  }
+
+  .col-7 {
+    padding-left: 40px;
+  }
+
+  .new-title {
+    font-size: 18px;
+  }
+
+  .new-text {
+    font-size: 11px;
+    height: 60px;
+  }
+
+  .new-date {
+    font-size: 12px;
+  }
+
+  .remove-btn {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 960px) {
+  .remove-btn {
+    border: none;
+  }
+
+  .remove-btn span {
+    display: none;
+  }
+}
+
+@media (max-width: 870px) {
+  // reduce image size and card
+  .new-image {
+    width: 250px;
+    height: 300px;
+  }
+
+  .new {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 739px) {
+  .new-image {
+    width: 100%;
+    height: 300px;
+  }
+
+  .col-7 {
+    padding-left: 0;
+  }
+
+  .new {
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+  }
 }
 </style>
