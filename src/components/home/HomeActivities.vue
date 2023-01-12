@@ -68,6 +68,8 @@ $fourth: #18516f;
   border: none;
   border-radius: 15px;
   min-height: 450px;
+
+  animation: slide 2s ease-in-out;
 }
 
 .title {
@@ -118,7 +120,6 @@ $fourth: #18516f;
   background-color: $primary-color;
   border: none;
   border-radius: 15px;
-  // place it in the bottom of the card
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -126,6 +127,17 @@ $fourth: #18516f;
 
   &:hover {
     background-color: $fourth;
+  }
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 </style>

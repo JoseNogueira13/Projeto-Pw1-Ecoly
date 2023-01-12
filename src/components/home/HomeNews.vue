@@ -1,42 +1,49 @@
+<script setup>
+import Arrow from "@/components/Arrow.vue";
+</script>
+
 <template>
-  <div class="homeNews p-3 px-5">
-    <b-carousel
-      id="carousel-1"
-      v-model="slide"
-      :interval="4000"
-      controls
-      indicators
-      background="transparent"
-      img-width="1024"
-      img-height="480"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
-    >
-      <b-carousel-slide
-        v-for="item in news"
-        :key="item.id"
-        :img-src="item.images[0]"
-      >
-        <article>
-          <h1 class="title">
-            {{ item.title.toUpperCase() }}
+  <div class="news-card">
+    <div class="row">
+      <div class="col-1">
+        <Arrow direction="left" @click="slide--" :disabled="slide === 0" />
+      </div>
+      <!-- Image -->
+      <div class="col-4 img-container">
+        <img :src="news[slide].images[0]" alt="Imagem da Notícia em Destaque" />
+      </div>
+      <!-- Content -->
+      <div class="col-6">
+        <div class="row-3" style="height: 64px">
+          <h1 class="mt-5 new-title">
+            {{ news[slide].title }}
           </h1>
-          <p class="text my-4">
-            {{ reduceText(item.body) }}
+        </div>
+        <div class="row-6" style="height: 136px">
+          <p class="mt-3 text-left new-text">
+            {{ reduceText(news[slide].body) }}
           </p>
-          <div class="bottom-elements">
-            <span class="date-created">{{ formatDate(item.date) }}</span>
-            <b-button
-              variant="primary"
-              class="read-more-btn btn btn-primary"
-              @click="goToNewsDetails(item.id)"
-            >
-              Ler mais
-            </b-button>
+        </div>
+        <div class="row-3">
+          <div class="row">
+            <div class="col-6 text-left mt-3">
+              <p>{{ formatDate(news[slide].date) }}</p>
+            </div>
+            <div class="col-6 text-right mt-3">
+              <router-link
+                class="see-details-btn py-2 px-3"
+                :to="{ name: 'NewsDetails', params: { id: news[slide].id } }"
+              >
+                Ver Mais
+              </router-link>
+            </div>
           </div>
-        </article>
-      </b-carousel-slide>
-    </b-carousel>
+        </div>
+      </div>
+      <div class="col-1">
+        <Arrow direction="right" @click="slide++" :disabled="slide === news.length - 1" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,20 +55,20 @@ export default {
   data() {
     return {
       slide: 0,
-      sliding: null,
-      news: [],
+      news: [
+        {
+          id: 1,
+          title: "Notícias",
+          images: ["./data/images/praia.png"],
+          body: "Carregando Notícias",
+        },
+      ],
     };
   },
-  methods: {
-    onSlideStart(slide) {
-      this.sliding = true;
-    },
-    onSlideEnd(slide) {
-      this.sliding = false;
-    },
 
+  methods: {
     reduceText(text) {
-      return text.substring(0, 200) + "...";
+      return text.substring(0, 250) + "...";
     },
 
     formatDate(date) {
@@ -74,12 +81,11 @@ export default {
     },
   },
 
-  created() {
+  async created() {
     const newsStore = useNewsStore();
-    newsStore.getNews().then((news) => {
-      // assign 5 news to the news array
-      this.news = news.slice(0, 5);
-    });
+    const news = await newsStore.getNews();
+
+    this.news = news.slice(0, 5);
   },
 };
 </script>
@@ -87,58 +93,71 @@ export default {
 <style lang="scss" scoped>
 $primary-color: #343e3d;
 $secondary-color: #aedcc0;
-$tertiary-color: #3fc380;
+$tertiary-color: #ffffff;
 $fourth-color: #18516f;
 
-.homeNews {
-  max-width: 1000px;
+.news-card {
+  background-color: $secondary-color;
+  width: 900px;
+  height: 350px;
   margin: 0 auto;
+  border-radius: 25px;
+  animation: slide 1s ease-in-out;
 }
 
-article {
-  // use $secondary-color as background but with 50% opacity
-  background-color: rgba($secondary-color, 0.95);
-  padding: 1rem;
-  border-radius: 10px;
+.img-container {
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-top: 50px;
+  }
 }
 
-.title {
+.new-title {
   font-family: "Alkes", sans-serif;
-  font-weight: bold;
+  font-size: 23px;
+  font-weight: 700;
+
   color: $primary-color;
-  font-size: 1.5rem;
+  text-align: left;
 }
 
-.text {
+.new-text {
   font-family: "Panton", sans-serif;
-  font-weight: normal;
+  font-size: 16px;
+  font-weight: 400;
   color: $primary-color;
 }
 
-.bottom-elements {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.date-created {
-  font-family: "Panton", sans-serif;
-  font-weight: 600;
-  color: $primary-color;
-  font-size: 0.8rem;
-}
-
-.read-more-btn {
-  font-family: "Panton", sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #aedcc0;
+.see-details-btn {
   background-color: $primary-color;
-  border: none;
+  color: $tertiary-color;
   border-radius: 15px;
+  border: none;
+  width: 100px;
+  height: 40px;
+  font-family: "Panton", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
     background-color: $fourth-color;
+    text-decoration: none;
+  }
+}
+
+// animation
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
