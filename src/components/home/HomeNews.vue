@@ -9,14 +9,15 @@ import Arrow from "@/components/Arrow.vue";
         <Arrow direction="left" @click="slide--" :disabled="slide === 0" />
       </div>
       <!-- Image -->
-      <div class="col-4 img-container">
+      <div class="col-4 img-container d-none d-lg-block">
         <img :src="news[slide].images[0]" alt="Imagem da Notícia em Destaque" />
       </div>
       <!-- Content -->
-      <div class="col-6">
+      <!-- on lg screens make it use 12 columns -->
+      <div class="col-10 col-lg-6">
         <div class="row-3" style="height: 64px">
           <h1 class="mt-5 new-title">
-            {{ news[slide].title }}
+            {{ formatTitle(news[slide].title) }}
           </h1>
         </div>
         <div class="row-6" style="height: 136px">
@@ -69,6 +70,10 @@ export default {
   methods: {
     reduceText(text) {
       return text.substring(0, 250) + "...";
+    },
+
+    formatTitle(title) {
+      return (title.substring(0, 48) + "...").toUpperCase();
     },
 
     formatDate(date) {
@@ -149,7 +154,6 @@ $fourth-color: #18516f;
   }
 }
 
-// animation
 @keyframes slide {
   0% {
     opacity: 0;
@@ -158,6 +162,18 @@ $fourth-color: #18516f;
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 1090px) {
+  .news-card {
+    width: 800px;
+  }
+}
+
+@media (max-width: 950px) {
+  .news-card {
+    width: 100%;
   }
 }
 </style>
