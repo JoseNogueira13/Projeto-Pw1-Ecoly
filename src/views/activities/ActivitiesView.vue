@@ -15,10 +15,14 @@ import Header from "@/components/Header.vue";
     <router-link
       :to="{ name: 'ActivitiesCreate' }"
       :style="{
-        visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
+        visibility:
+          userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
       }"
     >
-      <button type="button" class="add-new-btn btn btn-sm rounded-pill ml-5 mb-4">
+      <button
+        type="button"
+        class="add-new-btn btn btn-sm rounded-pill ml-5 mb-4"
+      >
         <img src="@/assets/icons/add.svg" alt="add" width="20" loading="lazy" />
         <span class="px-3"> Adicionar Atividade </span>
       </button>
@@ -113,7 +117,8 @@ export default {
 
   methods: {
     loadMoreActivities() {
-      const windowHeight = window.innerHeight + document.documentElement.scrollTop;
+      const windowHeight =
+        window.innerHeight + document.documentElement.scrollTop;
       const documentHeight = document.documentElement.offsetHeight;
       if (windowHeight === documentHeight) {
         // wait half second before loading more activities
@@ -130,7 +135,9 @@ export default {
     removeActivity(id) {
       const activitiesStore = useActivitiesStore();
       activitiesStore.removeActivity(id);
-      this.activities = this.activities.filter((activity) => activity.id !== id);
+      this.activities = this.activities.filter(
+        (activity) => activity.id !== id
+      );
       this.totalNumberOfActivities -= 1;
       if (this.numberOfActivities > this.totalNumberOfActivities) {
         this.numberOfActivities = this.totalNumberOfActivities;

@@ -35,7 +35,9 @@ export const useActivitiesStore = defineStore("activities", {
     // Remove Activity
     async removeActivity(id) {
       const activities = await this.getActivities();
-      const newActivities =  activities.filter((activities) => activities.id !== id);
+      const newActivities = activities.filter(
+        (activities) => activities.id !== id
+      );
       setLocalStorage("activities", newActivities);
       this.activities = newActivities;
       return this.activities;

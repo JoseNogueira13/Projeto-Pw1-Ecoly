@@ -7,7 +7,11 @@ import { fetchData } from "@/hooks/fetchData";
   <div class="my-5">
     <h2 class="title mt-2 mb-5">PERGUNTAS FREQUENTES</h2>
     <div class="accordion" role="tablist">
-      <FAQquestion v-for="question in FAQ" :key="question.id" :question="question" />
+      <FAQquestion
+        v-for="question in FAQ"
+        :key="question.id"
+        :question="question"
+      />
     </div>
   </div>
 </template>

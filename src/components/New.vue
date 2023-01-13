@@ -4,11 +4,17 @@
       type="button"
       class="remove-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
       :style="{
-        visibility: userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
+        visibility:
+          userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
       }"
       @click="removeNew(item.id)"
     >
-      <img src="../assets/icons/remove.svg" alt="remove" width="20" class="ml-2" />
+      <img
+        src="../assets/icons/remove.svg"
+        alt="remove"
+        width="20"
+        class="ml-2"
+      />
       <span class="px-3">Remover</span>
     </button>
 

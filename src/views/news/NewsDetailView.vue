@@ -24,7 +24,9 @@ import Sidebar from "@/components/Sidebar.vue";
             <h2 class="text-left new-title">{{ newDetails.title }}</h2>
           </div>
           <div class="col-4 mt-3">
-            <h3 class="text-right new-date">{{ formatDate(newDetails.date) }}</h3>
+            <h3 class="text-right new-date">
+              {{ formatDate(newDetails.date) }}
+            </h3>
             <h4 class="text-right new-author">{{ authorName }}</h4>
           </div>
         </div>

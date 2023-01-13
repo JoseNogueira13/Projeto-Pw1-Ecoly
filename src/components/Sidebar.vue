@@ -22,7 +22,13 @@
           class="mt-2"
         />
         <!-- else show -->
-        <img v-else src="../assets/logo/logo.png" alt="home" width="50" height="80" />
+        <img
+          v-else
+          src="../assets/logo/logo.png"
+          alt="home"
+          width="50"
+          height="80"
+        />
       </router-link>
     </div>
     <div class="nav-links">
@@ -48,7 +54,10 @@
           class="route-icon"
           :class="{ 'selected-icon': route === 'activities' }"
         />
-        <span v-if="showText" :class="{ 'selected-link': route === 'activities' }">
+        <span
+          v-if="showText"
+          :class="{ 'selected-link': route === 'activities' }"
+        >
           Atividades
         </span>
       </router-link>
@@ -61,7 +70,10 @@
           class="route-icon"
           :class="{ 'selected-icon': route === 'dashboard' }"
         />
-        <span v-if="showText" :class="{ 'selected-link': route === 'dashboard' }">
+        <span
+          v-if="showText"
+          :class="{ 'selected-link': route === 'dashboard' }"
+        >
           Dashboard
         </span>
       </router-link>

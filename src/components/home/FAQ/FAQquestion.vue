@@ -15,7 +15,9 @@
       role="tabpanel"
     >
       <b-card-body>
-        <b-card-text class="text-left answer"> {{ question.answer }}</b-card-text>
+        <b-card-text class="text-left answer">
+          {{ question.answer }}</b-card-text
+        >
       </b-card-body>
     </b-collapse>
   </b-card>

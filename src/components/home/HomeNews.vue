@@ -13,7 +13,6 @@ import Arrow from "@/components/Arrow.vue";
         <img :src="news[slide].images[0]" alt="Imagem da Notícia em Destaque" />
       </div>
       <!-- Content -->
-      <!-- on lg screens make it use 12 columns -->
       <div class="col-10 col-lg-6">
         <div class="row-3" style="height: 64px">
           <h1 class="mt-5 new-title">
@@ -42,7 +41,11 @@ import Arrow from "@/components/Arrow.vue";
         </div>
       </div>
       <div class="col-1">
-        <Arrow direction="right" @click="slide++" :disabled="slide === news.length - 1" />
+        <Arrow
+          direction="right"
+          @click="slide++"
+          :disabled="slide === news.length - 1"
+        />
       </div>
     </div>
   </div>
