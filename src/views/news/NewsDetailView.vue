@@ -11,7 +11,7 @@ import Sidebar from "@/components/Sidebar.vue";
           v-for="(image, index) in newDetails.images"
           :key="index"
           :src="'../' + image"
-          class="addNewImg img-fluid my-3 mx-3 rounded-lg shadow"
+          class="addNewImg img-fluid my-3 mx-3 rounded-lg shadow ml-4"
           alt="Imagem da Notícia"
         />
       </div>

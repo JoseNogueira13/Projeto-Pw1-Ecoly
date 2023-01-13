@@ -118,8 +118,13 @@ $fifth-color: #e4f0e8;
   margin: 0 auto;
   border-radius: 20px;
   min-height: 250px;
-
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
   animation: slideRight 0.5s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03) translateY(-5px);
+  }
 }
 
 .new-image {
