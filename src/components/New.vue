@@ -69,8 +69,12 @@ export default {
     },
 
     removeNew(id) {
-      // Remove the new from the news array of the NewsView
-      this.$emit("removeNew", id);
+      this.$el.classList.add("removed");
+
+      // wait for the animation to finish
+      setTimeout(() => {
+        this.$emit("removeNew", id);
+      }, 500);
     },
   },
 };
@@ -152,6 +156,10 @@ $fifth-color: #e4f0e8;
   bottom: 0;
 }
 
+.removed {
+  animation: slideLeft 0.5s ease-in-out;
+}
+
 @keyframes slideRight {
   from {
     transform: translateX(-100%);
@@ -159,6 +167,16 @@ $fifth-color: #e4f0e8;
 
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
   }
 }
 
