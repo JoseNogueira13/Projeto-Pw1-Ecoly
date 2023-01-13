@@ -5,8 +5,16 @@ import Sidebar from "@/components/Sidebar.vue";
 <template>
   <Sidebar route="news" />
   <div class="main text-center p-3 px-5">
-    <div class="img-slider">
-      <!-- TODO: Image Slider -->
+    <div class="img-slider row">
+      <div class="row justify-content-center align-items-center">
+        <img
+          v-for="(image, index) in newDetails.images"
+          :key="index"
+          :src="'../' + image"
+          class="addNewImg img-fluid my-3 mx-3 rounded-lg shadow"
+          alt="Imagem da Notícia"
+        />
+      </div>
     </div>
 
     <div class="new-content mt-5">
@@ -96,5 +104,16 @@ $secondary-color: #aedcc0;
   font-family: "Panton", sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
+}
+
+.addNewImg {
+  width: 340px;
+  height: 200px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 }
 </style>
