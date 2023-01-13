@@ -7,10 +7,11 @@ import Sidebar from "@/components/Sidebar.vue";
   <div class="main text-center p-3 px-5">
     <div class="img-slider row">
       <div class="row justify-content-center align-items-center">
+        <!-- if the image src has "./data/images" in it show just image -->
         <img
           v-for="(image, index) in newDetails.images"
           :key="index"
-          :src="'../' + image"
+          :src="image.includes('./data/images') ? '../' + image : image"
           class="addNewImg img-fluid my-3 mx-3 rounded-lg shadow ml-4"
           alt="Imagem da Notícia"
         />
