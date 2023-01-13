@@ -163,20 +163,24 @@ $fifth-color: #e4f0e8;
 @keyframes slideRight {
   from {
     transform: translateX(-100%);
+    opacity: 0;
   }
 
   to {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
 @keyframes slideLeft {
   from {
     transform: translateX(0);
+    opacity: 1;
   }
 
   to {
     transform: translateX(-100%);
+    opacity: 0;
   }
 }
 

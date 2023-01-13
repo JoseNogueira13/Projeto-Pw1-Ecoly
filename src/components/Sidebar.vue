@@ -22,13 +22,7 @@
           class="mt-2"
         />
         <!-- else show -->
-        <img
-          v-else
-          src="../assets/logo/logo.png"
-          alt="home"
-          width="50"
-          height="80"
-        />
+        <img v-else src="../assets/logo/logo.png" alt="home" width="50" height="80" />
       </router-link>
     </div>
     <div class="nav-links">
@@ -42,7 +36,7 @@
           :class="{ 'selected-icon': route === 'news' }"
         />
         <span v-if="showText" :class="{ 'selected-link': route === 'news' }">
-          News
+          Notícias
         </span>
       </router-link>
       <router-link :to="{ name: 'Activities' }"
@@ -55,7 +49,7 @@
           :class="{ 'selected-icon': route === 'activities' }"
         />
         <span v-if="showText" :class="{ 'selected-link': route === 'activities' }">
-          Activities
+          Atividades
         </span>
       </router-link>
       <router-link :to="{ name: 'Dashboard' }"
@@ -81,7 +75,7 @@
           :class="{ 'selected-icon': route === 'manage' }"
         />
         <span v-if="showText" :class="{ 'selected-link': route === 'manage' }">
-          Manage
+          Gestão
         </span>
       </router-link>
     </div>
@@ -108,7 +102,7 @@
           }"
         />
         <span v-if="showText" :class="{ 'selected-link': route === 'account' }">
-          {{ isUserLogged ? "Account" : "Sign In" }}
+          {{ isUserLogged ? "Meu Perfil" : "Sign In" }}
         </span>
       </router-link>
       <button

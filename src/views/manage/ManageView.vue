@@ -6,7 +6,7 @@ import Header from "@/components/Header.vue";
 <template>
   <Sidebar route="manage" />
   <div class="main text-center p-3 px-5">
-    <Header title="ADICIONAR NOTÍCIA" />
+    <Header title="GESTÃO" />
   </div>
 </template>
 

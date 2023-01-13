@@ -6,7 +6,7 @@ import Header from "@/components/Header.vue";
 <template>
   <Sidebar route="account" />
   <div class="main text-center p-3 px-5">
-    <Header title="Perfil" />
+    <Header title="PERFIL" />
   </div>
 </template>
 
