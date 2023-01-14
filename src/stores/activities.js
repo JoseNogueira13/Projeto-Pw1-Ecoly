@@ -19,6 +19,17 @@ export const useActivitiesStore = defineStore("activities", {
       return activities.find((activities) => activities.id === id);
     },
 
+    async searchActivities(search) {
+      const activities = await this.getActivities();
+      const activitiesFiltered = activities.filter((activities) => {
+        return activities.title.toLowerCase().includes(search.toLowerCase());
+      });
+
+      return activitiesFiltered.map((activities) => {
+        return { id: activities.id, title: activities.title, type: "activity" };
+      });
+    },
+
     // Add activity activity
     async addActivity(newActivity) {
       const activities = await this.getActivities();
@@ -35,9 +46,7 @@ export const useActivitiesStore = defineStore("activities", {
     // Remove Activity
     async removeActivity(id) {
       const activities = await this.getActivities();
-      const newActivities = activities.filter(
-        (activities) => activities.id !== id
-      );
+      const newActivities = activities.filter((activities) => activities.id !== id);
       setLocalStorage("activities", newActivities);
       this.activities = newActivities;
       return this.activities;

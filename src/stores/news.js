@@ -24,6 +24,18 @@ export const useNewsStore = defineStore("news", {
       return news.find((news) => news.id === id);
     },
 
+    // Search news
+    async searchNews(search) {
+      const news = await this.getNews();
+      const newsFiltered = news.filter((news) => {
+        return news.title.toLowerCase().includes(search.toLowerCase());
+      });
+
+      return newsFiltered.map((news) => {
+        return { id: news.id, title: news.title, type: "new" };
+      });
+    },
+
     // Add new
     async addNew(newNew) {
       const news = await this.getNews();
