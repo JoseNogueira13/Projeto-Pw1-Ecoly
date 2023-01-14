@@ -10,7 +10,7 @@ import ManageSection from "./ManageSection.vue";
     />
 
     <form class="mt-5 contact-form" @submit.prevent="sendMsg">
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <select class="form-control" id="destinyInput" v-model="destiny">
           <option disabled selected value="null">Selecione o destinatário</option>
           <option v-for="user in users" :key="user" :value="user.id">
