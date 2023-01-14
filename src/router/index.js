@@ -57,6 +57,11 @@ const router = createRouter({
       component: ManageView,
     },
     {
+      path: "/manage/admin",
+      name: "AdminMenu",
+      component: () => import("../views/manage/AdminMenuView.vue"),
+    },
+    {
       path: "/account",
       name: "Account",
       component: AccountView,

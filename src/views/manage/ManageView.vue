@@ -1,12 +1,14 @@
 <script setup>
 import Sidebar from "@/components/Sidebar.vue";
 import Header from "@/components/Header.vue";
+import FastActions from "@/components/manage/FastActions.vue";
 </script>
 
 <template>
   <Sidebar route="manage" />
   <div class="main text-center p-3 px-5">
     <Header title="GESTÃO" />
+    <FastActions />
   </div>
 </template>
 
@@ -15,7 +17,7 @@ import { useUsersStore } from "@/stores/users";
 export default {
   name: "Manage",
 
-  components: { Sidebar, Header },
+  components: { Sidebar, Header, FastActions },
 
   async created() {
     const usersStore = useUsersStore();
