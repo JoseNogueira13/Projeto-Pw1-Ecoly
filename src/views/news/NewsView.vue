@@ -119,7 +119,7 @@ export default {
         window.innerHeight + document.documentElement.scrollTop;
       const documentHeight = document.documentElement.offsetHeight;
 
-      if (windowHeight === documentHeight) {
+      if (windowHeight - 5 > documentHeight - 6) {
         // wait half second before loading more news
         setTimeout(() => {
           this.numberOfNews += 5;

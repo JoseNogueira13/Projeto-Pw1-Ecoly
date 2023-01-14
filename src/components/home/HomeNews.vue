@@ -4,7 +4,7 @@ import Arrow from "@/components/Arrow.vue";
 
 <template>
   <div class="news-card shadow">
-    <div class="row">
+    <div v-if="news.length > 0" class="row">
       <div class="col-1">
         <Arrow direction="left" @click="slide--" :disabled="slide === 0" />
       </div>
@@ -46,6 +46,16 @@ import Arrow from "@/components/Arrow.vue";
           @click="slide++"
           :disabled="slide === news.length - 1"
         />
+      </div>
+    </div>
+    <div v-else class="row">
+      <div class="col-12 pt-5">
+        <h1
+          class="mt-5 new-title text-center pt-5"
+          style="font-size: 30px; font-weight: 400"
+        >
+          Não existem notícias para mostrar
+        </h1>
       </div>
     </div>
   </div>
