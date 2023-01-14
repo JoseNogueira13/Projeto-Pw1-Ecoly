@@ -33,27 +33,36 @@ export const useThemesStore = defineStore("themes", {
         .trim();
 
       const themes = await this.getThemes();
+      let result;
 
       // Check if theme already exists
       const themeExists = themes.find((theme) => theme.name === newTheme);
       if (themeExists) {
         // change the status to active
         themeExists.status = "active";
+        result = themeExists;
       } else {
         themes.push({
           id: crypto.randomUUID(),
           name: newTheme,
           status: "active", // active: can be used, inactive: can't be used anymore
         });
+
+        result = themes.at(-1);
       }
 
       setLocalStorage("themes", themes);
       this.themes = themes;
+
+      return result;
     },
 
     // Disable theme
     async disableTheme(themeID) {
       const themes = await this.getThemes();
+
+      themes.forEach((theme) => delete theme.displayDelete);
+
       const theme = themes.find((theme) => theme.id === themeID);
 
       theme.status = "inactive";

@@ -2,6 +2,7 @@
 import Sidebar from "@/components/Sidebar.vue";
 import Header from "@/components/Header.vue";
 import FastActions from "@/components/manage/FastActions.vue";
+import ManageThemes from "@/components/manage/ManageThemes.vue";
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import FastActions from "@/components/manage/FastActions.vue";
   <div class="main text-center p-3 px-5">
     <Header title="GESTÃO" />
     <FastActions />
+    <ManageThemes />
   </div>
 </template>
 
@@ -17,7 +19,7 @@ import { useUsersStore } from "@/stores/users";
 export default {
   name: "Manage",
 
-  components: { Sidebar, Header, FastActions },
+  components: { Sidebar, Header, FastActions, ManageThemes },
 
   async created() {
     const usersStore = useUsersStore();
