@@ -1,12 +1,16 @@
+<script setup>
+import ManageSection from "./ManageSection.vue";
+</script>
+
 <template>
   <div class="mt-5">
-    <section class="theme-section shadow rounded">
-      <h2 class="mt-2">TEMAS</h2>
-      <p>adicionar temas para o plano de atividades</p>
-    </section>
+    <ManageSection
+      title="TEMAS"
+      description="adicionar temas para o plano de atividades"
+    />
 
     <section
-      class="row mt-4"
+      class="row mt-5"
       :class="themes.length < 4 ? 'justify-content-center' : ''"
     >
       <!-- Theme -->
@@ -54,6 +58,8 @@ import { useThemesStore } from "@/stores/themes";
 export default {
   name: "ManageThemes",
 
+  components: { ManageSection },
+
   data() {
     return {
       themes: [], // id, name, status (active, inactive)
@@ -97,30 +103,6 @@ $fourth-color: #ffffff;
 $fifth-color: #18516f;
 $sixth-color: #000;
 $seventh-color: #57b894;
-
-.theme-section {
-  background-color: $tertiary-color;
-  color: $sixth-color;
-  padding: 5px;
-  width: 80%;
-  margin: 0 auto;
-}
-
-.theme-section h2 {
-  font-family: "Panton", sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  margin-bottom: 0;
-}
-
-.theme-section p {
-  font-family: "Panton", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  margin-top: 0;
-}
 
 .row {
   max-width: 900px;
