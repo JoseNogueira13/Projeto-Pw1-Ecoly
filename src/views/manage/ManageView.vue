@@ -3,6 +3,7 @@ import Sidebar from "@/components/Sidebar.vue";
 import Header from "@/components/Header.vue";
 import FastActions from "@/components/manage/FastActions.vue";
 import ManageThemes from "@/components/manage/ManageThemes.vue";
+import ContactMembers from "@/components/manage/ContactMembers.vue";
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import ManageThemes from "@/components/manage/ManageThemes.vue";
     <Header title="GESTÃO" />
     <FastActions />
     <ManageThemes />
+    <ContactMembers />
   </div>
 </template>
 

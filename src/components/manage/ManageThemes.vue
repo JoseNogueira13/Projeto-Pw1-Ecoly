@@ -118,6 +118,7 @@ $seventh-color: #57b894;
   width: 90%;
   font-family: "Panton", sans-serif;
   font-size: 15px;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
     background-color: $fifth-color;

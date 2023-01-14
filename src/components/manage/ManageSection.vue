@@ -1,11 +1,7 @@
 <template>
   <section class="theme-section shadow rounded">
-    <h2 class="mt-2">
-      {{ title }}
-    </h2>
-    <p>
-      {{ description }}
-    </p>
+    <h2 class="mt-3">{{ title }}</h2>
+    <p>{{ description }}</p>
   </section>
 </template>
 
