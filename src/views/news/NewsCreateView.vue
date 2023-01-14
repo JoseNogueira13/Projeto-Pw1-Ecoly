@@ -148,6 +148,7 @@ $fifth-color: #18516f;
   bottom: 0;
   right: 0;
   width: 700px;
+  z-index: -1;
 }
 
 form input,
@@ -173,6 +174,7 @@ form input {
 form textarea {
   height: 200px;
   padding: 10px 15px;
+  max-height: 400px;
 }
 
 .addNewBtn {
@@ -198,6 +200,12 @@ form textarea {
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
+  }
+}
+
+@media (max-width: 1900px) {
+  form textarea {
+    max-height: 300px;
   }
 }
 
