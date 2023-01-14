@@ -100,6 +100,11 @@ export default {
       if (route === "news" || route === "home") await this.searchNews;
       if (route === "activities" || route === "home") await this.searchActivities;
 
+      if (this.data.length === 0) {
+        this.showModal = false;
+        return;
+      }
+
       this.showResults();
     },
   },
