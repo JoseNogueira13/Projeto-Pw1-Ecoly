@@ -97,8 +97,7 @@ export const useUsersStore = defineStore("users", {
     async updateHighlightedBadge(badgeId) {
       const users = await this.getUsers();
 
-      users.find((user) => user.id === this.loggedUserID).highlightedBadge =
-        badgeId;
+      users.find((user) => user.id === this.loggedUserID).highlightedBadge = badgeId;
 
       this.users = users;
       setLocalStorage("users", this.users);

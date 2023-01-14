@@ -11,10 +11,23 @@ import Header from "@/components/Header.vue";
 </template>
 
 <script>
+import { useUsersStore } from "@/stores/users";
 export default {
   name: "Manage",
 
   components: { Sidebar, Header },
+
+  async created() {
+    const usersStore = useUsersStore();
+
+    const isUserLogged = await usersStore.isUserLogged();
+    const userLogged = await usersStore.getLoggedUser();
+    const isUserAdmin = userLogged.role === "admin";
+
+    if (!isUserLogged || !isUserAdmin) {
+      this.$router.push({ name: "Home" });
+    }
+  },
 };
 </script>
 
