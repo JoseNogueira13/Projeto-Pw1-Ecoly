@@ -1,30 +1,38 @@
 [
 	{
+		"badges": [
+			0,
+			2,
+			4
+		],
+		"course": null,
+		"email": "Admin@esmad.ipp.pt",
+		"highlightedBadge": 2,
 		"id": 1,
 		"internalId": null,
 		"name": "Admin",
-		"email": "Admin@esmad.ipp.pt",
 		"password": "Esmad_2223",
-		"role": "admin",
-		"school": "ESMAD",
-		"course": null,
-		"year": null,
 		"photo": null,
-		"badges": [0, 2, 4],
-		"highlightedBadge": 2
+		"role": "admin",
+		"schoolID": 0,
+		"year": null
 	},
 	{
+		"badges": [
+			1,
+			3,
+			5
+		],
+		"course": "TSIW",
+		"email": "User@esmad.ipp.pt",
+		"highlightedBadge": 3,
 		"id": 2,
 		"internalId": 40210462,
 		"name": "User",
-		"email": "User@esmad.ipp.pt",
 		"password": "Esmad_2223",
-		"role": "student",
-		"school": "ESMAD",
-		"course": "TSIW",
-		"year": 2,
 		"photo": "https://img.freepik.com/premium-vector/cartoon-drawing-programmer_29937-8176.jpg?w=2000",
-		"badges": [1, 3, 5],
-		"highlightedBadge": 3
+		"role": "student",
+		"schoolID": 0,
+		"year": 2
 	}
 ]
