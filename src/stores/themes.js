@@ -27,6 +27,8 @@ export const useThemesStore = defineStore("themes", {
     async addTheme(newTheme) {
       // convert to lowercase, capitalize first letter and replace spaces with 1 space
       newTheme = newTheme
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
         .replace(/\b[a-z]/g, (letter) => letter.toUpperCase())
         .replace(/\s+/g, " ")

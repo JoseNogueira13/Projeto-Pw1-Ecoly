@@ -47,7 +47,11 @@ import ManageSection from "./ManageSection.vue";
         v-model="newTheme"
       />
     </div>
-    <b-button class="add-theme-modal-btn mt-3" block @click="addTheme(newTheme)"
+    <b-button
+      class="add-theme-modal-btn mt-3"
+      block
+      @click="addTheme(newTheme)"
+      :disabled="newTheme === '' || newTheme.trim().length < 3"
       >Adicionar</b-button
     >
   </b-modal>
@@ -77,6 +81,7 @@ export default {
 
     async addTheme(themeName) {
       this.$bvModal.hide("add-theme-modal");
+      if (this.themes.some((theme) => theme.name === themeName)) return;
 
       const theme = await this.themesStore.addTheme(themeName);
       this.themes.push(theme);
