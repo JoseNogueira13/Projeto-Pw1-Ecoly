@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <!-- TODO: Make the Login and Register Components to be displayed here -->
 
@@ -8,24 +7,24 @@
     <router-link to="/">
       <b-button class="btn-authenticate-home">Home</b-button>
     </router-link>
-    
   </div>
   <Sidebar route="authenticate" />
   <div class="logo-slogan-container">
-    <img src="src\assets\logo\logo_exp_dark.png" class="authenticate-logo">
+    <img src="@/assets/logo/logo_exp_dark.png" class="authenticate-logo" alt="Logo" />
     <h2 class="authenticate-slogan">PLANTA O TEU FUTURO</h2>
   </div>
-  <img src="src\assets\images\Register Ilustration.png" class = "authenticate-image">
+  <img
+    src="@/assets/images/Register_illustration.png"
+    class="authenticate-image"
+    alt="Ilustração"
+  />
 
-
-  <div class = "register-form-div">
-    <h4 class = "register-header">CRIE A SUA CONTA E TORNE-SE NUM MEMBRO</h4>
-    <form class = "register-form" action="submit" >
-      <input type="text" name="primNome" id="primNome" placeholder = "Primeiro Nome">
-      <input type="text" name="ultNome" id="">
-      
+  <div class="register-form-div">
+    <h4 class="register-header">CRIE A SUA CONTA E TORNE-SE NUM MEMBRO</h4>
+    <form class="register-form" action="submit">
+      <input type="text" name="primNome" id="primNome" placeholder="Primeiro Nome" />
+      <input type="text" name="ultNome" id="" />
     </form>
-
   </div>
 </template>
 
@@ -42,7 +41,7 @@ $tertiary: #3fc380;
 $fourth: #18516f;
 $fifth: #ffffff;
 
-.home-button{
+.home-button {
   position: absolute;
   top: 20px;
   left: 50px;
@@ -55,7 +54,6 @@ $fifth: #ffffff;
   background-color: $primary-color;
   border: none;
   border-radius: 15px;
-  
 
   &:hover {
     background-color: $fourth;
@@ -66,7 +64,7 @@ $fifth: #ffffff;
   max-width: 150px;
 }
 
-.logo-slogan-container{
+.logo-slogan-container {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -74,18 +72,18 @@ $fifth: #ffffff;
   left: 70px;
 }
 
-.authenticate-slogan{
+.authenticate-slogan {
   font-family: "Panton", sans-serif;
 }
 
-.authenticate-image{
+.authenticate-image {
   position: absolute;
   bottom: 0px;
   width: 900px;
   height: 900px;
 }
 
-.register-header{
+.register-header {
   position: absolute;
   top: 20px;
   right: 200px;
@@ -118,10 +116,6 @@ $fifth: #ffffff;
   background-position: left center;
   background-repeat: no-repeat;
   padding-left: 30px;
-}
-
-
-#primNome {
   background-size: 25px;
 }
 </style>
