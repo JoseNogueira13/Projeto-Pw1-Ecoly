@@ -8,7 +8,6 @@ export const useThemesStore = defineStore("themes", {
   }),
 
   actions: {
-    
     async getThemes() {
       if (this.themes.length === 0) this.themes = await fetchData("themes");
       return this.themes;

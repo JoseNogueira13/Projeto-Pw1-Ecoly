@@ -4,6 +4,7 @@ import Header from "@/components/Header.vue";
 import FastActions from "@/components/manage/FastActions.vue";
 import ManageThemes from "@/components/manage/ManageThemes.vue";
 import ContactMembers from "@/components/manage/ContactMembers.vue";
+import Meetings from "../../components/manage/meetings/Meetings.vue";
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import ContactMembers from "@/components/manage/ContactMembers.vue";
     <FastActions />
     <ManageThemes />
     <ContactMembers />
+    <Meetings />
   </div>
 </template>
 
@@ -21,7 +23,14 @@ import { useUsersStore } from "@/stores/users";
 export default {
   name: "Manage",
 
-  components: { Sidebar, Header, FastActions, ManageThemes },
+  components: {
+    Sidebar,
+    Header,
+    FastActions,
+    ManageThemes,
+    ContactMembers,
+    Meetings,
+  },
 
   async created() {
     const usersStore = useUsersStore();

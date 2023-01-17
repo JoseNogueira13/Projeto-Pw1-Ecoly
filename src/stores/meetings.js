@@ -1,0 +1,28 @@
+import { defineStore } from "pinia";
+import { fetchData } from "../hooks/fetchData";
+import { setLocalStorage } from "../hooks/localStorage";
+
+export const useMeetingsStore = defineStore("meetings", {
+  state: () => ({ meetings: [] }),
+
+  actions: {
+    async getMeetings() {
+      if (this.meetings.length === 0) this.meetings = await fetchData("meetings");
+      return this.meetings;
+    },
+
+    async getMeetingById(id) {
+      const meetings = await this.getMeetings();
+      return meetings.find((meeting) => meeting.id === id);
+    },
+
+    async addNewMeeting(meeting) {
+      meeting.id = crypto.randomUUID();
+      const meetings = await this.getMeetings();
+      meetings.push(meeting);
+
+      setLocalStorage("meetings", meetings);
+      this.meetings = meetings;
+    },
+  },
+});

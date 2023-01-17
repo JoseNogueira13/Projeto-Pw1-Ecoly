@@ -138,4 +138,21 @@ $seventh-color: #57b894;
     }
   }
 }
+
+// responsiveness to the button
+@media (max-width: 768px) {
+  .contact-form {
+    .send-email-btn {
+      width: 30%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-form {
+    .send-email-btn {
+      width: 40%;
+    }
+  }
+}
 </style>
