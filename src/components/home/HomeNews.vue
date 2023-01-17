@@ -6,7 +6,11 @@ import Arrow from "@/components/Arrow.vue";
   <div class="news-card shadow">
     <div v-if="news.length > 0" class="row">
       <div class="col-1">
-        <Arrow direction="left" @click="slide--" :disabled="slide === 0" />
+        <Arrow
+          :options="{ direction: 'left', isDisabled: slide === 0 }"
+          @click="slide--"
+          :disabled="slide === 0"
+        />
       </div>
       <!-- Image -->
       <div class="col-4 img-container d-none d-lg-block">
@@ -42,7 +46,7 @@ import Arrow from "@/components/Arrow.vue";
       </div>
       <div class="col-1">
         <Arrow
-          direction="right"
+          :options="{ direction: 'right', isDisabled: slide === news.length - 1 }"
           @click="slide++"
           :disabled="slide === news.length - 1"
         />

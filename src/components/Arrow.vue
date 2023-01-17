@@ -1,5 +1,5 @@
 <template>
-  <div v-if="direction === 'right'" @click="handleClick" class="mr-3">
+  <div v-if="options.direction === 'right'" @click="handleClick" class="mr-3">
     <img src="@/assets/icons/rightArrow.svg" alt="Seta para a direita" />
   </div>
   <div v-else @click="handleClick" class="ml-3">
@@ -12,14 +12,16 @@ export default {
   name: "Arrow",
 
   props: {
-    direction: {
-      type: String,
+    // object
+    options: {
+      type: Object,
       required: true,
     },
   },
 
   methods: {
     handleClick() {
+      if (this.options.isDisabled) return;
       this.$emit("click");
     },
   },
