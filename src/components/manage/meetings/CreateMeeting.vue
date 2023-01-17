@@ -15,18 +15,13 @@
             <!-- MONTH -->
             <div class="col-md-4 px-md-0">
               <select name="month" id="month" class="form-control" v-model="month">
-                <option value="1">Janeiro</option>
-                <option value="2">Fevereiro</option>
-                <option value="3">Março</option>
-                <option value="4">Abril</option>
-                <option value="5">Maio</option>
-                <option value="6">Junho</option>
-                <option value="7">Julho</option>
-                <option value="8">Agosto</option>
-                <option value="9">Setembro</option>
-                <option value="10">Outubro</option>
-                <option value="11">Novembro</option>
-                <option value="12">Dezembro</option>
+                <option
+                  v-for="month in months"
+                  :key="month"
+                  :value="months.indexOf(month) + 1"
+                >
+                  {{ month }}
+                </option>
               </select>
             </div>
             <!-- YEAR -->
@@ -98,6 +93,20 @@ export default {
       year: currYear,
       hourMinutes: currTime,
       room: "",
+      months: [
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro",
+      ],
       years: Array.from({ length: 5 }, (v, k) => k + currYear),
       description: "",
       usersStore: useUsersStore(),
