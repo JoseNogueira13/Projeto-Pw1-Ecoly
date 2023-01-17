@@ -60,7 +60,7 @@ import FutureMeetings from "./FutureMeetings.vue";
 export default {
   name: "Meetings",
 
-  components: { ManageSection, CreateMeeting },
+  components: { ManageSection, CreateMeeting, PastMeetings, FutureMeetings },
 
   data() {
     // past or future
@@ -70,16 +70,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$primary-color: #343e3d;
-$secondary-color: #aedcc0;
-$tertiary-color: #e4f0e8;
-$fourth-color: #ffffff;
-$fifth-color: #18516f;
-$sixth-color: #000;
-$seventh-color: #57b894;
-
 .future-past-meetings {
-  width: 70%;
+  width: 75%;
   margin-left: 100px;
 }
 

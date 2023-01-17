@@ -94,8 +94,7 @@ export default {
     },
 
     formatDate(date) {
-      const newDate = new Date(date);
-      return newDate.toLocaleDateString("pt-PT");
+      return new Date(date).toLocaleDateString("pt-PT");
     },
 
     goToNewsDetails(id) {

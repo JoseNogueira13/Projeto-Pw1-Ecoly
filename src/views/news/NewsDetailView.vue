@@ -69,7 +69,6 @@ export default {
 
   methods: {
     formatDate(date) {
-      // convert date to dd/mm/yyyy format (PT-pt)
       return new Date(date).toLocaleDateString("pt-PT");
     },
   },
