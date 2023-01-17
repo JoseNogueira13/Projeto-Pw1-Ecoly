@@ -8,6 +8,7 @@ export const useThemesStore = defineStore("themes", {
   }),
 
   actions: {
+    
     async getThemes() {
       if (this.themes.length === 0) this.themes = await fetchData("themes");
       return this.themes;
@@ -23,7 +24,7 @@ export const useThemesStore = defineStore("themes", {
       return themes.filter((theme) => theme.status === "active");
     },
 
-    // Add theme theme
+    // Add theme
     async addTheme(newTheme) {
       // convert to lowercase, capitalize first letter and replace spaces with 1 space
       newTheme = newTheme

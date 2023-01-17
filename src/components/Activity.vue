@@ -25,17 +25,11 @@
             </div>
         </div>
 
-    
-
     <div class="row">
         <div class="col-5">
-            <img
-          :src="activity.images[0]"
-          alt="imagem da atividade"
-          width="410"
-          height="250"
-          loading="lazy"
-          class="activity-image"
+            <img :src="activity.images[0]"
+                 alt="imagem da atividade"
+                 class="activity-image"
         />
         </div>
         <div class="col-7">
@@ -47,10 +41,16 @@
           {{ activity.title }}
           </router-link>
         </h2>
-        <h4 class="activity-title text-center mt-3">Objetivos</h4>
+          <span class="theme">
+              {{ theme }}
+          </span>
         <p class="new-text text-left mt-3">
                 {{ activity.objective }}
             </p>
+            <div class="data-begin-activity">
+              <span class="date-begin">Data de Inicío</span>
+              <span class="date">{{ formatDate(activity.initialDate) }}</span>
+            </div>
         </div>
     </div>
 
@@ -58,29 +58,46 @@
 </template>
 
 <script>
+
     export default {
         name: "Activity",
     
-         // id, isLogged, isAdmin
          props: {
+
     userInfo: {
       type: Object,
       required: true,
     },
+
     activity: {
       type: Object,
       required: true,
     },
+
+    theme : {
+      type: String,
+      required: true
+    }
+
   },
     
   methods: {
     removeActivity(id) {
         // Remove the activity from the activities array of the ActivitiesView
       this.$emit("removeActivity", id);
-    }
+    },
+       formatDate(date) {
+      const newDate = new Date(date);
+      return newDate.toLocaleDateString("pt-PT");
+    },
+
+    
   },
 
+
+
     }
+
 </script>
 
 <style scoped>

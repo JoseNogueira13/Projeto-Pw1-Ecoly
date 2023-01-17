@@ -12,7 +12,8 @@ import Header from "@/components/Header.vue";
     <Header title="ATIVIDADES" />
 
     <!-- route for the add activity form -->
-    <router-link
+      <div class="sub_heading_activities d-flex">
+            <router-link
       :to="{ name: 'ActivitiesCreate' }"
       :style="{
         visibility:
@@ -27,6 +28,8 @@ import Header from "@/components/Header.vue";
         <span class="px-3"> Adicionar Atividade </span>
       </button>
     </router-link>
+    <span class="legend">clique na imagem ou no título da atividade para ver mais detalhes</span>
+      </div>
 
     <section class="activities-section">
       <div>
@@ -35,6 +38,7 @@ import Header from "@/components/Header.vue";
           :key="activity.id"
           :activity="activity"
           :userInfo="userInfo"
+          :theme="activity.themeID"
           @removeActivity="removeActivity"
         />
       </div>
@@ -69,6 +73,7 @@ import Header from "@/components/Header.vue";
 import { useActivitiesStore } from "@/stores/activities";
 import { useUsersStore } from "@/stores/users";
 import Activity from "../../components/Activity.vue";
+import { useThemesStore } from "@/stores/themes";
 
 export default {
   name: "Activities",
@@ -82,9 +87,12 @@ export default {
   data() {
     return {
       activities: [],
+      themes: [],
       userInfo: { isLogged: false, isAdmin: false },
-      numberOfActivities: 3,
+      numberOfActivities: 5,
+      numberOfThemes: 3,
       totalNumberOfActivities: 0,
+      totalNumberOfThemes: 0,
     };
   },
 
@@ -92,6 +100,7 @@ export default {
   created() {
     const activitiesStore = useActivitiesStore();
     const usersStore = useUsersStore();
+    const themesStore = useThemesStore();
 
     // load activities
     activitiesStore.getActivities().then((activities) => {
@@ -105,9 +114,12 @@ export default {
       usersStore.getLoggedUser().then((user) => {
         this.userInfo.isAdmin = user.role === "admin";
       });
-    }
+    };
 
-    // when the user scrolls to the bottom of the page, the number of news to be displayed increases by 5
+    // load themes for each activity
+    // themesStore.
+
+    // when the user scrolls to the bottom of the page, the number of activities to be displayed increases by 5
     window.addEventListener("scroll", this.loadMoreActivities);
   },
 
@@ -120,7 +132,7 @@ export default {
       const windowHeight =
         window.innerHeight + document.documentElement.scrollTop;
       const documentHeight = document.documentElement.offsetHeight;
-      if (windowHeight === documentHeight) {
+      if (windowHeight - 3 > documentHeight - 4) {
         // wait half second before loading more activities
         setTimeout(() => {
           this.numberOfActivities += 3;
@@ -148,4 +160,57 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// variables colors
+$primary-color: #343e3d;
+$secondary-color: #aedcc0;
+$tertiary-color: #3fc380;
+$fourth-color: #ffffff;
+
+.add-new-btn{
+  background-color: $primary-color;
+  color: $fourth-color;
+  font-family: "Panton", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  &:hover {
+    background-color: $tertiary-color;
+    text-decoration: none;
+    color: $fourth-color;
+  }
+  &:disabled {
+    background-color: $secondary-color;
+    color: $primary-color;
+    cursor: not-allowed;
+  }
+}
+
+.sub_heading_activities{
+  gap: 1em;
+  color: $primary-color;
+  font-family: "Panton", sans-serif;
+  font-weight: 400;
+  
+}
+
+// design cards activities
+
+
+
+.load-more-icon {
+  // rotate the icon (loading animation)
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+</style>
