@@ -5,15 +5,14 @@
     </div>
 
     <div class="col-xl-2 col-lg-3">
-      <router-link class="fast-action-btn" :to="{ name: 'NewsCreate' }">
+      <router-link class="fast-action-btn" :to="{ name: 'ActivitiesCreate' }">
         <img src="@/assets/icons/add.svg" alt="add icon" />
         Adicionar Atividade
       </router-link>
     </div>
     <div class="col-xl-2 col-lg-3">
-      <router-link class="fast-action-btn" :to="{ name: 'ActivitiesCreate' }">
+      <router-link class="fast-action-btn" :to="{ name: 'NewsCreate' }">
         <img src="@/assets/icons/add.svg" alt="add icon" class="mb-1" />
-
         Adicionar Notícia
       </router-link>
     </div>
