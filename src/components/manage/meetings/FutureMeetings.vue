@@ -50,16 +50,10 @@ import { useMeetingsStore } from "@/stores/meetings";
 export default {
   name: "FutureMeetings",
 
-  props: {
-    meetings: {
-      type: Array,
-      required: true,
-    },
-  },
-
   data() {
     return {
       meetingsStore: useMeetingsStore(),
+      meetings: [],
       currMeeting: {
         day: "",
         month: "",
@@ -70,6 +64,16 @@ export default {
         description: "",
       },
     };
+  },
+
+  async created() {
+    const meetings = await this.meetingsStore.getMeetings();
+    const filteredMeetings = meetings.filter((meeting) => meeting.date > Date.now());
+
+    // order by date
+    this.meetings = filteredMeetings.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
   },
 
   methods: {

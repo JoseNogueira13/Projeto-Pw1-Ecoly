@@ -123,8 +123,6 @@ export default {
       const currDate = `${this.year}-${this.month}-${this.day} ${this.hourMinutes}:00`;
       const currDateTimeNumber = new Date(currDate).getTime();
 
-      console.log(currDateTimeNumber);
-
       // Get logged user and his school
       const loggedUser = await this.usersStore.getLoggedUser();
       const loggedUserSchoolId = loggedUser.schoolID;

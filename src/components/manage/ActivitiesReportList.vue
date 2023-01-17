@@ -16,5 +16,3 @@ export default {
   name: "ActivitiesReportList",
 };
 </script>
-
-<style lang="scss" scoped></style>

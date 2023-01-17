@@ -94,21 +94,25 @@ import { useMeetingsStore } from "@/stores/meetings";
 export default {
   name: "PastMeetings",
 
-  props: {
-    meetings: {
-      type: Array,
-      required: true,
-    },
-  },
-
   data() {
     return {
       meetingsStore: useMeetingsStore(),
+      meetings: [],
       currMeeting: { id: "", date: "", ata: { images: [], description: "" } },
       currImgs: [],
       currDescription: "",
       currMsg: "Adicionar Ata",
     };
+  },
+
+  async created() {
+    const meetings = await this.meetingsStore.getMeetings();
+    const filteredMeetings = meetings.filter((meeting) => meeting.date < Date.now());
+
+    // order by date
+    this.meetings = filteredMeetings.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
   },
 
   methods: {

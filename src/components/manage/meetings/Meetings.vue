@@ -39,10 +39,10 @@ import FutureMeetings from "./FutureMeetings.vue";
             <div class="row">
               <div class="col-12">
                 <div v-if="selectedMeetings === 'past'">
-                  <PastMeetings :meetings="pastMeetings" />
+                  <PastMeetings />
                 </div>
                 <div v-else>
-                  <FutureMeetings :meetings="futureMeetings" />
+                  <FutureMeetings />
                 </div>
               </div>
             </div>
@@ -71,25 +71,6 @@ export default {
       futureMeetings: [],
       meetingsStore: useMeetingsStore(),
     };
-  },
-
-  async created() {
-    const meetings = await this.meetingsStore.getMeetings();
-    const pastFilteredMeetings = meetings.filter(
-      (meeting) => meeting.date < Date.now()
-    );
-    const futureFilteredMeetings = meetings.filter(
-      (meeting) => meeting.date > Date.now()
-    );
-
-    // order by date
-    this.futureMeetings = futureFilteredMeetings.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date);
-    });
-
-    this.pastMeetings = pastFilteredMeetings.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
-    });
   },
 };
 </script>
