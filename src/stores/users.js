@@ -59,8 +59,18 @@ export const useUsersStore = defineStore("users", {
 
     // Add user
     async addUser(newUser) {
+      // name, password, email, school, internalId course, year
       const users = await this.getUsers();
-      users.push({ id: crypto.randomUUID(), ...newUser });
+
+      newUser.id = crypto.randomUUID();
+      newUser.role = "unsigned";
+      newUser.badges = [];
+      newUser.highlightedBadge = null;
+
+      const urlParam = newUser.name.replace(/\s/g, "").toLowerCase();
+      newUser.photo = `https://api.dicebear.com/5.x/personas/svg?seed=${urlParam}`;
+
+      users.push(newUser);
 
       this.users = users;
       setLocalStorage("users", this.users);

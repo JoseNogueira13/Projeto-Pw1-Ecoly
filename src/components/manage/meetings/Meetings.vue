@@ -12,7 +12,7 @@ import FutureMeetings from "./FutureMeetings.vue";
       description="crie reuniões ou registe as reuniões do conselho adicionado a ata"
     />
 
-    <div class="row mt-5">
+    <div class="row mt-5 ml-2">
       <div class="col-lg-6">
         <div class="ml-md-5">
           <div class="future-past-meetings">
@@ -78,6 +78,7 @@ export default {
 <style scoped lang="scss">
 .future-past-meetings {
   width: 75%;
+  max-width: 520px;
   margin-left: 100px;
 }
 

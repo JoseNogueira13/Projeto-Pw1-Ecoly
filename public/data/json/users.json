@@ -12,7 +12,7 @@
 		"internalId": null,
 		"name": "Admin",
 		"password": "Esmad_2223",
-		"photo": null,
+		"photo": "https://api.dicebear.com/5.x/personas/svg?seed=admin",
 		"role": "admin",
 		"schoolID": 0,
 		"year": null
@@ -30,7 +30,7 @@
 		"internalId": 40210462,
 		"name": "User",
 		"password": "Esmad_2223",
-		"photo": "https://img.freepik.com/premium-vector/cartoon-drawing-programmer_29937-8176.jpg?w=2000",
+		"photo": "https://api.dicebear.com/5.x/personas/svg?seed=student",
 		"role": "student",
 		"schoolID": 0,
 		"year": 2
