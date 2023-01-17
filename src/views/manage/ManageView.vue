@@ -4,7 +4,8 @@ import Header from "@/components/Header.vue";
 import FastActions from "@/components/manage/FastActions.vue";
 import ManageThemes from "@/components/manage/ManageThemes.vue";
 import ContactMembers from "@/components/manage/ContactMembers.vue";
-import Meetings from "../../components/manage/meetings/Meetings.vue";
+import Meetings from "@/components/manage/meetings/Meetings.vue";
+import ActivitiesReportList from "@/components/manage/ActivitiesReportList.vue";
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import Meetings from "../../components/manage/meetings/Meetings.vue";
     <ManageThemes />
     <ContactMembers />
     <Meetings />
+    <ActivitiesReportList />
   </div>
 </template>
 

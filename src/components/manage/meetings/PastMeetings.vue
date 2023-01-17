@@ -77,7 +77,11 @@
           placeholder="Descrição..."
           v-model="currDescription"
         ></textarea>
-        <button type="submit" class="btn add-ata-btn mt-3 px-5 py-1">
+        <button
+          type="submit"
+          class="btn add-ata-btn mt-3 px-5 py-1"
+          :disabled="currDescription === ''"
+        >
           {{ currMsg }}
         </button>
       </form>
@@ -90,25 +94,21 @@ import { useMeetingsStore } from "@/stores/meetings";
 export default {
   name: "PastMeetings",
 
+  props: {
+    meetings: {
+      type: Array,
+      required: true,
+    },
+  },
+
   data() {
     return {
       meetingsStore: useMeetingsStore(),
-      meetings: [],
       currMeeting: { id: "", date: "", ata: { images: [], description: "" } },
       currImgs: [],
       currDescription: "",
       currMsg: "Adicionar Ata",
     };
-  },
-
-  async created() {
-    const meetings = await this.meetingsStore.getMeetings();
-    const filteredMeetings = meetings.filter((meeting) => meeting.date < Date.now());
-
-    // order by date
-    this.meetings = filteredMeetings.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
-    });
   },
 
   methods: {
@@ -151,14 +151,14 @@ export default {
 
       setTimeout(() => {
         this.currMsg = "Ata adicionada com sucesso!";
+        this.currImgs = [];
+        this.currDescription = "";
       }, 2000);
 
       setTimeout(() => {
         this.$bvModal.hide("add-ata-modal");
-        this.currImgs = [];
-        this.currDescription = "";
         this.currMsg = "Adicionar Ata";
-      }, 6000);
+      }, 4000);
     },
   },
 };
