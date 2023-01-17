@@ -1,7 +1,7 @@
 <template>
   <div class="meetings">
     <div v-if="meetings.length === 0">
-      <h2 class="error-msg text-center">Não há reuniões passadas</h2>
+      <h2 class="error-msg text-center">Não há reuniões futuras</h2>
     </div>
 
     <div v-for="meeting in meetings" :key="meeting.id">
@@ -68,8 +68,7 @@ export default {
 
   async created() {
     const meetings = await this.meetingsStore.getMeetings();
-    // TODO: replace with > Date.now()
-    const filteredMeetings = meetings.filter((meeting) => meeting.date < Date.now());
+    const filteredMeetings = meetings.filter((meeting) => meeting.date > Date.now());
 
     // order by date
     this.meetings = filteredMeetings.sort((a, b) => {

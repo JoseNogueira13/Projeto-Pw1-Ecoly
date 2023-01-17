@@ -33,5 +33,12 @@
     "id": 4,
     "room": "online",
     "schoolID": 0
+  },
+  {
+    "date": 1688905200000,
+    "description": "This is a test meeting",
+    "id": 5,
+    "room": "B109",
+    "schoolID": 0
   }
 ]

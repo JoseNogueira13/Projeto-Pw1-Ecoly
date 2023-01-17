@@ -13,7 +13,9 @@
           {{ formatDate(meeting.date) }}
         </div>
         <div class="col-6">
-          <button class="add-btn btn shadow px-3">Adicionar Ata</button>
+          <button class="add-btn btn shadow px-3">
+            {{ meeting.ata ? "Ver Ata" : "Adicionar Ata" }}
+          </button>
         </div>
       </div>
     </div>
@@ -102,6 +104,7 @@ $seventh-color: #57b894;
   border-radius: 20px;
   font-size: 15px;
   font-weight: 600;
+  width: 68%;
 
   &:hover {
     background-color: $fifth-color;

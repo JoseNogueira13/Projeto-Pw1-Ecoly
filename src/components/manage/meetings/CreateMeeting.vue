@@ -120,8 +120,10 @@ export default {
       const timeRegex = /^([0-1]\d|2[0-3]):[0-5]\d$/;
       if (!timeRegex.test(this.hourMinutes)) return;
       // Convert date to number
-      const currDate = `${this.currYear}-${this.currMonth}-${this.currDay} ${this.currTime}:00`;
+      const currDate = `${this.year}-${this.month}-${this.day} ${this.hourMinutes}:00`;
       const currDateTimeNumber = new Date(currDate).getTime();
+
+      console.log(currDateTimeNumber);
 
       // Get logged user and his school
       const loggedUser = await this.usersStore.getLoggedUser();
