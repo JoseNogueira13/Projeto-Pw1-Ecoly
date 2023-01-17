@@ -15,6 +15,7 @@ import Sidebar from "@/components/Sidebar.vue";
           :src="image"
           class="addNewImg img-fluid my-3 mx-3 rounded-lg shadow"
           alt="Imagem da Notícia"
+          @click="removeImage(index)"
         />
 
         <img
@@ -122,6 +123,10 @@ export default {
 
       this.new_images.push(`https://picsum.photos/${firstN}/${secondN}`);
     },
+
+    removeImage(index) {
+      this.new_images.splice(index, 1);
+    },
   },
 };
 </script>
@@ -195,12 +200,21 @@ form textarea {
 .addNewImg {
   width: 220px;
   height: 150px;
-  transition: all 0.3s ease-in-out;
+  transform: scale (1);
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
+    border: 1px solid red;
+    opacity: 0.6;
+
     cursor: pointer;
     transform: scale(1.05);
   }
+}
+
+.addImgBtn:hover {
+  border: none;
+  opacity: 1;
 }
 
 @media (max-width: 1900px) {

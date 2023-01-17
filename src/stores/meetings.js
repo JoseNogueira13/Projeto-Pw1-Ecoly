@@ -24,5 +24,14 @@ export const useMeetingsStore = defineStore("meetings", {
       setLocalStorage("meetings", meetings);
       this.meetings = meetings;
     },
+
+    async addAta(id, ata) {
+      const meetings = await this.getMeetings();
+      const meeting = meetings.find((meeting) => meeting.id === id);
+      meeting.ata = ata;
+
+      setLocalStorage("meetings", meetings);
+      this.meetings = meetings;
+    },
   },
 });

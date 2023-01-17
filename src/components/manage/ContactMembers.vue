@@ -100,6 +100,8 @@ $seventh-color: #57b894;
   margin: 0 auto;
 
   #destinyInput {
+    font-family: "Panton", sans-serif;
+
     width: 40%;
     border-radius: 10px;
     border: 1px solid $seventh-color;
@@ -111,6 +113,8 @@ $seventh-color: #57b894;
   }
 
   #textArea {
+    font-family: "Panton", sans-serif;
+
     border-radius: 10px;
     border: 1px solid $seventh-color;
 

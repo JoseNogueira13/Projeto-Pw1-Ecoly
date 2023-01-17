@@ -102,7 +102,7 @@
           }"
         />
         <span v-if="showText" :class="{ 'selected-link': route === 'account' }">
-          {{ isUserLogged ? "Meu Perfil" : "Sign In" }}
+          {{ isUserLogged ? "Perfil" : "Sign In" }}
         </span>
       </router-link>
       <button
