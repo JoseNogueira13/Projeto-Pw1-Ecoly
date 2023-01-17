@@ -13,11 +13,36 @@
           {{ formatDate(meeting.date) }}
         </div>
         <div class="col-6">
-          <button class="see-more-btn btn shadow px-3">Ver Informações</button>
+          <button
+            class="see-more-btn btn shadow px-3"
+            @click="showMeetingInfo(meeting)"
+          >
+            Ver Informações
+          </button>
         </div>
       </div>
     </div>
   </div>
+
+  <b-modal id="meeting-info-modal" hide-footer centered>
+    <template #modal-title>
+      <span class="modal-title"> Informação da Reunião </span>
+    </template>
+    <div class="d-block text-center">
+      <h3 class="modal-date-info">
+        Reunião de {{ currMeeting.day }} de {{ currMeeting.month }} de
+        {{ currMeeting.year }}
+      </h3>
+      <h4 class="modal-room-info">Local: {{ currMeeting.room }}</h4>
+      <h4 class="modal-time-info">
+        Horário: {{ currMeeting.hour }}:{{ currMeeting.minute }}
+      </h4>
+      <hr />
+      <p class="modal-description-info">
+        {{ currMeeting.description }}
+      </p>
+    </div>
+  </b-modal>
 </template>
 
 <script>
@@ -29,6 +54,15 @@ export default {
     return {
       meetingsStore: useMeetingsStore(),
       meetings: [],
+      currMeeting: {
+        day: "",
+        month: "",
+        year: "",
+        hour: "",
+        minute: "",
+        room: "",
+        description: "",
+      },
     };
   },
 
@@ -46,6 +80,38 @@ export default {
   methods: {
     formatDate(date) {
       return new Date(date).toLocaleDateString("pt-PT");
+    },
+
+    getMonthName(month) {
+      const months = [
+        "janeiro",
+        "fevereiro",
+        "março",
+        "abril",
+        "maio",
+        "junho",
+        "julho",
+        "agosto",
+        "setembro",
+        "outubro",
+        "novembro",
+        "dezembro",
+      ];
+      return months[month - 1];
+    },
+
+    showMeetingInfo(meeting) {
+      // convert meeting.date to day, month, year, hour, minute
+      const date = new Date(meeting.date);
+      this.currMeeting.day = date.getDate();
+      this.currMeeting.month = this.getMonthName(date.getMonth() + 1);
+      this.currMeeting.year = date.getFullYear();
+      this.currMeeting.hour = date.getHours();
+      this.currMeeting.minute = date.getMinutes();
+      this.currMeeting.room = meeting.room;
+      this.currMeeting.description = meeting.description;
+
+      this.$bvModal.show("meeting-info-modal");
     },
   },
 };
@@ -115,5 +181,27 @@ $seventh-color: #57b894;
   font-family: "Panton", sans-serif;
   font-weight: 600;
   font-size: 20px;
+}
+
+.modal-title,
+.modal-date-info,
+.modal-room-info,
+.modal-time-info,
+.modal-description-info {
+  font-family: "Panton", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.modal-title {
+  font-size: 22px;
+}
+
+.modal-date-info {
+  font-size: 25px;
+}
+
+.modal-description-info {
+  font-size: 17px;
 }
 </style>
