@@ -38,7 +38,7 @@ import Header from "@/components/Header.vue";
           :key="activity.id"
           :activity="activity"
           :userInfo="userInfo"
-          :theme="activity.themeID"
+          :themes="themes.find((theme) => theme.id === activity.themeID)"
           @removeActivity="removeActivity"
         />
       </div>
@@ -116,8 +116,12 @@ export default {
       });
     };
 
-    // load themes for each activity
-    // themesStore.
+    // get theme name by id
+    themesStore.getThemes().then((themes) => {
+      this.totalNumberOfThemes = themes.length;
+      this.themes = themes.slice(0, this.numberOfThemes);
+    });
+
 
     // when the user scrolls to the bottom of the page, the number of activities to be displayed increases by 5
     window.addEventListener("scroll", this.loadMoreActivities);

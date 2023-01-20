@@ -42,7 +42,7 @@
           </router-link>
         </h2>
           <span class="theme">
-              {{ theme }}
+            {{ themes.name }}
           </span>
         <p class="new-text text-left mt-3">
                 {{ activity.objective }}
@@ -74,8 +74,8 @@
       required: true,
     },
 
-    theme : {
-      type: String,
+    themes : {
+      type: Object,
       required: true
     }
 
@@ -90,11 +90,7 @@
       const newDate = new Date(date);
       return newDate.toLocaleDateString("pt-PT");
     },
-
-    
   },
-
-
 
     }
 
