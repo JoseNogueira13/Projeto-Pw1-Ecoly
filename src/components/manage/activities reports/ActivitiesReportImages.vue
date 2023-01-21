@@ -38,11 +38,7 @@ export default {
   },
 
   data() {
-    return {
-      slider: 0,
-    };
+    return { slider: 0 };
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

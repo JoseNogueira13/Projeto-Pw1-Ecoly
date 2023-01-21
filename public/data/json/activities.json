@@ -84,7 +84,7 @@
       "description": "Os bancos de jardim foram construídos com sucesso.",
       "images": [
         "./data/images/bancos.png",
-        "./data/images/bancos.png"
+        "./data/images/lixo.png"
       ]
     },
     "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
@@ -111,7 +111,7 @@
     "report": {
       "description": "Os bancos de jardim foram construídos com sucesso.",
       "images": [
-        "./data/images/bancos.png",
+        "./data/images/lixo.png",
         "./data/images/bancos.png"
       ]
     },

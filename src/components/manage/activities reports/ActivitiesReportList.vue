@@ -12,7 +12,7 @@ import SelectedActivityReport from "./SelectedActivityReport.vue";
 
     <div class="row mt-5">
       <!-- Select Activity -->
-      <div class="col-lg-7">
+      <div class="col-lg-7 activities-list">
         <div v-for="activity in activities" :key="activity.id" class="row mb-4">
           <div class="col-lg-6" style="margin-left: 18%">
             <button
@@ -126,6 +126,21 @@ $seventh-color: #57b894;
   &:hover {
     background-color: $fourth-color;
     color: $sixth-color;
+  }
+}
+
+.activities-list {
+  height: 900px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: $tertiary-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $seventh-color;
   }
 }
 </style>
