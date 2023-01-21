@@ -18,7 +18,9 @@
       >
     </b-card-text>
 
-    <b-button class="see-more-btn mt-4" href="#">Ver Mais</b-button>
+    <router-link :to="{ name: 'ActivitiesDetails', params: { id: activity.id } }">
+      <b-button class="see-more-btn mt-4">Ver Mais</b-button>
+    </router-link>
   </b-card>
 </template>
 
