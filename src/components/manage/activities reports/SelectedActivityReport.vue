@@ -9,22 +9,43 @@ import ActivityReportEvaluation from "./ActivityReportEvaluation.vue";
     <span class="theme py-1 px-2 rounded">{{ themeName }}</span>
 
     <!-- Image slider -->
-    <div class="row my-5 py-5">
-      <div class="col-1">
-        <button class="btn" :disabled="slider === 0">&lt</button>
+    <div class="row my-4">
+      <!-- Previous Image -->
+      <div class="col-2 d-flex align-items-center justify-content-center">
+        <button class="btn" :disabled="slider === 0" @click="slider--">
+          <img
+            src="@/assets/icons/leftArrow.svg"
+            class="img-fluid"
+            alt="Imagem Anterior"
+          />
+        </button>
       </div>
-      <div class="col-9">
+      <!-- Current Image -->
+      <div class="col-8 text-center">
         <img
           :src="activity.images[slider]"
           class="img-fluid"
           alt="Imagem da atividade"
         />
       </div>
-      <div class="col-1">
-        <button class="btn" :disabled="slider === activity.images.length - 1">
-          &gt
+      <!-- Next Image -->
+      <div class="col-2 d-flex align-items-center justify-content-center">
+        <button
+          class="btn"
+          :disabled="slider === activity.images.length - 1"
+          @click="slider++"
+        >
+          <img
+            src="@/assets/icons/rightArrow.svg"
+            class="img-fluid"
+            alt="Imagem Seguinte"
+          />
         </button>
       </div>
+    </div>
+
+    <div class="row d-flex align-items-center justify-content-center mb-4">
+      <button class="report-description-btn btn">See Report Description</button>
     </div>
 
     <ActivityReportTitle title="Participantes" :description="activity.participants" />
@@ -99,5 +120,15 @@ $seventh-color: #57b894;
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: -1px;
+}
+
+.report-description-btn {
+  background-color: $primary-color;
+  color: $secondary-color;
+  font-family: "Panton", sans-serif;
+  &:hover {
+    background-color: $fifth-color;
+    color: $fourth-color;
+  }
 }
 </style>
