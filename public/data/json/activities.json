@@ -14,6 +14,7 @@
     "meta": "Colocação de 10 caixotes do lixo nas zonas relvadas da ESAG ",
     "objective": "Contribuir para a limpeza dos espaços exteriores e estimular a utilização das zonas ajardinadas",
     "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
+    "report": {},
     "resources": "Caixotes do lixo ",
     "schoolID": 1,
     "status": "unfinished",
@@ -35,6 +36,7 @@
     "meta": "Deixar a praia limpa",
     "objective": "Limpeza de modo a contribuir para o meio ambiente e a prevenir a poluição ambiental",
     "participants": "AE ESMAD + C.M. VILA DO CONDE",
+    "report": {},
     "resources": "Sacos e luvas",
     "schoolID": 0,
     "status": "unfinished",
@@ -56,6 +58,7 @@
     "meta": "Construir 4 bancos de jardim",
     "objective": "Construir bancos de jardim para que os alunos possam descansar e usufruir do espaço exterior da escola",
     "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
+    "report": {},
     "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
     "schoolID": 0,
     "status": "unfinished",
@@ -77,6 +80,13 @@
     "meta": "Construir 4 bancos de jardim",
     "objective": "Construir bancos de jardim para que os alunos possam descansar e usufruir do espaço exterior da escola",
     "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
+    "report": {
+      "description": "Os bancos de jardim foram construídos com sucesso.",
+      "images": [
+        "./data/images/bancos.png",
+        "./data/images/bancos.png"
+      ]
+    },
     "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
     "schoolID": 0,
     "status": "finished",
@@ -98,6 +108,13 @@
     "meta": "Construir 4 bancos de jardim",
     "objective": "Construir bancos de jardim para que os alunos possam descansar e usufruir do espaço exterior da escola",
     "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
+    "report": {
+      "description": "Os bancos de jardim foram construídos com sucesso.",
+      "images": [
+        "./data/images/bancos.png",
+        "./data/images/bancos.png"
+      ]
+    },
     "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
     "schoolID": 0,
     "status": "finished",

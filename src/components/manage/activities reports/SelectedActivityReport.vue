@@ -8,8 +8,23 @@ import ActivityReportEvaluation from "./ActivityReportEvaluation.vue";
     <h2 class="activity-title text-left">{{ activity.title }}</h2>
     <span class="theme py-1 px-2 rounded">{{ themeName }}</span>
 
-    <div class="my-5 py-5">
-      <!-- TODO: IMAGES -->
+    <!-- Image slider -->
+    <div class="row my-5 py-5">
+      <div class="col-1">
+        <button class="btn" :disabled="slider === 0">&lt</button>
+      </div>
+      <div class="col-9">
+        <img
+          :src="activity.images[slider]"
+          class="img-fluid"
+          alt="Imagem da atividade"
+        />
+      </div>
+      <div class="col-1">
+        <button class="btn" :disabled="slider === activity.images.length - 1">
+          &gt
+        </button>
+      </div>
     </div>
 
     <ActivityReportTitle title="Participantes" :description="activity.participants" />
@@ -38,7 +53,10 @@ export default {
   components: { ActivityReportTitle, ActivityReportEvaluation },
 
   data() {
-    return { themeName: "" };
+    return {
+      themeName: "",
+      slider: 0,
+    };
   },
 
   async created() {
