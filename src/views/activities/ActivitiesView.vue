@@ -12,24 +12,25 @@ import Header from "@/components/Header.vue";
     <Header title="ATIVIDADES" />
 
     <!-- route for the add activity form -->
-      <div class="sub_heading_activities d-flex">
-            <router-link
-      :to="{ name: 'ActivitiesCreate' }"
-      :style="{
-        visibility:
-          userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
-      }"
-    >
-      <button
-        type="button"
-        class="add-new-btn btn btn-sm rounded-pill ml-5 mb-4"
+    <div class="sub_heading_activities d-flex">
+      <router-link
+        :to="{ name: 'ActivitiesCreate' }"
+        :style="{
+          visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
+        }"
       >
-        <img src="@/assets/icons/add.svg" alt="add" width="20" loading="lazy" />
-        <span class="px-3"> Adicionar Atividade </span>
-      </button>
-    </router-link>
-    <span class="legend">clique na imagem ou no título da atividade para ver mais detalhes</span>
-      </div>
+        <button
+          type="button"
+          class="add-activity-btn btn btn-sm rounded-pill ml-5 mb-4"
+        >
+          <img src="@/assets/icons/add.svg" alt="add" width="20" loading="lazy" />
+          <span class="px-3"> Adicionar Atividade </span>
+        </button>
+      </router-link>
+      <span class="legend"
+        >clique na imagem ou no título da atividade para ver mais detalhes</span
+      >
+    </div>
 
     <section class="activities-section">
       <div>
@@ -114,14 +115,13 @@ export default {
       usersStore.getLoggedUser().then((user) => {
         this.userInfo.isAdmin = user.role === "admin";
       });
-    };
+    }
 
     // get theme name by id
     themesStore.getThemes().then((themes) => {
       this.totalNumberOfThemes = themes.length;
       this.themes = themes.slice(0, this.numberOfThemes);
     });
-
 
     // when the user scrolls to the bottom of the page, the number of activities to be displayed increases by 5
     window.addEventListener("scroll", this.loadMoreActivities);
@@ -132,14 +132,15 @@ export default {
   },
 
   methods: {
+    // load more activities when the user scrolls to the bottom of the page
     loadMoreActivities() {
-      const windowHeight =
-        window.innerHeight + document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight + document.documentElement.scrollTop;
       const documentHeight = document.documentElement.offsetHeight;
       if (windowHeight - 3 > documentHeight - 4) {
         // wait half second before loading more activities
+        this.$el.classList.add("loading");
         setTimeout(() => {
-          this.numberOfActivities += 3;
+          this.numberOfActivities += 5;
           const activitiesStore = useActivitiesStore();
           activitiesStore.getActivities().then((activities) => {
             this.activities = activities.slice(0, this.numberOfActivities);
@@ -151,9 +152,7 @@ export default {
     removeActivity(id) {
       const activitiesStore = useActivitiesStore();
       activitiesStore.removeActivity(id);
-      this.activities = this.activities.filter(
-        (activity) => activity.id !== id
-      );
+      this.activities = this.activities.filter((activity) => activity.id !== id);
       this.totalNumberOfActivities -= 1;
       if (this.numberOfActivities > this.totalNumberOfActivities) {
         this.numberOfActivities = this.totalNumberOfActivities;
@@ -171,7 +170,7 @@ $secondary-color: #aedcc0;
 $tertiary-color: #3fc380;
 $fourth-color: #ffffff;
 
-.add-new-btn{
+.add-activity-btn {
   background-color: $primary-color;
   color: $fourth-color;
   font-family: "Panton", sans-serif;
@@ -192,19 +191,21 @@ $fourth-color: #ffffff;
   }
 }
 
-.sub_heading_activities{
+.sub_heading_activities {
   gap: 1em;
   color: $primary-color;
   font-family: "Panton", sans-serif;
   font-weight: 400;
-  
 }
 
-// design cards activities
+.warning-text {
+  font-family: "Panton", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: $primary-color;
+}
 
-
-
-.load-more-icon {
+.loading .load-more-icon {
   // rotate the icon (loading animation)
   animation: spin 1s linear infinite;
 }
@@ -216,5 +217,4 @@ $fourth-color: #ffffff;
     transform: rotate(360deg);
   }
 }
-
 </style>
