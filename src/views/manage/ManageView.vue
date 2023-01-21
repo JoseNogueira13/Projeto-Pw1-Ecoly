@@ -5,7 +5,7 @@ import FastActions from "@/components/manage/FastActions.vue";
 import ManageThemes from "@/components/manage/ManageThemes.vue";
 import ContactMembers from "@/components/manage/ContactMembers.vue";
 import Meetings from "@/components/manage/meetings/Meetings.vue";
-import ActivitiesReportList from "@/components/manage/ActivitiesReportList.vue";
+import ActivitiesReportList from "@/components/manage/activities reports/ActivitiesReportList.vue";
 </script>
 
 <template>
@@ -32,6 +32,7 @@ export default {
     ManageThemes,
     ContactMembers,
     Meetings,
+    ActivitiesReportList,
   },
 
   async created() {
