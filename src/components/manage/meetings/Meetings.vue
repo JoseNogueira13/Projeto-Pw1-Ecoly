@@ -96,4 +96,41 @@ export default {
   font-weight: bold;
   text-decoration: underline;
 }
+
+@media screen and (max-width: 1400px) {
+  .select-meetings {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .select-meetings {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+  .select-meetings {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1060px) {
+  .select-meetings {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .select-meetings {
+    font-size: 23px;
+  }
+
+  .future-past-meetings {
+    width: 100%;
+    padding-bottom: 50px;
+    margin: 0 auto;
+    margin-right: 20%;
+  }
+}
 </style>

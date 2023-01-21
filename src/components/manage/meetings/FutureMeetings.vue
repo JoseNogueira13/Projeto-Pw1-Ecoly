@@ -203,4 +203,17 @@ $seventh-color: #57b894;
 .modal-description-info {
   font-size: 17px;
 }
+
+@media screen and (max-width: 1340px) {
+  .date {
+    margin-left: 25%;
+    margin-bottom: 10px;
+  }
+  .see-more-btn {
+    margin-left: 70%;
+    margin-bottom: 10px;
+    width: 100%;
+    min-width: 120px;
+  }
+}
 </style>

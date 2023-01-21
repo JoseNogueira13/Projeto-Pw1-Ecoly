@@ -330,4 +330,27 @@ $seventh-color: #57b894;
     color: $fourth-color;
   }
 }
+
+@media screen and (max-width: 1540px) {
+  .add-btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1340px) {
+  .date {
+    margin-left: 25%;
+    margin-bottom: 10px;
+  }
+  .add-btn {
+    margin-left: 70%;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .add-btn {
+    font-size: 13px;
+  }
+}
 </style>
