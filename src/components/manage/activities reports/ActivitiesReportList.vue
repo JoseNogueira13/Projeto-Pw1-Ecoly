@@ -27,8 +27,9 @@ import SelectedActivityReport from "./SelectedActivityReport.vue";
             </button>
           </div>
           <div class="select-activity-date text-center">
-            <span class="font-weight-bold"> Data de início </span>
-            {{ formatDate(activity.initialDate) }}
+            <span class="font-weight-bold"> Data de realização </span>
+            {{ formatDate(activity.initialDate) }} -
+            {{ formatDate(activity.finalDate) }}
           </div>
         </div>
       </div>

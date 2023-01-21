@@ -1,14 +1,19 @@
 <template>
   <div class="row">
-    <h3 class="evaluation-title col-12 text-center">AVALIAÇÃO</h3>
-    <div class="row mt-3">
-      <div class="col-6 text-center">
-        <h4 class="activity-sub-title">Indicadores</h4>
-        <p class="description mb-0">{{ indicator }}</p>
+    <h3 class="evaluation-title col-12 text-center pl-0">AVALIAÇÃO</h3>
+    <div class="row mt-3 col-12">
+      <div class="col-6">
+        <div class="text-left">
+          <h4 class="activity-sub-title">Indicadores</h4>
+          <p class="description mb-0">{{ indicator }}</p>
+        </div>
       </div>
-      <div class="col-6 text-center">
-        <h4 class="activity-sub-title">Instrumentos</h4>
-        <p class="description mb-0">{{ method }}</p>
+      <!-- align to the right -->
+      <div class="col-6">
+        <div class="text-right">
+          <h4 class="activity-sub-title">Instrumentos</h4>
+          <p class="description mb-0">{{ method }}</p>
+        </div>
       </div>
     </div>
   </div>
