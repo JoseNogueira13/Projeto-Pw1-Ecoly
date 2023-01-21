@@ -1,69 +1,82 @@
 <template>
-    <div class="new mb-4">
-        
-        <div class="float-right py-1 px-2">
-            <div class="buttons-activities d-flex flex-column">
-             <button 
-             type="button"
-             class="remove-btn btn btn-sm rounded-pill float-right py-1 px-2"
-             :style="{
-                        visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
-                    }"
-                @click="removeActivity(activity.id)">
-                    <img src="@/assets/icons/remove.svg" alt="remove" width="20" loading="lazy" />
-                    <span>Remover</span>
-            </button>
-             <button
-             type="button"
-             class="finish-btn btn btn-sm rounded-pill float-right py-1 px-2"
-             :style="{
-                    visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
-                    }">
-                      <img src="@/assets/icons/finish.svg" alt="finish" width="20" loading="lazy" />
-                      <span>Finalizar</span>
-                    </button>
-            </div>
-        </div>
+  <div class="activity mb-5 shadow">
+    <div class="float-right py-1 px-2">
+      <div class="buttons-activities d-flex flex-column">
+        <button
+          type="button"
+          class="remove-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
+          :style="{
+            visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
+          }"
+          @click="removeActivity(activity.id)"
+        >
+          <img
+            src="@/assets/icons/remove.svg"
+            alt="remove"
+            width="20"
+            loading="lazy"
+            class="ml-2"
+          />
+          <span class="px-3">Remover</span>
+        </button>
+        <button
+          type="button"
+          class="finish-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
+          :style="{
+            visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
+          }"
+        >
+          <img
+            src="@/assets/icons/finish.svg"
+            alt="finish"
+            width="20"
+            loading="lazy"
+            class="ml-2"
+          />
+          <span class="px-3">Finalizar</span>
+        </button>
+      </div>
+    </div>
 
     <div class="row">
-        <div class="col-5">
-            <img :src="activity.images[0]"
-                 alt="imagem da atividade"
-                 class="activity-image"
+      <div class="col-5 px-0">
+        <img
+          :src="activity.images[0]"
+          alt="imagem da atividade"
+          class="activity-image"
         />
-        </div>
-        <div class="col-7">
-            <h2 class="activity-title text-left mt-3">
+      </div>
+      <div class="activity-info col-7 d-flex flex-column text-left">
+        <h2 class="activity-title text-left mt-3">
           <router-link
             :to="{ name: 'ActivitiesDetails', params: { id: activity.id } }"
             class="activity-link"
           >
-          {{ activity.title }}
+            {{ activity.title }}
           </router-link>
         </h2>
-          <span class="theme">
-            {{ themes.name }}
-          </span>
-        <p class="new-text text-left mt-3">
-                {{ activity.objective }}
-            </p>
-            <div class="data-begin-activity">
-              <span class="date-begin">Data de Inicío</span>
-              <span class="date">{{ formatDate(activity.initialDate) }}</span>
-            </div>
+        <span class="theme text-center">
+          {{ themes.name }}
+        </span>
+        <div class="activity-info-2 d-flex flex-column my-4">
+          <p class="activity-text text-left">
+            {{ activity.objective }}
+          </p>
+          <div class="data-begin-activity d-flex flex-column">
+            <span class="date-begin">Data de Inicío</span>
+            <span class="date">{{ formatDate(activity.initialDate) }}</span>
+          </div>
         </div>
+      </div>
     </div>
-
-    </div>
+  </div>
 </template>
 
 <script>
+export default {
+  name: "Activity",
 
-    export default {
-        name: "Activity",
-    
-         props: {
-
+  props: {
     userInfo: {
       type: Object,
       required: true,
@@ -74,31 +87,175 @@
       required: true,
     },
 
-    themes : {
+    themes: {
       type: Object,
-      required: true
-    }
-
+      required: true,
+    },
   },
-    
+
   methods: {
     removeActivity(id) {
-        // Remove the activity from the activities array of the ActivitiesView
-      this.$emit("removeActivity", id);
+      // Remove the activity from the activities array of the ActivitiesView
+      this.$el.classList.add("removed");
+
+      // wait for the animation to finish
+      setTimeout(() => {
+        this.$emit("removeActivity", id);
+      }, 500);
     },
-       formatDate(date) {
+
+    formatDate(date) {
       const newDate = new Date(date);
       return newDate.toLocaleDateString("pt-PT");
     },
   },
-
-    }
-
+};
 </script>
 
-<style scoped>
-.buttons-activities{
-    gap: 9em;
+<style lang="scss" scoped>
+$primary-color: #343e3d;
+$secondary-color: #aedcc0;
+$tertiary-color: #3fc380;
+$fourth-color: #ffffff;
+$fifth-color: #e4f0e8;
+
+.remove-btn {
+  font-family: "Panton", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  gap: 1.4em;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  &:hover {
+    background-color: $tertiary-color;
+  }
+  &:disabled {
+    background-color: $secondary-color;
+    color: $primary-color;
+    cursor: not-allowed;
+  }
 }
 
+.finish-btn {
+  font-family: "Panton", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  gap: 1.4em;
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  color: $fourth-color;
+  &:hover {
+    background-color: $tertiary-color;
+    color: $fourth-color;
+  }
+  &:disabled {
+    background-color: $secondary-color;
+    color: $primary-color;
+    cursor: not-allowed;
+  }
+}
+.buttons-activities {
+  gap: 9em;
+}
+
+.activity-image {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 420px;
+  height: 260px;
+  object-fit: cover;
+}
+
+.activity-title {
+  font-family: "Alkes", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 25px;
+}
+
+.activity-link {
+  text-decoration: none;
+  color: $primary-color;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.activity {
+  background-color: $fifth-color;
+  color: $primary-color;
+  max-width: 1168px;
+  margin: 0 auto;
+  border-radius: 20px;
+  min-height: 50px;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+  animation: slideRight 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.03) translateY(-5px);
+  }
+}
+
+.theme {
+  font-family: "Panton", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: $primary-color;
+  background-color: $secondary-color;
+  border-radius: 6px;
+  padding: 0.1em 0.5em;
+  width: 171px;
+}
+.activity-text {
+  font-family: "Panton", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: left;
+  height: 100px;
+}
+
+.date-begin {
+  font-family: "Panton", sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: $primary-color;
+}
+
+.date {
+  font-family: "Panton", sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  color: $primary-color;
+}
+
+.data-begin-activity {
+  margin-top: -1.8em;
+}
+
+.removed {
+  animation: slideLeft 0.5s ease-in-out;
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
 </style>
