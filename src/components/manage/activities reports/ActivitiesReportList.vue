@@ -10,13 +10,13 @@ import SelectedActivityReport from "./SelectedActivityReport.vue";
       description="clique numa atividade para visualizar o relatório"
     />
 
-    <div class="row mt-5">
+    <div class="row mt-5 report-list-section">
       <!-- Select Activity -->
-      <div class="col-lg-7 activities-list">
+      <div class="col-lg-7 activities-list d-flex flex-column justify-content-center">
         <div v-for="activity in activities" :key="activity.id" class="row mb-4">
           <div class="col-lg-6" style="margin-left: 18%">
             <button
-              class="select-activity-btn btn w-100 mt-1 py-1"
+              class="select-activity-btn btn w-100 mt-1 py-2"
               @click="selectedActivity = activity"
               :class="{
                 'selected-activity-btn': selectedActivity.id === activity.id,
@@ -26,7 +26,7 @@ import SelectedActivityReport from "./SelectedActivityReport.vue";
               {{ activity.title }}
             </button>
           </div>
-          <div class="select-activity-date col-lg-3 text-center">
+          <div class="select-activity-date text-center">
             <span class="font-weight-bold"> Data de início </span>
             {{ formatDate(activity.initialDate) }}
           </div>
@@ -101,6 +101,13 @@ $fifth-color: #18516f;
 $sixth-color: #000;
 $seventh-color: #57b894;
 
+.report-list-section {
+  background-image: url("@/assets/images/activitiesReportIllustration.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .select-activity-btn {
   font-family: "Panton", sans-serif;
   font-size: 1.2rem;
@@ -117,6 +124,8 @@ $seventh-color: #57b894;
 .select-activity-date {
   font-family: "Panton", sans-serif;
   font-size: 1.1rem;
+  max-width: 200px;
+  margin: 0 auto;
 }
 
 .selected-activity-btn {
