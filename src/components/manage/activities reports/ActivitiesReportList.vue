@@ -45,6 +45,7 @@ import SelectedActivityReport from "./SelectedActivityReport.vue";
 
 <script>
 import { useActivitiesStore } from "@/stores/activities";
+import { useUsersStore } from "@/stores/users";
 export default {
   name: "ActivitiesReportList",
   components: { ManageSection, SelectedActivityReport },
@@ -58,10 +59,15 @@ export default {
 
   async created() {
     const activitiesStore = useActivitiesStore();
+    const usersStore = useUsersStore();
+
+    // get logged user
+    const loggedUser = await usersStore.getLoggedUser();
+    const userSchoolID = loggedUser.schoolID;
 
     const activities = await activitiesStore.getActivities();
     const finishedActivities = activities.filter((activity) => {
-      return activity.status === "finished";
+      return activity.status === "finished" && activity.schoolID === userSchoolID;
     });
 
     // sort by date
