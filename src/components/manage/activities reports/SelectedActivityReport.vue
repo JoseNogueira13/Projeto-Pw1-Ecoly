@@ -1,6 +1,7 @@
 <script setup>
 import ActivityReportTitle from "./ActivityReportTitle.vue";
 import ActivityReportEvaluation from "./ActivityReportEvaluation.vue";
+import ActivitiesReportImages from "./ActivitiesReportImages.vue";
 </script>
 
 <template>
@@ -9,43 +10,12 @@ import ActivityReportEvaluation from "./ActivityReportEvaluation.vue";
     <span class="theme py-1 px-2 rounded">{{ themeName }}</span>
 
     <!-- Image slider -->
-    <div class="row my-4">
-      <!-- Previous Image -->
-      <div class="col-2 d-flex align-items-center justify-content-center">
-        <button class="btn" :disabled="slider === 0" @click="slider--">
-          <img
-            src="@/assets/icons/leftArrow.svg"
-            class="img-fluid"
-            alt="Imagem Anterior"
-          />
-        </button>
-      </div>
-      <!-- Current Image -->
-      <div class="col-8 text-center">
-        <img
-          :src="activity.images[slider]"
-          class="img-fluid"
-          alt="Imagem da atividade"
-        />
-      </div>
-      <!-- Next Image -->
-      <div class="col-2 d-flex align-items-center justify-content-center">
-        <button
-          class="btn"
-          :disabled="slider === activity.images.length - 1"
-          @click="slider++"
-        >
-          <img
-            src="@/assets/icons/rightArrow.svg"
-            class="img-fluid"
-            alt="Imagem Seguinte"
-          />
-        </button>
-      </div>
-    </div>
+    <ActivitiesReportImages :images="activity.report.images" />
 
     <div class="row d-flex align-items-center justify-content-center mb-4">
-      <button class="report-description-btn btn">See Report Description</button>
+      <button class="report-description-btn btn" @click="showModal">
+        See Report Description
+      </button>
     </div>
 
     <ActivityReportTitle title="Participantes" :description="activity.participants" />
@@ -58,6 +28,18 @@ import ActivityReportEvaluation from "./ActivityReportEvaluation.vue";
       :method="activity.evaluationMethod"
     />
   </div>
+
+  <!-- modal -->
+  <b-modal id="show-report-description" hide-footer centered>
+    <template #modal-title>
+      <span class="modal-title"> Descrição do Relatório </span>
+    </template>
+    <div class="d-block text-center">
+      <p class="modal-report-description">
+        {{ activity.report.description }}
+      </p>
+    </div>
+  </b-modal>
 </template>
 
 <script>
@@ -71,7 +53,11 @@ export default {
     },
   },
 
-  components: { ActivityReportTitle, ActivityReportEvaluation },
+  components: {
+    ActivityReportTitle,
+    ActivityReportEvaluation,
+    ActivitiesReportImages,
+  },
 
   data() {
     return {
@@ -84,6 +70,13 @@ export default {
     const themesStore = useThemesStore();
     const theme = await themesStore.getThemeById(this.activity.id);
     this.themeName = theme.name;
+  },
+
+  methods: {
+    showModal() {
+      console.log("show modal");
+      this.$bvModal.show("show-report-description");
+    },
   },
 };
 </script>
@@ -130,5 +123,18 @@ $seventh-color: #57b894;
     background-color: $fifth-color;
     color: $fourth-color;
   }
+}
+
+.modal-title {
+  font-family: "Panton", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $primary-color;
+}
+
+.modal-report-description {
+  font-family: "Panton", sans-serif;
+  font-size: 1rem;
+  color: $primary-color;
 }
 </style>
