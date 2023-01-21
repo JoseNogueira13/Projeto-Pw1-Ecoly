@@ -39,13 +39,18 @@
     </div>
 
     <div class="row">
-      <div class="col-5 px-0">
-        <img
-          :src="activity.images[0]"
-          alt="imagem da atividade"
-          class="activity-image"
-        />
-      </div>
+      <router-link :to="{ name: 'ActivitiesDetails', params: { id: activity.id } }">
+        <div class="image-container col-5 px-0">
+          <img
+            :src="activity.images[0]"
+            alt="imagem da atividade"
+            class="activity-image"
+          />
+          <div class="seeMore">
+            <img src="@/assets/icons/seeMore.svg" alt="seeMoreIcon" />
+          </div>
+        </div>
+      </router-link>
       <div class="activity-info col-7 d-flex flex-column text-left">
         <h2 class="activity-title text-left mt-3">
           <router-link
@@ -166,6 +171,19 @@ $fifth-color: #e4f0e8;
   object-fit: cover;
 }
 
+.image-container {
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover .activity-image {
+    opacity: 0.3;
+  }
+
+  &:hover .seeMore {
+    opacity: 1;
+  }
+}
+
 .activity-title {
   font-family: "Alkes", sans-serif;
   font-weight: bold;
@@ -180,6 +198,14 @@ $fifth-color: #e4f0e8;
   &:hover {
     text-decoration: underline;
   }
+}
+
+.seeMore {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 30%;
+  left: 70%;
 }
 
 .activity {
