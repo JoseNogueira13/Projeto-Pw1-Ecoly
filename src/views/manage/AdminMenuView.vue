@@ -1,8 +1,8 @@
 <script setup>
 import Sidebar from "@/components/Sidebar.vue";
 import Header from "@/components/Header.vue";
-import ManageUsers from "@/components/manage/admin/ManageUsers.vue";
-import ManageSchools from "@/components/manage/admin/ManageSchools.vue";
+import ManageUsers from "@/components/manage/admin/users/ManageUsers.vue";
+import ManageSchools from "@/components/manage/admin/schools/ManageSchools.vue";
 </script>
 
 <template>
@@ -83,7 +83,7 @@ $seventh-color: #57b894;
 }
 
 .admin-container {
-  height: 600px;
+  height: 650px;
   background-color: $secondary-color;
   border-radius: 40px;
 }

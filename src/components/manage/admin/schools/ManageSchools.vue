@@ -1,3 +1,7 @@
+<script setup>
+import SchoolsTable from "./SchoolsTable.vue";
+</script>
+
 <template>
   <div class="row">
     <div class="col-xl-3 col-md-5">
@@ -12,6 +16,7 @@
           v-model="filterInput"
           placeholder="Filtrar por Nome"
           type="search"
+          @input="filterSchools"
         ></b-form-input>
       </b-input-group>
     </div>
@@ -24,24 +29,67 @@
       <b-button
         class="py-1 px-3 add-school-btn"
         size="lg"
-        :disabled="newSchoolName.length < 4"
+        :disabled="!isShoolNameValid"
+        @click="addNewSchool"
       >
         <img class="mb-1" src="@/assets/icons/add.svg" alt="add" width="20" />
         <span class="ml-2">Adicionar Escola</span>
       </b-button>
     </div>
   </div>
+  <div class="row px-5">
+    <SchoolsTable :schools="filterInput.length > 0 ? filteredSchools : schools" />
+  </div>
 </template>
 
 <script>
+import { useSchoolsStore } from "@/stores/schools";
 export default {
   name: "ManageSchools",
+  components: { SchoolsTable },
 
   data() {
     return {
       filterInput: "",
       newSchoolName: "",
+      schools: [],
+      filteredSchools: [],
     };
+  },
+
+  computed: {
+    filterSchools() {
+      this.filteredSchools = this.schools.filter((school) => {
+        return school.name.toLowerCase().includes(this.filterInput.toLowerCase());
+      });
+    },
+
+    isShoolNameValid() {
+      return !(
+        this.newSchoolName.length < 4 ||
+        this.schools.some(
+          (school) => school.name.toLowerCase() === this.newSchoolName.toLowerCase()
+        )
+      );
+    },
+  },
+
+  methods: {
+    addNewSchool() {
+      const schoolsStore = useSchoolsStore();
+      schoolsStore.addSchool(this.newSchoolName);
+      this.newSchoolName = "";
+
+      schoolsStore.getSchools().then((schools) => {
+        this.schools = schools;
+      });
+    },
+  },
+
+  async created() {
+    const schoolsStore = useSchoolsStore();
+    const schools = await schoolsStore.getSchools();
+    this.schools = schools;
   },
 };
 </script>
