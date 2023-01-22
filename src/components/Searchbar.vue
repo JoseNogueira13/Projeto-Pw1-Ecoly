@@ -3,9 +3,8 @@
     <b-input-group class="mt-4">
       <template #prepend>
         <b-input-group-text class="searchbar-input searchbar-icon">
-          <strong>
-            <img src="../assets/icons/search.svg" alt="search" width="20" /> </strong
-        ></b-input-group-text>
+          <img src="../assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
       </template>
       <b-form-input
         class="searchbar-input"

@@ -1,6 +1,8 @@
 <script setup>
 import Sidebar from "@/components/Sidebar.vue";
 import Header from "@/components/Header.vue";
+import ManageUsers from "@/components/manage/admin/ManageUsers.vue";
+import ManageSchools from "@/components/manage/admin/ManageSchools.vue";
 </script>
 
 <template>
@@ -24,7 +26,13 @@ import Header from "@/components/Header.vue";
         >
       </div>
     </div>
-    <div class="row mx-5 admin-container"></div>
+    <div class="row mx-5 admin-container">
+      <div style="width: 95%; margin: 0 auto">
+        <component
+          :is="selectedOption === 'Users' ? 'ManageUsers' : 'ManageSchools'"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,10 +40,10 @@ import Header from "@/components/Header.vue";
 import { useUsersStore } from "@/stores/users";
 export default {
   name: "Manage",
-  components: { Sidebar, Header },
+  components: { Sidebar, Header, ManageUsers, ManageSchools },
 
   data() {
-    return { selectedOption: "Users" };
+    return { selectedOption: "Users" }; // "Users" or "Schools"
   },
 
   async created() {
