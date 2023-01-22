@@ -16,7 +16,7 @@ import Header from "@/components/Header.vue";
       <router-link
         :to="{ name: 'ActivitiesCreate' }"
         :style="{
-          visibility: userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
+          visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
         }"
       >
         <button
@@ -27,9 +27,6 @@ import Header from "@/components/Header.vue";
           <span class="px-3"> Adicionar Atividade </span>
         </button>
       </router-link>
-      <span class="legend"
-        >clique na imagem ou no título da atividade para ver mais detalhes</span
-      >
     </div>
 
     <section class="activities-section">
@@ -101,7 +98,7 @@ export default {
   // load the stores when the component his created
   created() {
     const activitiesStore = useActivitiesStore();
-    const usersStore = useUsersStore(); 
+    const usersStore = useUsersStore();
     const themesStore = useThemesStore();
     const schoolsStore = useSchoolsStore();
 
@@ -144,11 +141,9 @@ export default {
         this.activities = this.activities.slice(0, this.numberOfActivities);
       });
     }
-
   },
 
   methods: {
-   
     removeActivity(id) {
       const activitiesStore = useActivitiesStore();
       activitiesStore.removeActivity(id);

@@ -24,6 +24,11 @@
           class="finish-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
+            //show the button only the after final date of the activity
+            display:
+              activity.finalDate < new Date().toISOString().split('T')[0]
+                ? 'block'
+                : 'none',
           }"
         >
           <img
@@ -69,7 +74,7 @@
           </p>
           <div class="data-begin-activity d-flex flex-column">
             <span class="date-begin">Data de Inicío</span>
-            <span class="date">{{ formatDate(activity.initialDate) }}</span>
+            <span class="date">{{ activity.initialDate }}</span>
           </div>
         </div>
       </div>
@@ -109,10 +114,10 @@ export default {
       }, 500);
     },
 
-    formatDate(date) {
-      const newDate = new Date(date);
-      return newDate.toLocaleDateString("pt-PT");
-    },
+    // formatDate(date) {
+    //   const newDate = new Date(date);
+    //   return newDate.toLocaleDateString("pt-PT");
+    // },
   },
 };
 </script>
