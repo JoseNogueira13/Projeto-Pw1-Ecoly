@@ -37,14 +37,7 @@ export default {
 
   async created() {
     const usersStore = useUsersStore();
-
-    const isUserLogged = await usersStore.isUserLogged();
-    const userLogged = await usersStore.getLoggedUser();
-    const isUserAdmin = userLogged.role === "admin";
-
-    if (!isUserLogged || !isUserAdmin) {
-      this.$router.push({ name: "Home" });
-    }
+    if (!usersStore.isUserLogged()) this.$router.push({ name: "Authenticate" });
   },
 };
 </script>
