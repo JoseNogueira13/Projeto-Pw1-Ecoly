@@ -40,7 +40,7 @@
     "resources": "Sacos e luvas",
     "schoolID": 0,
     "status": "unfinished",
-    "themeID": "2",
+    "themeID": "1",
     "title": "Limpeza praia + separação resíduos"
   },
   {
@@ -62,8 +62,8 @@
     "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
     "schoolID": 0,
     "status": "unfinished",
-    "themeID": "3",
-    "title": "Construção de Bancos de Jardim 3"
+    "themeID": "2",
+    "title": "Construção de Bancos de Jardim"
   },
   {
     "complexity": "3",
