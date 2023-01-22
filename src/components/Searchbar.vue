@@ -84,6 +84,8 @@ export default {
       const data = await this.activitiesStore.searchActivities(this.search);
       this.data = [...this.data, ...data];
     },
+
+    // search only activities with status "unfinished"
   },
 
   watch: {

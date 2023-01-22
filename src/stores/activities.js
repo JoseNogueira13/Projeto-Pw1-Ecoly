@@ -22,11 +22,12 @@ export const useActivitiesStore = defineStore("activities", {
     async searchActivities(search) {
       const activities = await this.getActivities();
       const activitiesFiltered = activities.filter((activities) => {
-        return activities.title.toLowerCase().includes(search.toLowerCase());
+        return activities.title.toLowerCase().includes(search.toLowerCase()) &&
+        activities.status === "unfinished";
       });
 
       return activitiesFiltered.map((activities) => {
-        return { id: activities.id, title: activities.title, type: "activity" };
+        return { id: activities.id, title: activities.title, type: "activity"};
       });
     },
 

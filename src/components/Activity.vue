@@ -74,7 +74,7 @@
           </p>
           <div class="data-begin-activity d-flex flex-column">
             <span class="date-begin">Data de Inicío</span>
-            <span class="date">{{ activity.initialDate }}</span>
+            <span class="date">{{ formatDate(activity.initialDate) }}</span>
           </div>
         </div>
       </div>
@@ -114,10 +114,10 @@ export default {
       }, 500);
     },
 
-    // formatDate(date) {
-    //   const newDate = new Date(date);
-    //   return newDate.toLocaleDateString("pt-PT");
-    // },
+    formatDate(date) {
+      const newDate = new Date(date);
+      return newDate.toLocaleDateString("pt-PT");
+    },
   },
 };
 </script>
