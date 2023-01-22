@@ -38,7 +38,10 @@ import SchoolsTable from "./SchoolsTable.vue";
     </div>
   </div>
   <div class="row px-5">
-    <SchoolsTable :schools="filterInput.length > 0 ? filteredSchools : schools" />
+    <SchoolsTable
+      :schools="filterInput.length > 0 ? filteredSchools : schools"
+      @reload-table="reloadTable"
+    />
   </div>
 </template>
 
@@ -80,6 +83,13 @@ export default {
       schoolsStore.addSchool(this.newSchoolName);
       this.newSchoolName = "";
 
+      schoolsStore.getSchools().then((schools) => {
+        this.schools = schools;
+      });
+    },
+
+    reloadTable() {
+      const schoolsStore = useSchoolsStore();
       schoolsStore.getSchools().then((schools) => {
         this.schools = schools;
       });

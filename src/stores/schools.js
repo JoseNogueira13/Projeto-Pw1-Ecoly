@@ -23,5 +23,22 @@ export const useSchoolsStore = defineStore("schools", {
       setLocalStorage("schools", schools);
       this.schools = schools;
     },
+
+    async editSchool(id, newSchoolName) {
+      const schools = await this.getSchools();
+      const school = schools.find((school) => school.id === id);
+      school.name = newSchoolName;
+
+      setLocalStorage("schools", schools);
+      this.schools = schools;
+    },
+
+    async deleteSchool(id) {
+      const schools = await this.getSchools();
+      const newSchools = schools.filter((school) => school.id !== id);
+
+      setLocalStorage("schools", newSchools);
+      this.schools = newSchools;
+    },
   },
 });

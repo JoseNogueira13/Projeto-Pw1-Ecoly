@@ -26,6 +26,7 @@
               class="py-1 px-3 edit-school-btn ml-3"
               size="sm"
               variant="outline-success"
+              @click="showEditModal(school)"
             >
               Editar
             </b-button>
@@ -33,6 +34,7 @@
               class="py-1 px-3 remove-school-btn mr-3"
               size="sm"
               variant="outline-danger"
+              @click="showDeleteModal(school)"
               >Remover</b-button
             >
           </td>
@@ -40,9 +42,44 @@
       </tbody>
     </table>
   </div>
+
+  <b-modal id="edit-school-modal" hide-footer centered>
+    <template #modal-title>
+      <span class="modal-title"> Editar Escola </span>
+    </template>
+    <div class="d-block text-center">
+      <input
+        type="text"
+        class="form-control new-theme-input"
+        placeholder="Nome da Escola"
+        aria-label="Nome da Escola"
+        v-model="newSchoolName"
+        @input="updateIsNewNameValid"
+      />
+    </div>
+    <b-button class="mt-3" block @click="editSchool" :disabled="!isNewNameValid"
+      >Alterar Nome</b-button
+    >
+  </b-modal>
+
+  <b-modal id="remove-school-modal" hide-footer centered>
+    <template #modal-title>
+      <span class="modal-title"> Tem a certeza que quer apagar esta Escola?</span>
+    </template>
+    <b-button class="mt-3 col-5 mr-5 ml-3" variant="success" @click="deleteSchool"
+      >Sim</b-button
+    >
+    <b-button
+      class="mt-3 col-5"
+      variant="danger"
+      @click="$bvModal.hide('remove-school-modal')"
+      >Não</b-button
+    >
+  </b-modal>
 </template>
 
 <script>
+import { useSchoolsStore } from "@/stores/schools";
 export default {
   name: "SchoolsTable",
 
@@ -50,6 +87,62 @@ export default {
     schools: {
       type: Array,
       required: true,
+    },
+  },
+
+  data() {
+    return {
+      newSchoolName: "",
+      currSchoolID: 0,
+      isNewNameValid: false,
+    };
+  },
+
+  methods: {
+    async isNewSchoolNameValid() {
+      const schoolsStore = useSchoolsStore();
+      const schools = await schoolsStore.getSchools();
+
+      return (
+        this.newSchoolName.length < 4 ||
+        schools.some(
+          (school) => school.name.toLowerCase() === this.newSchoolName.toLowerCase()
+        )
+      );
+    },
+
+    updateIsNewNameValid() {
+      this.isNewSchoolNameValid().then((res) => {
+        this.isNewNameValid = !res;
+      });
+    },
+
+    async showEditModal(currentSchool) {
+      this.newSchoolName = currentSchool.name;
+      this.currSchoolID = currentSchool.id;
+      this.$bvModal.show("edit-school-modal");
+      this.updateIsNewNameValid();
+    },
+
+    showDeleteModal(currentSchool) {
+      this.currSchoolID = currentSchool.id;
+      this.$bvModal.show("remove-school-modal");
+    },
+
+    async deleteSchool() {
+      const schoolsStore = useSchoolsStore();
+      await schoolsStore.deleteSchool(this.currSchoolID);
+      this.$bvModal.hide("remove-school-modal");
+
+      this.$emit("reload-table");
+    },
+
+    async editSchool() {
+      const schoolsStore = useSchoolsStore();
+      await schoolsStore.editSchool(this.currSchoolID, this.newSchoolName);
+      this.$bvModal.hide("edit-school-modal");
+
+      this.$emit("reload-table");
     },
   },
 };
