@@ -63,7 +63,7 @@
     "schoolID": 0,
     "status": "unfinished",
     "themeID": "3",
-    "title": "Construção de Bancos de Jardim"
+    "title": "Construção de Bancos de Jardim 3"
   },
   {
     "complexity": "3",
@@ -91,7 +91,7 @@
     "schoolID": 0,
     "status": "finished",
     "themeID": "3",
-    "title": "Construção de Bancos de Jardim"
+    "title": "Construção de Bancos de Jardim 4"
   },
   {
     "complexity": "3",
@@ -119,6 +119,6 @@
     "schoolID": 0,
     "status": "finished",
     "themeID": "3",
-    "title": "Construção de Bancos de Jardim"
+    "title": "Construção de Bancos de Jardim 5"
   }
 ]

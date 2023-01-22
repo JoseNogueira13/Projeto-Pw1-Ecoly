@@ -16,7 +16,7 @@ import Header from "@/components/Header.vue";
       <router-link
         :to="{ name: 'ActivitiesCreate' }"
         :style="{
-          visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
+          visibility: userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
         }"
       >
         <button
@@ -75,6 +75,7 @@ import { useActivitiesStore } from "@/stores/activities";
 import { useUsersStore } from "@/stores/users";
 import Activity from "../../components/Activity.vue";
 import { useThemesStore } from "@/stores/themes";
+import { useSchoolsStore } from "@/stores/schools";
 
 export default {
   name: "Activities",
@@ -100,14 +101,9 @@ export default {
   // load the stores when the component his created
   created() {
     const activitiesStore = useActivitiesStore();
-    const usersStore = useUsersStore();
+    const usersStore = useUsersStore(); 
     const themesStore = useThemesStore();
-
-    // load activities
-    activitiesStore.getActivities().then((activities) => {
-      this.totalNumberOfActivities = activities.length;
-      this.activities = activities.slice(0, this.numberOfActivities);
-    });
+    const schoolsStore = useSchoolsStore();
 
     // Load User Info
     this.userInfo.isLogged = usersStore.isUserLogged();
@@ -123,32 +119,36 @@ export default {
       this.themes = themes.slice(0, this.numberOfThemes);
     });
 
-    // when the user scrolls to the bottom of the page, the number of activities to be displayed increases by 5
-    window.addEventListener("scroll", this.loadMoreActivities);
-  },
+    // get all activities with status "unfinished" of the school of the user logged in otherwise if not logged in get all activities with status "unfinished"
+    if (this.userInfo.isLogged || this.userInfo.isAdmin) {
+      usersStore.getLoggedUser().then((user) => {
+        schoolsStore.getSchoolById(user.schoolID).then((school) => {
+          activitiesStore.getActivities().then((activities) => {
+            this.activities = activities.filter(
+              (activity) => activity.status === "unfinished"
+            );
+            this.activities = this.activities.filter(
+              (activity) => activity.schoolID === school.id
+            );
+            this.totalNumberOfActivities = this.activities.length;
+            this.activities = this.activities.slice(0, this.numberOfActivities);
+          });
+        });
+      });
+    } else {
+      activitiesStore.getActivities().then((activities) => {
+        this.activities = activities.filter(
+          (activity) => activity.status === "unfinished"
+        );
+        this.totalNumberOfActivities = this.activities.length;
+        this.activities = this.activities.slice(0, this.numberOfActivities);
+      });
+    }
 
-  beforeUnmount() {
-    window.removeEventListener("scroll", this.loadMoreActivities);
   },
 
   methods: {
-    // load more activities when the user scrolls to the bottom of the page
-    loadMoreActivities() {
-      const windowHeight = window.innerHeight + document.documentElement.scrollTop;
-      const documentHeight = document.documentElement.offsetHeight;
-      if (windowHeight - 3 > documentHeight - 4) {
-        // wait half second before loading more activities
-        this.$el.classList.add("loading");
-        setTimeout(() => {
-          this.numberOfActivities += 5;
-          const activitiesStore = useActivitiesStore();
-          activitiesStore.getActivities().then((activities) => {
-            this.activities = activities.slice(0, this.numberOfActivities);
-          });
-        }, 500);
-      }
-    },
-
+   
     removeActivity(id) {
       const activitiesStore = useActivitiesStore();
       activitiesStore.removeActivity(id);

@@ -146,7 +146,6 @@ $fifth-color: #e4f0e8;
   font-weight: 600;
   font-size: 14px;
   gap: 1.4em;
-  border: 1px solid $primary-color;
   background-color: $primary-color;
   color: $fourth-color;
   &:hover {

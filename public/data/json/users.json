@@ -32,7 +32,7 @@
 		"password": "Esmad_2223",
 		"photo": "https://api.dicebear.com/5.x/personas/svg?seed=student",
 		"role": "student",
-		"schoolID": 0,
+		"schoolID": 1,
 		"year": 2
 	}
 ]
