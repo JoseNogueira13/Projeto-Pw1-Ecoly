@@ -80,11 +80,24 @@ $seventh-color: #57b894;
 .selected {
   font-weight: 700;
   text-decoration: underline;
+  animation: selected 0.5s ease-in-out;
 }
 
 .admin-container {
   height: 650px;
   background-color: $secondary-color;
   border-radius: 40px;
+}
+
+@keyframes selected {
+  0% {
+    color: $primary-color;
+  }
+  50% {
+    color: $seventh-color;
+  }
+  100% {
+    color: $primary-color;
+  }
 }
 </style>

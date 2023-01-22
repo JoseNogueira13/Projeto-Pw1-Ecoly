@@ -2,8 +2,9 @@
   <div
     v-if="schools.length === 0"
     class="col-12 mt-5 rounded table d-flex flex-column justify-content-center align-items-center"
+    style="min-height: 490px"
   >
-    <h2 class="error-msg">Nenhuma Escola encontrada</h2>
+    <h2 class="error-msg mb-1">Nenhuma Escola encontrada</h2>
   </div>
   <div v-else class="col-12 mt-5 px-1 rounded table-container">
     <table class="table table-hover table-striped table-responsive-sm">
@@ -217,6 +218,9 @@ tbody {
     font-size: 20px;
     background-color: $primary-color;
 
+    // load animation (fade in)
+    animation: fadeIn 0.5s ease-in-out;
+
     &:hover {
       color: $fourth-color;
     }
@@ -225,14 +229,6 @@ tbody {
       border: 2px solid $sixth-color;
     }
   }
-}
-
-.error-msg {
-  color: $secondary-color;
-  font-family: "Panton", sans-serif;
-  font-weight: 700;
-  font-size: 30px;
-  text-align: center;
 }
 
 .edit-school-btn,
@@ -245,5 +241,36 @@ tbody {
 
 .remove-school-btn {
   float: right;
+}
+
+.error-msg {
+  color: $secondary-color;
+  font-family: "Panton", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+
+  // show from the bottom animation
+  animation: showFromBottom 0.5s ease-in-out;
+}
+
+@keyframes showFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
