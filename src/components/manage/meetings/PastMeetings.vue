@@ -145,7 +145,7 @@ export default {
     },
 
     async createAta() {
-      this.$bvToast.toast("Adicionando Ata", {
+      this.$bvToast.toast("Adicionando Ata...", {
         title: "Adicionando",
         variant: "info",
         solid: true,
@@ -157,7 +157,7 @@ export default {
       });
 
       setTimeout(() => {
-        this.$bvToast.toast("Ata adicionada com sucesso", {
+        this.$bvToast.toast("Ata adicionada com sucesso...", {
           title: "Sucesso",
           variant: "success",
           solid: true,
@@ -165,6 +165,8 @@ export default {
 
         this.currImgs = [];
         this.currDescription = "";
+
+        this.$bvModal.hide("add-ata-modal");
       }, 2000);
     },
   },
