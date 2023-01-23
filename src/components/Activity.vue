@@ -22,13 +22,14 @@
         <button
           type="button"
           class="finish-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
+          @click="openModal()"
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
             //show the button only the after final date of the activity
-            display:
-              activity.finalDate < new Date().toISOString().split('T')[0]
-                ? 'block'
-                : 'none',
+            // display:
+            //   activity.finalDate < new Date().toISOString().split('T')[0]
+            //     ? 'block'
+            //     : 'none',
           }"
         >
           <img
@@ -112,6 +113,11 @@ export default {
       setTimeout(() => {
         this.$emit("removeActivity", id);
       }, 500);
+    },
+
+    openModal() {
+      this.$emit("openModal", this.activity.title);
+      console.log(this.activity.title);
     },
 
     formatDate(date) {

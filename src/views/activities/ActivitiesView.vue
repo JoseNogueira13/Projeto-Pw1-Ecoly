@@ -38,6 +38,7 @@ import Header from "@/components/Header.vue";
           :userInfo="userInfo"
           :themes="themes.find((theme) => theme.id === activity.themeID)"
           @removeActivity="removeActivity"
+          @openModal="openModal"
         />
       </div>
     </section>
@@ -65,6 +66,22 @@ import Header from "@/components/Header.vue";
       </h2>
     </div>
   </div>
+
+  <!-- modal finish activity -->
+  <b-modal id="finish-activity-modal" hide-footer centered>
+    <template #modal-title>
+      <span class="modal-title"> Relatório </span>
+    </template>
+    <div class="d-block text-center">
+      <input
+        type="text"
+        class="form-control new-theme-input"
+        placeholder="Novo Tema"
+        aria-label="Novo Tema"
+      />
+    </div>
+    <b-button class="add-theme-modal-btn mt-3" block>Concluir</b-button>
+  </b-modal>
 </template>
 
 <script>
@@ -116,7 +133,7 @@ export default {
       this.themes = themes.slice(0, this.numberOfThemes);
     });
 
-    // get all activities with status "unfinished" of the school of the user logged in otherwise if not logged in get all activities with status "unfinished"
+    // get all activities with status "unfinished" of the school of the user logged in otherwise if not logged in will get all activities with status "unfinished"
     if (this.userInfo.isLogged || this.userInfo.isAdmin) {
       usersStore.getLoggedUser().then((user) => {
         schoolsStore.getSchoolById(user.schoolID).then((school) => {
@@ -144,6 +161,7 @@ export default {
   },
 
   methods: {
+    // to remove an activity from the list
     removeActivity(id) {
       const activitiesStore = useActivitiesStore();
       activitiesStore.removeActivity(id);
@@ -153,6 +171,10 @@ export default {
         this.numberOfActivities = this.totalNumberOfActivities;
       }
       this.activities = this.activities.slice(0, this.numberOfActivities);
+    },
+
+    openModal() {
+      this.$bvModal.show("finish-activity-modal");
     },
   },
 };
