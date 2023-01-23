@@ -67,6 +67,10 @@
     <template #modal-title>
       <span class="modal-title"> Tem a certeza que quer apagar esta Escola?</span>
     </template>
+    <p class="modal-description text-center">
+      Todos os dados associados a esta Escola serão apagados, incluindo os
+      utilizadores, notícias criadas por utilizadores, atividades e reuniões.
+    </p>
     <b-button class="mt-3 col-5 mr-5 ml-3" variant="success" @click="deleteSchool"
       >Sim</b-button
     >
@@ -252,6 +256,20 @@ tbody {
 
   // show from the bottom animation
   animation: showFromBottom 0.5s ease-in-out;
+}
+
+.modal-title {
+  font-family: "Panton", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.modal-description {
+  font-family: "Panton", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
 }
 
 @keyframes showFromBottom {
