@@ -146,8 +146,8 @@ export default {
       this.$emit("reload-table");
 
       this.$bvToast.toast("Escola Apagada com Sucesso!", {
-        title: "Sucesso",
-        variant: "success",
+        title: "Escola Apagada",
+        variant: "danger",
         solid: true,
       });
     },
@@ -160,7 +160,7 @@ export default {
       this.$emit("reload-table");
 
       this.$bvToast.toast("Escola Editada com Sucesso", {
-        title: "Sucesso",
+        title: "Escola Editada",
         variant: "success",
         solid: true,
       });

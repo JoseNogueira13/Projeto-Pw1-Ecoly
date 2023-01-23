@@ -107,6 +107,12 @@ export default {
         authorID: this.authorID,
       };
 
+      this.$bvToast.toast("Notícia Criada com Sucesso", {
+        title: "Notícia Criada",
+        variant: "success",
+        solid: true,
+      });
+
       // Redirect to news List
       newsStore.addNew(newNew).then(() => {
         this.$router.push({ name: "News" });

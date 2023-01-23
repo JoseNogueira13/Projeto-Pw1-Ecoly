@@ -109,6 +109,12 @@ export default {
       // Remove the activity from the activities array of the ActivitiesView
       this.$el.classList.add("removed");
 
+      this.$bvToast.toast("Atividade Apagada com Sucesso", {
+        title: "Atividade Apagada",
+        variant: "danger",
+        solid: true,
+      });
+
       // wait for the animation to finish
       setTimeout(() => {
         this.$emit("removeActivity", id);
