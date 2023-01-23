@@ -58,7 +58,11 @@
         @input="updateIsNewNameValid"
       />
     </div>
-    <b-button class="mt-3" block @click="editSchool" :disabled="!isNewNameValid"
+    <b-button
+      class="mt-3 edit-school-name-btn"
+      block
+      @click="editSchool"
+      :disabled="!isNewNameValid"
       >Alterar Nome</b-button
     >
   </b-modal>
@@ -256,6 +260,24 @@ tbody {
 
   // show from the bottom animation
   animation: showFromBottom 0.5s ease-in-out;
+}
+
+.edit-school-name-btn {
+  background-color: $primary-color;
+  color: $fourth-color;
+  font-family: "Panton", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+
+  &:disabled {
+    background-color: $eighth-color;
+    color: $fourth-color;
+  }
+
+  &:hover {
+    background-color: $fifth-color;
+    color: $fourth-color;
+  }
 }
 
 .modal-title {
