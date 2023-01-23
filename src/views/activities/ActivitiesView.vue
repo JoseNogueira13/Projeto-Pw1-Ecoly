@@ -71,21 +71,51 @@ import Header from "@/components/Header.vue";
   <b-modal id="finish-activity-modal" hide-footer centered>
     <template #modal-title>
       <div class="header-modal">
-        <span class="title">Relatório</span>
-        <span class="title-date-begin-activity">{{ initialDate }}</span>
-        <span class="space-between-dates">-</span>
-        <span class="title-date-finish-activity">{{ finalDate }}</span>
+        <span class="modal-title">Relatório</span>
+        <div class="dates-report-title">
+          <span class="modal-title-date-begin-activity">{{ initialDate }}</span>
+          <span class="modal-space-between-dates">-</span>
+          <span class="modal-title-date-finish-activity">{{ finalDate }}</span>
+        </div>
       </div>
     </template>
-    <div class="d-block text-center">
-      <input
-        type="text"
-        class="form-control new-theme-input"
-        placeholder="Novo Tema"
-        aria-label="Novo Tema"
-      />
+    <div class="main-modal">
+      <div class="images-report">
+        <img
+          v-for="(image, index) in reportImgs"
+          :key="index"
+          :src="image"
+          class="img-fluid modal-img modal-add-img mx-2 rounded my-2"
+          alt="imagem para o relatório da atividade"
+          @click="removeImage(index)"
+        />
+        <img
+          v-if="reportImgs.length < 4"
+          class="modal-img modal-add-img modal-add-img-btn my-3 mx-3 rounded-lg shadow"
+          src="@/assets/images/addImage.png"
+          alt="add New report Image"
+          @click="addReportImage"
+        />
+      </div>
+      <div class="form-report">
+        <form @submit.prevent="addReport">
+          <textarea
+            class="form-control mt-4 mb-0 add-report-description"
+            rows="5"
+            placeholder="Descrição..."
+            v-model="reportDescription"
+          >
+          </textarea>
+          <button
+            type="submit"
+            class="btn add-report-btn mt-3 px-5 py-1"
+            :disabled="reportDescription === '' || reportDescription.length === 0"
+          >
+            Concluir
+          </button>
+        </form>
+      </div>
     </div>
-    <b-button class="add-theme-modal-btn mt-3" block>Concluir</b-button>
   </b-modal>
 </template>
 
@@ -109,6 +139,7 @@ export default {
     return {
       activities: [],
       themes: [],
+      reportImgs: [],
       userInfo: { isLogged: false, isAdmin: false },
       numberOfActivities: 5,
       numberOfThemes: 3,
@@ -116,6 +147,7 @@ export default {
       totalNumberOfThemes: 0,
       initialDate: "",
       finalDate: "",
+      reportDescription: "",
     };
   },
 
@@ -180,7 +212,7 @@ export default {
       this.activities = this.activities.slice(0, this.numberOfActivities);
     },
 
-    openModal( initialDate, finalDate) {
+    openModal(initialDate, finalDate) {
       //find the activity open the modal and set the initial and final date
       this.initialDate = initialDate;
       this.finalDate = finalDate;
@@ -204,6 +236,7 @@ $primary-color: #343e3d;
 $secondary-color: #aedcc0;
 $tertiary-color: #3fc380;
 $fourth-color: #ffffff;
+$fifth-color: #7d858480;
 
 .add-activity-btn {
   background-color: $primary-color;
@@ -237,6 +270,76 @@ $fourth-color: #ffffff;
   font-family: "Panton", sans-serif;
   font-weight: 600;
   font-size: 25px;
+  color: $primary-color;
+}
+
+// styles for the finish activity modal
+.images-report {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.modal-img {
+  width: 200px;
+  height: 130px;
+  object-fit: cover;
+  transform: scale (1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.add-report-description {
+  border-radius: 8px;
+  border: 3px solid $tertiary-color;
+
+  &::placeholder {
+    color: $fifth-color;
+    font-family: "Panton", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}
+.add-report-btn {
+  margin-left: 157px;
+  background-color: $primary-color;
+  color: $fourth-color;
+  font-family: "Panton", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  &:hover {
+    background-color: $tertiary-color;
+    text-decoration: none;
+    color: $fourth-color;
+  }
+  &:disabled {
+    background-color: $secondary-color;
+    color: $primary-color;
+    cursor: not-allowed;
+  }
+}
+
+.header-modal {
+  display: flex;
+  flex-direction: column;
+}
+.modal-title {
+  font-family: "Panton", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  color: $primary-color;
+}
+
+.modal-title-date-begin-activity {
+  font-family: "Panton", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: $primary-color;
+}
+.modal-title-date-finish-activity {
+  font-family: "Panton", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
   color: $primary-color;
 }
 
