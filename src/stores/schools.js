@@ -1,3 +1,6 @@
+import { useActivitiesStore } from "@/stores/activities";
+import { useMeetingsStore } from "@/stores/meetings";
+import { useUsersStore } from "@/stores/users";
 import { defineStore } from "pinia";
 import { fetchData } from "../hooks/fetchData";
 import { setLocalStorage } from "../hooks/localStorage";
@@ -34,7 +37,21 @@ export const useSchoolsStore = defineStore("schools", {
     },
 
     async deleteSchool(id) {
+      const usersStore = useUsersStore();
+      const meetingsStore = useMeetingsStore();
+      const activitiesStore = useActivitiesStore();
       const schools = await this.getSchools();
+
+      // Delete users from this school
+      await usersStore.deleteUsersFromSchool(id);
+
+      // Delete meetings from this school
+      await meetingsStore.removeMeetingsBySchool(id);
+
+      // Delete activities from this school
+      await activitiesStore.removeActivitiesFromSchool(id);
+
+      // Delete the school
       const newSchools = schools.filter((school) => school.id !== id);
 
       setLocalStorage("schools", newSchools);

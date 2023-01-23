@@ -22,10 +22,6 @@
         </div>
       </router-link>
 
-      <!-- <div class="col-5 px-0">
-        <img :src="item.images[0]" alt="imagem da notícia" class="new-image" />
-      </div> -->
-
       <div class="col-7">
         <h2 class="new-title text-left mt-3">
           <router-link

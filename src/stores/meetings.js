@@ -33,5 +33,13 @@ export const useMeetingsStore = defineStore("meetings", {
       setLocalStorage("meetings", meetings);
       this.meetings = meetings;
     },
+
+    async removeMeetingsBySchool(id) {
+      const meetings = await this.getMeetings();
+      const newMeetings = meetings.filter((meeting) => meeting.schoolID !== id);
+
+      setLocalStorage("meetings", newMeetings);
+      this.meetings = newMeetings;
+    },
   },
 });

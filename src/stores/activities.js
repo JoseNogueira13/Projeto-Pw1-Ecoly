@@ -22,12 +22,14 @@ export const useActivitiesStore = defineStore("activities", {
     async searchActivities(search) {
       const activities = await this.getActivities();
       const activitiesFiltered = activities.filter((activities) => {
-        return activities.title.toLowerCase().includes(search.toLowerCase()) &&
-        activities.status === "unfinished";
+        return (
+          activities.title.toLowerCase().includes(search.toLowerCase()) &&
+          activities.status === "unfinished"
+        );
       });
 
       return activitiesFiltered.map((activities) => {
-        return { id: activities.id, title: activities.title, type: "activity"};
+        return { id: activities.id, title: activities.title, type: "activity" };
       });
     },
 
@@ -51,6 +53,16 @@ export const useActivitiesStore = defineStore("activities", {
       setLocalStorage("activities", newActivities);
       this.activities = newActivities;
       return this.activities;
+    },
+
+    // Remove Activities from a school
+    async removeActivitiesFromSchool(id) {
+      const activities = await this.getActivities();
+      const newActivities = activities.filter(
+        (activities) => activities.schoolID !== id
+      );
+      setLocalStorage("activities", newActivities);
+      this.activities = newActivities;
     },
 
     // Finish activity

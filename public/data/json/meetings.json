@@ -9,43 +9,43 @@
     },
     "date": 1673898702427,
     "description": "This is a test meeting",
-    "id": 0,
+    "id": "0",
     "room": "B108",
-    "schoolID": 0
+    "schoolID": "0"
   },
   {
     "date": 1673898702427,
     "description": "This is another test meeting",
-    "id": 1,
+    "id": "1",
     "room": "B109",
-    "schoolID": 0
+    "schoolID": "0"
   },
   {
     "date": 1673972255338,
     "description": "This is another test meeting lol",
-    "id": 2,
+    "id": "2",
     "room": "B109",
-    "schoolID": 0
+    "schoolID": "0"
   },
   {
     "date": 1673972264238,
     "description": "TEST MEETING",
-    "id": 3,
+    "id": "3",
     "room": "B102",
-    "schoolID": 0
+    "schoolID": "0"
   },
   {
     "date": 1673898702427,
     "description": "ONLINE MEETING",
-    "id": 4,
+    "id": "4",
     "room": "online",
-    "schoolID": 0
+    "schoolID": "0"
   },
   {
     "date": 1688905200000,
     "description": "This is a test meeting",
-    "id": 5,
+    "id": "5",
     "room": "B109",
-    "schoolID": 0
+    "schoolID": "0"
   }
 ]
