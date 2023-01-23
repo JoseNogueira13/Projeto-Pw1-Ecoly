@@ -70,7 +70,12 @@ import Header from "@/components/Header.vue";
   <!-- modal finish activity -->
   <b-modal id="finish-activity-modal" hide-footer centered>
     <template #modal-title>
-      <span class="modal-title"> Relatório </span>
+      <div class="header-modal">
+        <span class="title">Relatório</span>
+        <span class="title-date-begin-activity">{{ initialDate }}</span>
+        <span class="space-between-dates">-</span>
+        <span class="title-date-finish-activity">{{ finalDate }}</span>
+      </div>
     </template>
     <div class="d-block text-center">
       <input
@@ -109,6 +114,8 @@ export default {
       numberOfThemes: 3,
       totalNumberOfActivities: 0,
       totalNumberOfThemes: 0,
+      initialDate: "",
+      finalDate: "",
     };
   },
 
@@ -173,8 +180,19 @@ export default {
       this.activities = this.activities.slice(0, this.numberOfActivities);
     },
 
-    openModal() {
+    openModal( initialDate, finalDate) {
+      //find the activity open the modal and set the initial and final date
+      this.initialDate = initialDate;
+      this.finalDate = finalDate;
       this.$bvModal.show("finish-activity-modal");
+    },
+
+    formatDate(date) {
+      const dateObj = new Date(date);
+      const month = dateObj.getUTCMonth() + 1;
+      const day = dateObj.getUTCDate();
+      const year = dateObj.getUTCFullYear();
+      return day + "/" + month + "/" + year;
     },
   },
 };

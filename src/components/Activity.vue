@@ -22,7 +22,7 @@
         <button
           type="button"
           class="finish-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
-          @click="openModal()"
+          @click="openModal(activity.initialDate, activity.finalDate)"
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
             //show the button only the after final date of the activity
@@ -75,7 +75,7 @@
           </p>
           <div class="data-begin-activity d-flex flex-column">
             <span class="date-begin">Data de Início</span>
-            <span class="date">{{ formatDate(activity.initialDate) }}</span>
+            <span class="date">{{ activity.initialDate }}</span>
           </div>
         </div>
       </div>
@@ -115,9 +115,8 @@ export default {
       }, 500);
     },
 
-    openModal() {
-      this.$emit("openModal", this.activity.title);
-      console.log(this.activity.title);
+    openModal(initialDate, finalDate) {
+      this.$emit("openModal", initialDate, finalDate);
     },
 
     formatDate(date) {
