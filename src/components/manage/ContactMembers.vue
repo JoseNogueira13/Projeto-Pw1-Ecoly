@@ -32,7 +32,7 @@ import ManageSection from "./ManageSection.vue";
         class="btn send-email-btn"
         :disabled="destiny === null || message === ''"
       >
-        {{ btnMsg }}
+        Enviar
       </button>
     </form>
   </div>
@@ -51,14 +51,15 @@ export default {
       usersStore: useUsersStore(),
       destiny: null,
       message: "",
-      btnMsg: "Enviar",
     };
   },
 
   async created() {
     const user = await this.usersStore.getLoggedUser();
-    const school = user.school;
+    const school = user.schoolID;
     const users = await this.usersStore.getUsersBySchool(school);
+
+    users.splice(users.indexOf(user), 1);
 
     // (id, name, email)
     users.forEach((user) => {
@@ -73,13 +74,18 @@ export default {
 
   methods: {
     sendMsg() {
-      this.btnMsg = "Enviando...";
-      setTimeout(() => {
-        this.btnMsg = "Enviado!";
+      this.$bvToast.toast(`Enviando mensagem para os membros do conselho...`, {
+        title: "Enviando",
+        variant: "info",
+        solid: true,
+      });
 
-        setTimeout(() => {
-          this.btnMsg = "Enviar";
-        }, 2000);
+      setTimeout(() => {
+        this.$bvToast.toast(`Mensagem enviada com sucesso`, {
+          title: "Sucesso",
+          variant: "success",
+          solid: true,
+        });
       }, 2000);
     },
   },

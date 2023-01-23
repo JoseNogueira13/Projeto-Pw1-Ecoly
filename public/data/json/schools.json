@@ -6,5 +6,45 @@
   {
     "id": "1",
     "name": "ESAG"
+  },
+  {
+    "id": "2",
+    "name": "ESTG"
+  },
+  {
+    "id": "3",
+    "name": "ESTM"
+  },
+  {
+    "id": "4",
+    "name": "ESTSP"
+  },
+  {
+    "id": "5",
+    "name": "ESTeSC"
+  },
+  {
+    "id": "6",
+    "name": "ISCEM"
+  },
+  {
+    "id": "7",
+    "name": "IST"
+  },
+  {
+    "id": "8",
+    "name": "UBI"
+  },
+  {
+    "id": "9",
+    "name": "UFSC"
+  },
+  {
+    "id": "10",
+    "name": "UTAD"
+  },
+  {
+    "id": "11",
+    "name": "UTL"
   }
 ]

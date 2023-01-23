@@ -76,6 +76,12 @@ export default {
     removeNew(id) {
       this.$el.classList.add("removed");
 
+      this.$bvToast.toast("Notícia Apagada com Sucesso", {
+        title: "Notícia Apagada",
+        variant: "danger",
+        solid: true,
+      });
+
       // wait for the animation to finish
       setTimeout(() => {
         this.$emit("removeNew", id);

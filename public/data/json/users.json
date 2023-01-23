@@ -31,8 +31,109 @@
     "name": "User",
     "password": "Esmad_2223",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=student",
-    "role": "student",
+    "role": "estudante",
     "schoolID": "1",
     "year": "segundo"
+  },
+  {
+    "badges": [
+      "1",
+      "2"
+    ],
+    "course": "TSIW",
+    "email": "tiago.d.ribeiro@hotmail.com",
+    "highlightedBadge": "2",
+    "id": "3",
+    "internalId": "12345678",
+    "name": "Tiago Ribeiro",
+    "password": "2525",
+    "photo": "https://api.dicebear.com/5.x/personas/svg?seed=tiago_ribeiro",
+    "role": "estudante",
+    "schoolID": "0",
+    "year": "segundo"
+  },
+  {
+    "badges": [
+      "1",
+      "2"
+    ],
+    "course": "TSIW",
+    "email": "pedro.teixeira@gmail.com",
+    "highlightedBadge": "1",
+    "id": "4",
+    "internalId": "123456789",
+    "name": "Pedro Teixeira",
+    "password": "123",
+    "photo": "https://api.dicebear.com/5.x/personas/svg?seed=pedro_teixeira",
+    "role": "estudante",
+    "schoolID": "0",
+    "year": "segundo"
+  },
+  {
+    "badges": [
+      "1",
+      "2"
+    ],
+    "course": "TSIW",
+    "email": "jose.nogueira@gmail.com",
+    "highlightedBadge": "1",
+    "id": "5",
+    "internalId": "12345",
+    "name": "José Nogueira",
+    "password": "12345",
+    "photo": "https://api.dicebear.com/5.x/personas/svg?seed=jose_nogueira",
+    "role": "estudante",
+    "schoolID": "0",
+    "year": "segundo"
+  },
+  {
+    "badges": [
+      "1",
+      "2",
+      "5"
+    ],
+    "course": "Multimédia",
+    "email": "manuela.santos@outlook.pt",
+    "highlightedBadge": "5",
+    "id": "6",
+    "internalId": "999",
+    "name": "Manuela Santos",
+    "password": "123",
+    "photo": "https://api.dicebear.com/5.x/personas/svg?seed=manuela_santos",
+    "role": "estudante",
+    "schoolID": "0",
+    "year": "primeiro"
+  },
+  {
+    "badges": [
+      "1",
+      "2",
+      "5"
+    ],
+    "course": null,
+    "email": "jorgelima@esmad.ipp.pt",
+    "highlightedBadge": "1",
+    "id": "7",
+    "internalId": null,
+    "name": "Jorge Lima",
+    "password": "123",
+    "photo": "https://api.dicebear.com/5.x/personas/svg?seed=jorge_lima",
+    "role": "admin",
+    "schoolID": "0",
+    "year": null
+  },
+  {
+    "badges": [],
+    "course": null,
+    "email": "mariopinto@esmad.ipp.pt",
+    "highlightedBadge": null,
+    "id": "8",
+    "internalId": null,
+    "name": "Mário Pinto",
+    "password": "123",
+    "photo": "https://api.dicebear.com/5.x/personas/svg?seed=mario_pinto",
+    "role": "professor",
+    "schoolID": "0",
+    "year": null
   }
 ]

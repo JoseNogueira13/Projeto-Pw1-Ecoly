@@ -32,7 +32,7 @@
               type="submit"
               id="button-addon2"
             >
-              {{ subscribeButtonText }}
+              Subscrever
             </button>
           </form>
           <span class="cr-name"> &copy; 2022 Ecoly </span>
@@ -76,18 +76,26 @@ export default {
   name: "Footer",
 
   data() {
-    return { newsLetterEmail: "", subscribeButtonText: "Subscrever" };
+    return { newsLetterEmail: "" };
   },
 
   methods: {
     subscribe() {
-      subscribeToNewsLetter(this.newsLetterEmail);
+      const result = subscribeToNewsLetter(this.newsLetterEmail);
 
-      this.subscribeButtonText = "Subscrito";
-
-      setTimeout(() => {
-        this.subscribeButtonText = "Subscrever";
-      }, 5000);
+      if (result) {
+        this.$bvToast.toast("Subscrição Efetuada com Sucesso", {
+          title: "Subscrito com Sucesso",
+          variant: "success",
+          solid: true,
+        });
+      } else {
+        this.$bvToast.toast("Este Email já está Subscrito", {
+          title: "Subscrição Falhou",
+          variant: "danger",
+          solid: true,
+        });
+      }
     },
   },
 };

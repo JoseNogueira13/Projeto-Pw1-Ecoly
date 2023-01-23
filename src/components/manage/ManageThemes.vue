@@ -77,6 +77,12 @@ export default {
       this.themesStore.disableTheme(themeID);
       // remove theme from list
       this.themes = this.themes.filter((theme) => theme.id !== themeID);
+
+      this.$bvToast.toast(`Tema removido com sucesso`, {
+        title: "Sucesso",
+        variant: "danger",
+        solid: true,
+      });
     },
 
     async addTheme(themeName) {
@@ -85,6 +91,12 @@ export default {
 
       const theme = await this.themesStore.addTheme(themeName);
       this.themes.push(theme);
+
+      this.$bvToast.toast(`${themeName} adicionado com sucesso`, {
+        title: "Sucesso",
+        variant: "success",
+        solid: true,
+      });
     },
   },
 
