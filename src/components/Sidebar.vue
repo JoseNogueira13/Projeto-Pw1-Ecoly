@@ -87,14 +87,33 @@
         }"
       >
         <img
-          src="../assets/icons/account.svg"
+          v-if="!isUserLogged"
+          src="@/assets/icons/account.svg"
           alt="Account"
           width="50"
           height="50"
           :class="{
             'route-icon': true,
             'mt-2': showText,
-            'selected-icon': route === 'account' || route === 'authenticate',
+            'selected-icon':
+              (route === 'account' || route === 'authenticate') && !isUserLogged,
+          }"
+          :style="{
+            marginTop: !showText && isUserLogged ? '-23px' : '0',
+            marginTop: !showText && !isUserLogged ? '-10px' : '-10px',
+          }"
+        />
+        <img
+          v-else
+          :src="profilePicture"
+          alt="Account"
+          width="50"
+          height="50"
+          :class="{
+            'route-icon': true,
+            'mt-2': showText,
+            'selected-icon':
+              (route === 'account' || route === 'authenticate') && !isUserLogged,
           }"
           :style="{
             marginTop: !showText && isUserLogged ? '-23px' : '0',
@@ -129,15 +148,14 @@ export default {
   data() {
     const currentRoute = this.$route.path;
 
-    const isUserLogged = useUsersStore().isUserLogged();
-
     return {
       currentRoute,
       showText: false,
       openAnimation: false,
       closeAnimation: false,
       isExpanded: false,
-      isUserLogged,
+      isUserLogged: false,
+      profilePicture: "",
     };
   },
 
@@ -177,6 +195,17 @@ export default {
       useUsersStore().signOut();
       this.$router.go("/");
     },
+  },
+
+  async created() {
+    const userStore = useUsersStore();
+
+    this.isUserLogged = userStore.isUserLogged();
+
+    if (this.isUserLogged) {
+      const userLogged = await userStore.getLoggedUser();
+      this.profilePicture = userLogged.photo;
+    }
   },
 };
 </script>

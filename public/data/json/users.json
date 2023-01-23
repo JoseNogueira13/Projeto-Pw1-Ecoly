@@ -1,38 +1,38 @@
 [
-	{
-		"badges": [
-			0,
-			2,
-			4
-		],
-		"course": null,
-		"email": "Admin@esmad.ipp.pt",
-		"highlightedBadge": 2,
-		"id": 1,
-		"internalId": null,
-		"name": "Admin",
-		"password": "Esmad_2223",
-		"photo": "https://api.dicebear.com/5.x/personas/svg?seed=admin",
-		"role": "admin",
-		"schoolID": 0,
-		"year": null
-	},
-	{
-		"badges": [
-			1,
-			3,
-			5
-		],
-		"course": "TSIW",
-		"email": "User@esmad.ipp.pt",
-		"highlightedBadge": 3,
-		"id": 2,
-		"internalId": 40210462,
-		"name": "User",
-		"password": "Esmad_2223",
-		"photo": "https://api.dicebear.com/5.x/personas/svg?seed=student",
-		"role": "student",
-		"schoolID": 1,
-		"year": 2
-	}
+  {
+    "badges": [
+      "0",
+      "2",
+      "4"
+    ],
+    "course": null,
+    "email": "Admin@esmad.ipp.pt",
+    "highlightedBadge": "2",
+    "id": "1",
+    "internalId": null,
+    "name": "Admin",
+    "password": "Esmad_2223",
+    "photo": "https://api.dicebear.com/5.x/personas/svg?seed=admin",
+    "role": "admin",
+    "schoolID": "0",
+    "year": null
+  },
+  {
+    "badges": [
+      "1",
+      "3",
+      "5"
+    ],
+    "course": "TSIW",
+    "email": "User@esmad.ipp.pt",
+    "highlightedBadge": "3",
+    "id": "2",
+    "internalId": "40210462",
+    "name": "User",
+    "password": "Esmad_2223",
+    "photo": "https://api.dicebear.com/5.x/personas/svg?seed=student",
+    "role": "student",
+    "schoolID": "1",
+    "year": "segundo"
+  }
 ]

@@ -1,3 +1,4 @@
+import { useNewsStore } from "@/stores/news";
 import { defineStore } from "pinia";
 import { fetchData } from "../hooks/fetchData";
 import {
@@ -9,7 +10,7 @@ import {
 export const useUsersStore = defineStore("users", {
   state: () => ({
     users: [],
-    loggedUserID: 1, // null = loggedOut, 1 = admin, 2 = student
+    loggedUserID: "1", // null = loggedOut, 1 = admin, 2 = student
   }),
 
   actions: {
@@ -29,10 +30,10 @@ export const useUsersStore = defineStore("users", {
       return users.filter((user) => user.role === role);
     },
 
-    async getUsersBySchool(school, role = null) {
+    async getUsersBySchool(id, role = null) {
       const users = await this.getUsers();
       return users
-        .filter((user) => user.school === school)
+        .filter((user) => user.schoolID === id)
         .filter((user) => {
           if (role) return user.role === role;
           return true;
@@ -157,6 +158,23 @@ export const useUsersStore = defineStore("users", {
       this.users = users;
       setLocalStorage("users", this.users);
       return true;
+    },
+
+    async deleteUsersFromSchool(id) {
+      const newsStore = useNewsStore();
+
+      const users = await this.getUsers();
+      const usersFromSchool = await this.getUsersBySchool(id);
+
+      // Delete every new created by the users from the school
+      usersFromSchool.forEach(async (user) => {
+        await newsStore.removeNewsCreatedByUser(user.id);
+      });
+
+      // Delete users from school
+      const newUsers = users.filter((user) => user.schoolID !== id);
+      this.users = newUsers;
+      setLocalStorage("users", this.users);
     },
   },
 });

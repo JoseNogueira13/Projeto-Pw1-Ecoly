@@ -16,7 +16,7 @@
     "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
     "report": {},
     "resources": "Caixotes do lixo ",
-    "schoolID": 1,
+    "schoolID": "0",
     "status": "unfinished",
     "themeID": "2",
     "title": "Colocação de Caixotes do Lixo"
@@ -38,7 +38,7 @@
     "participants": "AE ESMAD + C.M. VILA DO CONDE",
     "report": {},
     "resources": "Sacos e luvas",
-    "schoolID": 0,
+    "schoolID": "0",
     "status": "unfinished",
     "themeID": "1",
     "title": "Limpeza praia + separação resíduos"
@@ -60,7 +60,7 @@
     "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
     "report": {},
     "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
-    "schoolID": 0,
+    "schoolID": "0",
     "status": "unfinished",
     "themeID": "2",
     "title": "Construção de Bancos de Jardim"
@@ -88,7 +88,7 @@
       ]
     },
     "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
-    "schoolID": 0,
+    "schoolID": "0",
     "status": "finished",
     "themeID": "3",
     "title": "Construção de Bancos de Jardim 4"
@@ -116,7 +116,7 @@
       ]
     },
     "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
-    "schoolID": 0,
+    "schoolID": "0",
     "status": "finished",
     "themeID": "3",
     "title": "Construção de Bancos de Jardim 5"

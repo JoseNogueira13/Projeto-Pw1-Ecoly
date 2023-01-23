@@ -53,5 +53,12 @@ export const useNewsStore = defineStore("news", {
       this.news = newNews;
       return this.news;
     },
+
+    async removeNewsCreatedByUser(userID) {
+      const news = await this.getNews();
+      const newNews = news.filter((news) => news.authorID !== userID);
+      setLocalStorage("news", newNews);
+      this.news = newNews;
+    },
   },
 });

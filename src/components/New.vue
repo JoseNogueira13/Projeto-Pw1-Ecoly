@@ -4,24 +4,23 @@
       type="button"
       class="remove-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
       :style="{
-        visibility:
-          userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
+        visibility: userInfo.isLogged && userInfo.isAdmin ? 'visible' : 'hidden',
       }"
       @click="removeNew(item.id)"
     >
-      <img
-        src="../assets/icons/remove.svg"
-        alt="remove"
-        width="20"
-        class="ml-2"
-      />
+      <img src="../assets/icons/remove.svg" alt="remove" width="20" class="ml-2" />
       <span class="px-3">Remover</span>
     </button>
 
     <div class="row">
-      <div class="col-5 px-0">
-        <img :src="item.images[0]" alt="imagem da notícia" class="new-image" />
-      </div>
+      <router-link :to="{ name: 'NewsDetails', params: { id: item.id } }">
+        <div class="image-container col-5 px-0">
+          <img :src="item.images[0]" alt="imagem da notícia" class="new-image" />
+          <div class="seeMore">
+            <img src="@/assets/icons/seeMore.svg" alt="seeMoreIcon" />
+          </div>
+        </div>
+      </router-link>
 
       <div class="col-7">
         <h2 class="new-title text-left mt-3">
@@ -169,6 +168,27 @@ $fifth-color: #e4f0e8;
 
 .removed {
   animation: slideLeft 0.5s ease-in-out;
+}
+
+.image-container {
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover .new-image {
+    opacity: 0.3;
+  }
+
+  &:hover .seeMore {
+    opacity: 1;
+  }
+}
+
+.seeMore {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 30%;
+  left: 70%;
 }
 
 @keyframes slideRight {

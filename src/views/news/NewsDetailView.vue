@@ -63,7 +63,7 @@ export default {
     else this.$router.push({ name: "NotFound" });
 
     // get author name
-    const author = await useUsersStore().getUserById(+newDetail.authorID);
+    const author = await useUsersStore().getUserById(newDetail.authorID);
     this.authorName = author.name;
   },
 
