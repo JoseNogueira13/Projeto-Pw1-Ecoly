@@ -13,20 +13,18 @@
           <router-link :to="{ name: 'News' }" class="route-link text-left">
             notícias
           </router-link>
-          <router-link
-            :to="{ name: 'Activities' }"
-            class="route-link text-left"
-          >
+          <router-link :to="{ name: 'Activities' }" class="route-link text-left">
             atividades
           </router-link>
           <h4 class="sub-title mt-4">SUBSCREVER À NEWSLETTER</h4>
-          <form class="input-group mb-3">
+          <form class="input-group mb-3" @submit.prevent="subscribe">
             <input
               type="email"
               class="form-control"
               placeholder="Email"
               aria-label="Email"
               aria-describedby="button-addon2"
+              v-model="newsLetterEmail"
               required
             />
             <button
@@ -34,23 +32,15 @@
               type="submit"
               id="button-addon2"
             >
-              Subscrever
+              {{ subscribeButtonText }}
             </button>
           </form>
           <span class="cr-name"> &copy; 2022 Ecoly </span>
         </div>
         <div class="col-sm-4 mid-content">
           <div class="social-media text-left mb-4">
-            <img
-              class="px-2"
-              src="@/assets/icons/instagram.svg"
-              alt="instagram"
-            />
-            <img
-              class="px-2"
-              src="@/assets/icons/facebook.svg"
-              alt="facebook"
-            />
+            <img class="px-2" src="@/assets/icons/instagram.svg" alt="instagram" />
+            <img class="px-2" src="@/assets/icons/facebook.svg" alt="facebook" />
             <img class="px-2" src="@/assets/icons/twitter.svg" alt="twitter" />
           </div>
 
@@ -68,12 +58,11 @@
 
           <h5 class="text-left">SOBRE NÓS</h5>
           <span class="text-left">
-            ECOLY tem como objetivo reunir pessoas interessadas em tornar o
-            planeta um espaço verde de forma a sustentar o ecossistema que nos
-            rodeia. Para o efeito, é disponibilizado ferramentas para os membros
-            do conselho poderem gerir o conselho Eco-escolas e á criação de
-            atividades para o plano de ação e poderá ter interação com outros
-            utilizadores.
+            ECOLY tem como objetivo reunir pessoas interessadas em tornar o planeta um
+            espaço verde de forma a sustentar o ecossistema que nos rodeia. Para o
+            efeito, é disponibilizado ferramentas para os membros do conselho poderem
+            gerir o conselho Eco-escolas e á criação de atividades para o plano de
+            ação e poderá ter interação com outros utilizadores.
           </span>
         </div>
       </div>
@@ -82,7 +71,26 @@
 </template>
 
 <script>
-export default {};
+import { subscribeToNewsLetter } from "@/hooks/subscribeToNewsLetter.js";
+export default {
+  name: "Footer",
+
+  data() {
+    return { newsLetterEmail: "", subscribeButtonText: "Subscrever" };
+  },
+
+  methods: {
+    subscribe() {
+      subscribeToNewsLetter(this.newsLetterEmail);
+
+      this.subscribeButtonText = "Subscrito";
+
+      setTimeout(() => {
+        this.subscribeButtonText = "Subscrever";
+      }, 5000);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
