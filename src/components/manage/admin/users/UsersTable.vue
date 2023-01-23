@@ -222,6 +222,11 @@ tbody {
     border: 2px solid $seventh-color;
     outline: none;
   }
+
+  // add border of the options
+  & option {
+    border: 2px solid $sixth-color;
+  }
 }
 
 .error-msg {
