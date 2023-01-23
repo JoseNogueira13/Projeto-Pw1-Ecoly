@@ -87,7 +87,7 @@ import Header from "@/components/Header.vue";
           :src="image"
           class="img-fluid modal-img modal-add-img mx-2 rounded my-2"
           alt="imagem para o relatório da atividade"
-          @click="removeImage(index)"
+          @click="removeReportImage(index)"
         />
         <img
           v-if="reportImgs.length < 4"
@@ -226,8 +226,29 @@ export default {
       const year = dateObj.getUTCFullYear();
       return day + "/" + month + "/" + year;
     },
-  },
-};
+
+    addReportImage() {
+      // for the user upload images from their computer
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.reportImgs.push(reader.result);
+        };
+      };
+      input.click();
+    },
+
+    removeReportImage(index) {
+      // remove the image from the list
+      this.reportImgs.splice(index, 1);
+    },
+    },
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -287,6 +308,11 @@ $fifth-color: #7d858480;
   object-fit: cover;
   transform: scale (1);
   transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 }
 
 .add-report-description {
