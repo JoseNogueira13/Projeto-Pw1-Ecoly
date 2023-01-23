@@ -66,7 +66,7 @@
             class="create-btn btn float-right"
             :disabled="hourMinutes === '' || room === '' || description === ''"
           >
-            {{ message }}
+            Criar Reunião
           </button>
         </div>
       </div>
@@ -111,7 +111,6 @@ export default {
       description: "",
       usersStore: useUsersStore(),
       meetingsStore: useMeetingsStore(),
-      message: "Criar Reunião",
     };
   },
 
@@ -123,7 +122,11 @@ export default {
 
   methods: {
     async createNewMeeting() {
-      this.message = "A criar reunião...";
+      this.$bvToast.toast("Criando Nova Reunião", {
+        title: "Criando...",
+        variant: "info",
+        solid: true,
+      });
 
       // check if hours/minutes are valid
       const timeRegex = /^([0-1]\d|2[0-3]):[0-5]\d$/;
@@ -146,11 +149,12 @@ export default {
       await this.meetingsStore.addNewMeeting(meeting);
 
       setTimeout(() => {
-        this.message = "Reunião criada com sucesso!";
+        this.$bvToast.toast("Reunião Criada", {
+          title: "Sucesso!",
+          variant: "success",
+          solid: true,
+        });
       }, 2000);
-      setTimeout(() => {
-        this.message = "Criar Reunião";
-      }, 6000);
     },
   },
 };

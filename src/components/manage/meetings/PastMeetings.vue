@@ -82,7 +82,7 @@
           class="btn add-ata-btn mt-3 px-5 py-1"
           :disabled="currDescription === ''"
         >
-          {{ currMsg }}
+          Adicionar Ata
         </button>
       </form>
     </div>
@@ -101,7 +101,6 @@ export default {
       currMeeting: { id: "", date: "", ata: { images: [], description: "" } },
       currImgs: [],
       currDescription: "",
-      currMsg: "Adicionar Ata",
     };
   },
 
@@ -146,7 +145,11 @@ export default {
     },
 
     async createAta() {
-      this.currMsg = "A adicionar ata...";
+      this.$bvToast.toast("Adicionando Ata", {
+        title: "Adicionando",
+        variant: "info",
+        solid: true,
+      });
 
       await this.meetingsStore.addAta(this.currMeeting.id, {
         images: this.currImgs,
@@ -154,15 +157,15 @@ export default {
       });
 
       setTimeout(() => {
-        this.currMsg = "Ata adicionada com sucesso!";
+        this.$bvToast.toast("Ata adicionada com sucesso", {
+          title: "Sucesso",
+          variant: "success",
+          solid: true,
+        });
+
         this.currImgs = [];
         this.currDescription = "";
       }, 2000);
-
-      setTimeout(() => {
-        this.$bvModal.hide("add-ata-modal");
-        this.currMsg = "Adicionar Ata";
-      }, 4000);
     },
   },
 };
