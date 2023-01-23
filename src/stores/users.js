@@ -10,6 +10,7 @@ import {
 export const useUsersStore = defineStore("users", {
   state: () => ({
     users: [],
+    roles: [],
     loggedUserID: "1", // null = loggedOut, 1 = admin, 2 = student
   }),
 
@@ -38,6 +39,12 @@ export const useUsersStore = defineStore("users", {
           if (role) return user.role === role;
           return true;
         });
+    },
+
+    // Get roles
+    async getRoles() {
+      if (this.roles.length === 0) this.roles = await fetchData("roles");
+      return this.roles;
     },
 
     // Authentication methods
@@ -160,6 +167,7 @@ export const useUsersStore = defineStore("users", {
       return true;
     },
 
+    // Delete users from a school
     async deleteUsersFromSchool(id) {
       const newsStore = useNewsStore();
 

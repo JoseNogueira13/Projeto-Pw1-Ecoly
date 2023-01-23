@@ -144,6 +144,12 @@ export default {
       this.$bvModal.hide("remove-school-modal");
 
       this.$emit("reload-table");
+
+      this.$bvToast.toast("Escola Apagada com Sucesso!", {
+        title: "Sucesso",
+        variant: "success",
+        solid: true,
+      });
     },
 
     async editSchool() {
@@ -152,6 +158,12 @@ export default {
       this.$bvModal.hide("edit-school-modal");
 
       this.$emit("reload-table");
+
+      this.$bvToast.toast("Escola Editada com Sucesso", {
+        title: "Sucesso",
+        variant: "success",
+        solid: true,
+      });
     },
   },
 };
