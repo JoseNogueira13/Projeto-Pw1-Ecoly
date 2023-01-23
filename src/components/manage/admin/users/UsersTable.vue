@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="users.length === 0"
+    v-if="filteredUsers.length === 0"
     class="col-12 mt-5 rounded table d-flex flex-column justify-content-center align-items-center"
     style="min-height: 490px"
   >
@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in users" :key="user.id">
+        <tr v-for="user in filteredUsers" :key="user.id">
           <td class="col-4">{{ user.name }}</td>
           <td class="col-4">{{ user.email }}</td>
           <td class="col-4">
@@ -29,7 +29,7 @@
               @change="changeUserRole(user, $event)"
             >
               <option v-for="(role, index) in options" :value="role" :key="index">
-                {{ index }}. {{ getRoleName(role) }}
+                {{ getRoleName(role) }}
               </option>
             </b-form-select>
           </td>
@@ -53,6 +53,46 @@ export default {
     options: {
       type: Array,
       required: true,
+    },
+
+    filterByNameInput: {
+      type: String,
+      required: true,
+    },
+
+    filterByEmailInput: {
+      type: String,
+      required: true,
+    },
+
+    filterByRoleInput: {
+      type: String,
+      required: true,
+    },
+  },
+
+  computed: {
+    filteredUsers() {
+      const filterName = this.filterByNameInput.toLowerCase();
+      const filterEmail = this.filterByEmailInput.toLowerCase();
+      const filterRole = this.filterByRoleInput;
+      let filteredUsers = this.users;
+
+      if (filterName !== "") {
+        filteredUsers = filteredUsers.filter((user) =>
+          user.name.toLowerCase().includes(filterName)
+        );
+      }
+      if (filterEmail !== "") {
+        filteredUsers = filteredUsers.filter((user) =>
+          user.email.toLowerCase().includes(filterEmail)
+        );
+      }
+      if (filterRole !== "all") {
+        filteredUsers = filteredUsers.filter((user) => user.role === filterRole);
+      }
+
+      return filteredUsers;
     },
   },
 

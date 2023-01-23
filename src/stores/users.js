@@ -184,5 +184,15 @@ export const useUsersStore = defineStore("users", {
       this.users = newUsers;
       setLocalStorage("users", this.users);
     },
+
+    // add new role
+    async addRole(newRole) {
+      const roles = await this.getRoles();
+
+      roles.push(newRole);
+
+      this.roles = roles;
+      setLocalStorage("roles", this.roles);
+    },
   },
 });
