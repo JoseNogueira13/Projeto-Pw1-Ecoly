@@ -77,7 +77,7 @@ export const useActivitiesStore = defineStore("activities", {
     // Add a report
     async addReport(id, report) {
       const activities = await this.getActivities();
-      activities.find((activity) => activity.id === id).report.push(report);
+      activities.find((activity) => activity.id === id).report = report;
       this.activities = activities;
       setLocalStorage("activities", activities);
     },

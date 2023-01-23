@@ -13,8 +13,8 @@
     <b-card-text class="date mt-5 pt-4">
       CALENDARIZAÇÃO
       <span class="date-value"
-        >{{ formatDate(activity.initialDate) }} -
-        {{ formatDate(activity.finalDate) }}</span
+        >{{ activity.initialDate }} -
+        {{ activity.finalDate }}</span
       >
     </b-card-text>
 

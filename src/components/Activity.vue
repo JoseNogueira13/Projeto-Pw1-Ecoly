@@ -26,10 +26,10 @@
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
             //show the button only the after final date of the activity
-            // display:
-            //   activity.finalDate < new Date().toISOString().split('T')[0]
-            //     ? 'block'
-            //     : 'none',
+            display:
+              activity.finalDate > new Date().toISOString().split('T')[0]
+                ? 'block'
+                : 'none',
           }"
         >
           <img

@@ -85,13 +85,13 @@ import Header from "@/components/Header.vue";
           v-for="(image, index) in reportImgs"
           :key="index"
           :src="image"
-          class="img-fluid modal-img modal-add-img mx-2 rounded my-2"
+          class="img-fluid modal-new-img modal-add-img mx-2 rounded my-2"
           alt="imagem para o relatório da atividade"
           @click="removeReportImage(index)"
         />
         <img
           v-if="reportImgs.length < 4"
-          class="modal-img modal-add-img modal-add-img-btn my-3 mx-3 rounded-lg shadow"
+          class="modal-added-image modal-add-img modal-add-img-btn my-3 mx-3 rounded-lg shadow"
           src="@/assets/images/addImage.png"
           alt="add New report Image"
           @click="addReportImage"
@@ -238,6 +238,7 @@ export default {
         reader.readAsDataURL(file);
         reader.onload = () => {
           this.reportImgs.push(reader.result);
+          console.log(this.reportImgs);
         };
       };
       input.click();
@@ -247,8 +248,30 @@ export default {
       // remove the image from the list
       this.reportImgs.splice(index, 1);
     },
+
+    addReport() {
+      // add the report to the activity
+      const activitiesStore = useActivitiesStore();
+      // find the activity id of the list
+      const activity = this.activities.find(
+        (activity) =>
+          activity.initialDate === this.initialDate &&
+          activity.finalDate === this.finalDate
+      );
+      // console.log(activity.id);
+      //finish activity and add the report
+      activitiesStore.finishActivity(activity.id).then(() => {
+        activitiesStore.addReport(activity.id, {
+          description: this.reportDescription,
+          images: this.reportImgs,
+        });
+      });
+      this.$bvModal.hide("finish-activity-modal");
+      this.reportImgs = [];
+      this.reportDescription = "";
     },
-  }
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -302,7 +325,8 @@ $fifth-color: #7d858480;
   align-items: center;
   flex-wrap: wrap;
 }
-.modal-img {
+
+.modal-add-img-btn {
   width: 200px;
   height: 130px;
   object-fit: cover;
@@ -312,7 +336,30 @@ $fifth-color: #7d858480;
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
+    border: none;
+    opacity: 1;
   }
+}
+.modal-new-img {
+  width: 200px;
+  height: 130px;
+  object-fit: cover;
+  transform: scale (1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    border: none;
+    opacity: 1;
+  }
+}
+
+.modal-new-img:hover {
+  border: 1px solid red;
+  opacity: 0.6;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .add-report-description {
