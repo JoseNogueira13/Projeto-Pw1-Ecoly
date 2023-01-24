@@ -1,25 +1,37 @@
 <template>
     <form class="login-form" @submit.prevent="login">
         <h2>Login</h2>
-        <input
-              v-model="email"
-              class="input-background"
-              id="email"
-              name="email"
-              placeholder="Email"
-              type="email"
-              required
-        />
 
-        <input
-            v-model="password"
-            class="input-background"
-            id="password"
-            name="password"
-            placeholder="Password"
-            type="password"
-            required
-        />
+          <!-- Input Course-->
+          <b-input-group class="mt-4">
+              <template #prepend>
+                <b-input-group-text class="login-input-img">
+                  <img src="@/assets/icons/search.svg" alt="search" width="20" />
+                </b-input-group-text>
+              </template>
+              <b-form-input
+                class="login-input"
+                placeholder="Email"
+                type="text"
+                v-model="email"
+              ></b-form-input>
+            </b-input-group>
+        
+            <!-- Input Course-->
+          <b-input-group class="mt-4">
+              <template #prepend>
+                <b-input-group-text class="login-input-img">
+                  <img src="@/assets/icons/search.svg" alt="search" width="20" />
+                </b-input-group-text>
+              </template>
+              <b-form-input
+                class="login-input"
+                placeholder="Password"
+                type="password"
+                v-model="password"
+              ></b-form-input>
+            </b-input-group>
+      
         <button
           @click="$emit('switch-form')"
           class="switchToRegister"
@@ -28,7 +40,7 @@
         </button>
 
         <button
-          class=""
+          class="submitLoginBtn"
           type="submit"
         >
             Entrar
@@ -69,9 +81,11 @@ export default {
 <style lang="scss" scoped>
 $primary-color: #343e3d;
 $secondary-color: #aedcc0;
-$tertiary: #3fc380;
-$fourth: #18516f;
-$fifth: #ffffff;
+$tertiary-color: #e4f0e8;
+$fourth-color: #ffffff;
+$fifth-color: #18516f;
+$sixth-color: #000;
+$seventh-color: #57b894;
 
 .login-form {
   display: flex;
@@ -92,12 +106,36 @@ $fifth: #ffffff;
   color: lightgray;
 }
 
-.input-background {
-  background-image: url(src\assets\icons\manage.svg);
-  background-position: left center;
-  background-repeat: no-repeat;
-  padding-left: 30px;
-  background-size: 25px;
+.login-input-img {
+  background-color: $fourth-color;
+  color: $primary-color;
+  border: 1px solid;
+  border-color: $seventh-color;
+  border-radius: 10px;
+}
+.login-input {
+  border: 1px solid;
+  border-color: $seventh-color;
+  border-left: none;
+  border-radius: 10px;
+}
+
+.submitLoginBtn{
+  position: absolute;
+  margin-top: 250px;
+  margin-left: 120px;
+  font-size: 15px;
+  width: 170px;
+  font-family: "Panton", sans-serif;
+  font-weight: 600;
+  color: $fourth-color;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $fifth-color;
+  }
 }
 
 .switchToRegister {
@@ -109,7 +147,7 @@ $fifth: #ffffff;
     margin-left: 100px;
 
     &:hover {
-    color: $tertiary;
+    color: $seventh-color;
     }
 }
 

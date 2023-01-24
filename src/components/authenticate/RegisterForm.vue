@@ -1,121 +1,175 @@
 <template>
-    <div class="register-form-div">
-        <h4 class="register-header">CRIE A SUA CONTA E TORNE-SE NUM MEMBRO</h4>
-        <div class="form-container">
-          <form class="register-form" @submit.prevent="addUser">
-            <input
-              v-model="primNome"
-              class="input-background"
-              id="primNome"
-              name="primNome"
-              placeholder="Primeiro Nome"
-              type="text"
-              required
-            />
-            <input
-              v-model="ultNome"
-              class="input-background"
-              id="ultNome"
-              name="ultNome"
-              placeholder="Ultimo Nome"
-              type="text"
-              required
-            />
-            <input
-              v-model="email"
-              class="input-background"
-              id="email"
-              name="email"
-              placeholder="Email"
-              type="email"
-              required
-            />
-            <input
-              v-model="password"
-              class="input-background"
-              id="password"
-              name="password"
-              placeholder="Password"
-              type="password"
-              required
-            />
-            <input
-              v-model="confPass"
-              class="input-background"
-              id="confPass"
-              name="confPass"
-              placeholder="Confirm your password"
-              type="password"
-              required
-            />
-            <select
-              v-model="escola"
-              class="input-background"
-              id="escola"
-              name="escola"
-              required
-            >
-              <option
-                disabled
-                value=""
-              >
-                Selecione a escola
-              </option>
-              <option
-                v-for="school in schools"
-                :value="school.id"
-              >
-                {{ school.name }}
-              </option>
-            </select>
+    <h2>CRIE A SUA CONTA E TORNE-SE NUM MEMBRO</h2>
+    <form class="register-form" @submit.prevent="addUser">
+      
+      <!-- Input  first name-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-input
+          class="register-input"
+          placeholder="Primeiro Nome"
+          type="text"
+          v-model="primNome"
+        ></b-form-input>
+      </b-input-group>
 
-            <input
-              v-model="numInt"
-              class="input-background"
-              id="numInt"
-              name="numInt"
-              placeholder="Numero Interno"
-              type="text"
-              required
-            />
-            <input
-              v-model="curso"
-              class="input-background"
-              id="curso"
-              name="curso"
-              placeholder="Curso"
-              type="text"
-              required
-            />
-            <input
-              v-model="anoCur"
-              class="input-background"
-              id="anoCur"
-              name="anoCur"
-              placeholder="Ano do curso"
-              type="text"
-              required
-            />
-            
-            <button
-              @click="$emit('switch-form')"
-              class="switchToLogin"
+      <!-- Input last name-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-input
+          class="register-input"
+          placeholder="Ultimo Nome"
+          type="text"
+          v-model="ultNome"
+        ></b-form-input>
+      </b-input-group>
+      
+      <!-- Input email-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-input
+          class="register-input"
+          placeholder="Email"
+          type="text"
+          v-model="email"
+        ></b-form-input>
+      </b-input-group>
+
+      <!-- Input password-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-input
+          class="register-input"
+          placeholder="Password"
+          type="password"
+          v-model="password"
+        ></b-form-input>
+      </b-input-group>
+
+      <!-- Input confirm password-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-input
+          class="register-input"
+          placeholder="Confirm password"
+          type="password"
+          v-model="confPass"
+        ></b-form-input>
+      </b-input-group>
+
+      <!-- Select school-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-select
+            v-model="escola"
+            class="register-input"
+            id="escola"
+            name="escola"
+            required
             >
-                Já é membro? Entre aqui
-            </button>
+            <option
+              disabled
+              value=""
+            >
+              Selecione a escola
+            </option>
+            <option
+              v-for="school in schools"
+              :value="school.id"
+            >
+              {{ school.name }}
+          </option>
+        </b-form-select>
+      </b-input-group>
 
 
-            <button
-              type="submit"
-              class="authenticate-user-btn"
-              :disabled="!escola"
-            >
-              Sign up
-            </button>
-            
-          </form>
-        </div>
-      </div>
+      <!-- Input Internal Number-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-input
+          class="register-input"
+          placeholder="Internal Number"
+          type="text"
+          v-model="numInt"
+        ></b-form-input>
+      </b-input-group>
+
+
+        <!-- Input Course-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-input
+          class="register-input"
+          placeholder="Course"
+          type="text"
+          v-model="curso"
+        ></b-form-input>
+      </b-input-group>
+      
+        <!-- Input Course-->
+      <b-input-group class="mt-4">
+        <template #prepend>
+          <b-input-group-text class="register-input-img">
+            <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          </b-input-group-text>
+        </template>
+        <b-form-input
+          class="register-input"
+          placeholder="Year"
+          type="text"
+          v-model="anoCur"
+        ></b-form-input>
+      </b-input-group>
+      
+      <button
+        @click="$emit('switch-form')"
+        class="switchToLogin"
+      >
+          Já é membro? Entre aqui
+      </button>
+
+
+      <button
+        type="submit"
+        class="authenticate-user-btn"
+        :disabled="!escola"
+      >
+        Sign up
+      </button>
+      
+    </form>
 </template>
 
 <script>
@@ -181,9 +235,26 @@ export default {
 <style lang="scss" scoped>
 $primary-color: #343e3d;
 $secondary-color: #aedcc0;
-$tertiary: #3fc380;
-$fourth: #18516f;
-$fifth: #ffffff;
+$tertiary-color: #e4f0e8;
+$fourth-color: #ffffff;
+$fifth-color: #18516f;
+$sixth-color: #000;
+$seventh-color: #57b894;
+
+
+h2 {
+  position: absolute;
+  font-size: 1.3em;
+  width: 500px;
+  right: 275px;
+  top: 120px;
+}
+.register-form{
+  position: absolute;
+  margin-top: 100px;
+  margin-right: 150px;
+  margin-left: 20px;
+}
 
 
 .authenticate-user-btn {
@@ -194,13 +265,13 @@ $fifth: #ffffff;
   width: 150px;
   font-family: "Panton", sans-serif;
   font-weight: 600;
-  color: $fifth;
+  color: $fourth-color;
   background-color: $primary-color;
   border: none;
   border-radius: 5px;
 
   &:hover {
-    background-color: $fourth;
+    background-color: $fifth-color;
   }
 }
 .authenticate-user-btn:disabled {
@@ -244,7 +315,7 @@ $fifth: #ffffff;
     margin-left: 100px;
 
     &:hover {
-    color: $tertiary;
+    color: $seventh-color;
   }
 }
 .register-form > input {
@@ -264,47 +335,20 @@ $fifth: #ffffff;
   padding-left: 30px;
   background-size: 25px;
 }
-select.input-background {
-    border-radius: 5px;
-    margin-top: 25px;
-    height: 40px;
-    
+
+.register-input-img {
+  background-color: $fourth-color;
+  color: $primary-color;
+  border: 1px solid;
+  border-color: $seventh-color;
+  border-radius: 10px;
 }
 
-#primNome {
-  background-image: url(src\assets\icons\manage.svg);
-}
-
-#ultNome {
-  background-image: url(src\assets\icons\manage.svg);
-}
-
-#email {
-  background-image: url(src\assets\icons\manage.svg);
-}
-
-#password {
-  background-image: url(src\assets\icons\manage.svg);
-}
-
-#confPass {
-  background-image: url(src\assets\icons\manage.svg);
-}
-
-#escola {
-  background-image: url(src\assets\icons\manage.svg);
-}
-
-#numInt {
-  background-image: url(src\assets\icons\manage.svg);
-}
-
-#curso {
-  background-image: url(src\assets\icons\manage.svg);
-}
-
-#anoCur {
-  background-image: url(src\assets\icons\manage.svg);
+.register-input {
+  border: 1px solid;
+  border-color: $seventh-color;
+  border-left: none;
+  border-radius: 10px;
 }
 
 </style>
