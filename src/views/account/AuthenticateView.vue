@@ -25,12 +25,12 @@
       
     <div class="col-6">
       <RegisterForm
-        v-show="showRegisterForm"
+      v-if="showRegisterForm"
         @switch-form="switchForm"
       />
 
       <LoginForm
-        v-show="showLoginForm"
+        v-if="showLoginForm"
         @switch-form="switchForm"
       />
     </div>
