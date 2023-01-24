@@ -20,6 +20,7 @@
   },
   {
     "badges": [
+      "0",
       "1",
       "3",
       "5"
@@ -39,7 +40,7 @@
   },
   {
     "badges": [
-      "1",
+      "0",
       "2"
     ],
     "course": "TSIW",
@@ -57,8 +58,8 @@
   },
   {
     "badges": [
-      "1",
-      "2"
+      "0",
+      "1"
     ],
     "course": "TSIW",
     "email": "pedro.teixeira@gmail.com",
@@ -75,12 +76,12 @@
   },
   {
     "badges": [
-      "1",
-      "2"
+      "0",
+      "3"
     ],
     "course": "TSIW",
     "email": "jose.nogueira@gmail.com",
-    "highlightedBadge": "1",
+    "highlightedBadge": "3",
     "id": "5",
     "internalId": "12345",
     "meetingsCreated": 0,
@@ -93,13 +94,14 @@
   },
   {
     "badges": [
+      "0",
       "1",
-      "2",
-      "5"
+      "4",
+      "6"
     ],
     "course": "Multimédia",
     "email": "manuela.santos@outlook.pt",
-    "highlightedBadge": "5",
+    "highlightedBadge": "6",
     "id": "6",
     "internalId": "999",
     "meetingsCreated": 0,
@@ -112,13 +114,13 @@
   },
   {
     "badges": [
-      "1",
+      "6",
       "2",
       "5"
     ],
     "course": null,
     "email": "jorgelima@esmad.ipp.pt",
-    "highlightedBadge": "1",
+    "highlightedBadge": "6",
     "id": "7",
     "internalId": null,
     "meetingsCreated": 0,
