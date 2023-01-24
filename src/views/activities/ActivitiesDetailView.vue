@@ -3,82 +3,90 @@ import Sidebar from "@/components/Sidebar.vue";
 </script>
 
 <template>
-<Sidebar route="activities"/>
-    <div class="center">
-        <div class="activity-detail">
-        <h2 class="activity-Title">{{ activityDetails.title }}</h2>
-        <span>{{ activityDetails.status }}</span>
-        <h4>Diagnóstico</h4>
-        <p>{{ activityDetails.diagnostic }}</p>
-        <h4>Objetivos</h4>
-        <p>{{ activityDetails.objective }}</p>        
-        <h4>Metas</h4>
-        <p>{{ activityDetails.meta }}</p>  
-        <h4>Recursos</h4>
-        <p>{{ activityDetails.resources }}</p>                
-        <h4>Participantes</h4>
-        <p>{{ activityDetails.participants }}</p>                
-        <h4>Indicadores de Avaliação</h4>
-        <p>{{ activityDetails.evaluationIndicator }}</p>                
-        <h4>Avaliação de Instrumentos</h4>
-        <p>{{ activityDetails.evaluationMethod }}</p>                
-
+  <Sidebar route="activities" />
+  <div class="images-section">
+    <div class="background">
+      <div class="main text-center p-3 px-5">
+        <div class="img-slider row">
+          <div class="row justify-content-center align-items-center">
+            <img
+              v-for="(image, index) in activityDetails.images"
+              :key="index"
+              :src="image.includes('./data/images') ? '/' + image : image"
+              class="addActivityImg img-fluid my-3 mx-3 rounded-lg shadow ml-4"
+              alt="Imagem da Atividade"
+            />
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
 import { useActivitiesStore } from "@/stores/activities";
 import { useUsersStore } from "@/stores/users";
 
-    export default {
-        name: "ActivitiesDetailView",
-    
-        
-        data() {
-            return {
-                components : {Sidebar},
-                activityDetails: {},
-                authorName: "Teste",
-            }
-        },
+export default {
+  name: "ActivitiesDetailView",
 
-        // when the component his created
-        async created() {
-    
-            // new id from the url
+  data() {
+    return {
+      components: { Sidebar },
+      activityDetails: {},
+    };
+  },
+
+  // when the component his created
+  async created() {
+    // new id from the url
     const id = this.$route.params.id;
     const activityDetail = await useActivitiesStore().getActivityById(id);
     if (activityDetail) this.activityDetails = activityDetail;
     else this.$router.push({ name: "NotFound" });
-    
-    // get author name
-    const author = await useUsersStore().getUserById(+activityDetail.authorID);
-    this.authorName = author.name;
-  
-},
+  },
 
-    methods: {
-        formatDate(date) {
+  methods: {
+    formatDate(date) {
       // convert date to dd/mm/yyyy format (PT-pt)
       return new Date(date).toLocaleDateString("pt-PT");
     },
-    },
-
-    }
+  },
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+// variables colors
+$primary-color: #343e3d;
+$secondary-color: #aedcc0;
+$third-color: #ffffff;
+$fourth-color: #e4f0e8;
 
-.center{
-    display: flex;
-    justify-content: center;
+.center {
+  display: flex;
+  justify-content: center;
 }
 
-.activity-detail{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1.5em;
+.activity-detail {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.background {
+  background-color: $fourth-color;
+  height: 300px;
+}
+
+
+.addActivityImg {
+  width: 340px;
+  height: 200px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 }
 </style>
