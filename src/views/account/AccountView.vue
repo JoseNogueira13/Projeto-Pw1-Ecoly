@@ -195,10 +195,12 @@ export default {
       this.$router.push({ name: "NotFound" });
     }
 
-    const loggedUser = await usersStore.getLoggedUser();
+    if (usersStore.isUserLogged()) {
+      const loggedUser = await usersStore.getLoggedUser();
 
-    if (this.userID === loggedUser.id) {
-      this.$router.push({ name: "Account", params: { id: "me" } });
+      if (this.userID === loggedUser.id) {
+        this.$router.push({ name: "Account", params: { id: "me" } });
+      }
     }
 
     const currentUser = await usersStore.getUserById(this.userID);
