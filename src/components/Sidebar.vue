@@ -198,7 +198,7 @@ export default {
 
     signOut() {
       useUsersStore().signOut();
-      this.$router.push({ name: "Home" });
+      this.$router.go(0);
     },
   },
 

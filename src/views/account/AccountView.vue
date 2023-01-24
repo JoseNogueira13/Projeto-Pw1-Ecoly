@@ -2,6 +2,8 @@
 import Sidebar from "@/components/Sidebar.vue";
 import Header from "@/components/Header.vue";
 import HighlightBadge from "@/components/account/HighlightBadge.vue";
+import UnlockedBadges from "@/components/account/UnlockedBadges.vue";
+import LockedBadges from "@/components/account/LockedBadges.vue";
 </script>
 
 <template>
@@ -10,7 +12,10 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
     <Header title="PERFIL" />
 
     <!-- Profile Information -->
-    <section class="profile-info-section mx-5 mt-5 px-2 py-1">
+    <section
+      class="profile-info-section mx-5 mt-5 px-2 py-1"
+      style="max-height: 220px"
+    >
       <div class="row">
         <!-- Profile Image and Highlighted Badge -->
         <div class="col-2 my-2 pl-4 image-container">
@@ -115,16 +120,39 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
         </div>
       </div>
     </section>
+
+    <!-- Manage Badges -->
+    <div class="row mt-5 mx-5">
+      <div class="col-lg-6">
+        <section
+          class="badges-section py-2 px-3 text-left"
+          style="margin-left: -13px"
+        >
+          <h2 class="badges-section-title">Conquistas desbloqueadas</h2>
+          <UnlockedBadges :badges="unlockedBadges" />
+        </section>
+      </div>
+      <div class="col-lg-6">
+        <section
+          class="badges-section py-2 px-3 text-left"
+          style="margin-right: -13px"
+        >
+          <h2 class="badges-section-title">Conquistas bloqueadas</h2>
+          <LockedBadges :badges="lockedBadges" />
+        </section>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { useUsersStore } from "@/stores/users";
 import { useSchoolsStore } from "@/stores/schools";
+import { useBadgesStore } from "@/stores/badges";
 export default {
   name: "Account",
 
-  components: { Sidebar, Header, HighlightBadge },
+  components: { Sidebar, Header, HighlightBadge, LockedBadges, UnlockedBadges },
 
   data() {
     return {
@@ -133,6 +161,8 @@ export default {
       userSchool: "",
       monthlySeeds: 0,
       totalSeeds: 0,
+      unlockedBadges: [],
+      lockedBadges: [],
     };
   },
 
@@ -149,6 +179,7 @@ export default {
   async created() {
     const usersStore = useUsersStore();
     const schoolsStore = useSchoolsStore();
+    const badgesStore = useBadgesStore();
 
     // Manage user
     if (this.userID === "me") {
@@ -182,6 +213,19 @@ export default {
     const monthlySeeds = await usersStore.getSeeds(this.userID, true);
     this.totalSeeds = totalSeeds;
     this.monthlySeeds = monthlySeeds;
+
+    // Manage badges
+    const badges = await badgesStore.getBadges();
+    // badges user has
+    const unlockedBadges = badges.filter((badge) => {
+      return currentUser.badges.includes(badge.id);
+    });
+    const lockedBadges = badges.filter((badge) => {
+      return !currentUser.badges.includes(badge.id);
+    });
+
+    this.unlockedBadges = unlockedBadges;
+    this.lockedBadges = lockedBadges;
   },
 
   // if the route changes, update the user
@@ -201,17 +245,41 @@ $fourth-color: #ffffff;
 $fifth-color: #18516f;
 $sixth-color: #000;
 $seventh-color: #c3fecb;
+$eighth-color: #57b894;
 
 .profile-info-section,
-.profile-seeds-section {
+.profile-seeds-section,
+.badges-section {
   background-color: $primary-color;
   border-radius: 10px;
+}
+
+.badges-section {
+  height: 500px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $seventh-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $eighth-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $fifth-color;
+  }
 }
 
 .image-container {
   position: relative;
   width: 200px;
   height: auto;
+  max-width: 240px;
 }
 
 .profile-image {
@@ -279,6 +347,13 @@ $seventh-color: #c3fecb;
 .seeds-info {
   font-family: "Panton", sans-serif;
   font-size: 1.5rem;
+  font-weight: 700;
+  color: $seventh-color;
+}
+
+.badges-section-title {
+  font-family: "Alkes", sans-serif;
+  font-size: 1.7rem;
   font-weight: 700;
   color: $seventh-color;
 }
