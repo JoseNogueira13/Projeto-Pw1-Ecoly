@@ -11,7 +11,8 @@ export const useUsersStore = defineStore("users", {
   state: () => ({
     users: [],
     roles: [],
-    loggedUserID: "1", // null = loggedOut, 1 = admin, 2 = student
+    // null = loggedOut, 1 = admin, 2 = student
+    loggedUserID: getLocalStorage("loggedUser") || null,
   }),
 
   actions: {
@@ -49,15 +50,8 @@ export const useUsersStore = defineStore("users", {
 
     // Authentication methods
     isUserLogged() {
-      if (this.loggedUserID !== null) return true;
-
-      const loggedUser = getLocalStorage("loggedUser");
-      if (loggedUser) {
-        this.loggedUserID = parseInt(loggedUser);
-        return true;
-      }
-
-      return false;
+      // return !!(this.loggedUserID !== null || getLocalStorage("loggedUser") !== null);
+      return this.loggedUserID !== null;
     },
 
     async getLoggedUser() {
@@ -69,15 +63,21 @@ export const useUsersStore = defineStore("users", {
     async addUser(newUser) {
       // name, password, email, school, internalId course, year
       const users = await this.getUsers();
-      const userID = await this.getUserById(newUser.id)
+      const userID = await this.getUserById(newUser.id);
       const urlParam = newUser.name.replace(/\s/g, "").toLowerCase();
       newUser.photo = `https://api.dicebear.com/5.x/personas/svg?seed=${urlParam}`;
-      
+
       if (newUser.id !== userID) {
-        users.push({id: crypto.randomUUID(),role: "unsigned",badges: [], highlightedBadge: null, ...newUser});
+        users.push({
+          id: crypto.randomUUID(),
+          role: "unsigned",
+          badges: [],
+          highlightedBadge: null,
+          ...newUser,
+        });
         setLocalStorage("users", users);
         this.users = users;
-        return this.users
+        return this.users;
       }
     },
 
@@ -135,13 +135,12 @@ export const useUsersStore = defineStore("users", {
       const user = users.find(
         (user) => user.email === email && user.password === password
       );
-      if (!user)  return false;
+      if (!user) return false;
 
       setLocalStorage("loggedUser", user.id);
       this.loggedUserID = user.id;
 
       return true;
-      
     },
 
     // SignOut

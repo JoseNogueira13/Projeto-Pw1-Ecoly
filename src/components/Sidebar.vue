@@ -81,9 +81,11 @@
     </div>
 
     <div class="bottom-link">
+      <!-- if the user is logged pass the param "/me" -->
       <router-link
         :to="{
           name: isUserLogged ? 'Account' : 'Authenticate',
+          params: { id: isUserLogged ? 'me' : '' },
         }"
       >
         <img
@@ -120,7 +122,10 @@
             marginTop: !showText && !isUserLogged ? '-10px' : '-10px',
           }"
         />
-        <span v-if="showText" :class="{ 'selected-link': route === 'account' }">
+        <span
+          v-if="showText"
+          :class="{ 'selected-link': currentRoute === '/account/me' }"
+        >
           {{ isUserLogged ? "Perfil" : "Sign In" }}
         </span>
       </router-link>
@@ -193,7 +198,7 @@ export default {
 
     signOut() {
       useUsersStore().signOut();
-      this.$router.go("/");
+      this.$router.push({ name: "Home" });
     },
   },
 
