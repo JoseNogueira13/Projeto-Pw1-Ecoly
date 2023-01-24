@@ -1,5 +1,6 @@
 <template>
-    <form class="login-form" @submit.prevent="logUser">
+    <form class="login-form" @submit.prevent="login">
+        <h2>Login</h2>
         <input
               v-model="email"
               class="input-background"
@@ -25,6 +26,13 @@
         >
             Não é membro? Crie conta aqui
         </button>
+
+        <button
+          class=""
+          type="submit"
+        >
+            Entrar
+        </button>
     </form>
     
 </template>
@@ -39,6 +47,21 @@ export default {
       password: '',
     }
   },
+  methods: {
+    async login() {
+        const usersStore = useUsersStore();
+        usersStore.login(this.email, this.password)
+
+        this.$bvToast.toast("Entraste na aplicação!", {
+        title: "Login com sucesso",
+        variant: "success",
+        solid: true,
+      });
+      setTimeout(() => {
+        this.$router.push({ name: "Home" })
+      }, 1000);
+    }
+  }
 }
 </script>
 
@@ -55,8 +78,8 @@ $fifth: #ffffff;
   flex-direction: column;
   position: absolute;
   width: 420px;
-  top: 50px;
-  right: 200px;
+  top: 350px;
+  right: 300px;
 }
 
 .login-form > input {
@@ -75,6 +98,19 @@ $fifth: #ffffff;
   background-repeat: no-repeat;
   padding-left: 30px;
   background-size: 25px;
+}
+
+.switchToRegister {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    width: 200px;
+    margin-top: 200px;
+    margin-left: 100px;
+
+    &:hover {
+    color: $tertiary;
+    }
 }
 
 #email {

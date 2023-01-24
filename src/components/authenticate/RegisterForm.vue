@@ -124,11 +124,6 @@ export default {
     }
   },
   methods: {
-    checkPasswords(password, confPass) {
-    if (password !== confPass) {
-      this.passwordNotMatch = true
-    }
-  },
   async addUser() {
       if(this.password !== this.confPass) {
         this.$bvToast.toast("A palavra passe e a sua confirmação não coincidem!", {
@@ -140,7 +135,6 @@ export default {
       }
 
       const usersStore = useUsersStore();
-      console.log("before");
       const newUser = {
         name: this.primNome + ' ' + this.ultNome,
         email: this.email,

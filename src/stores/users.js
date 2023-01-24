@@ -135,12 +135,13 @@ export const useUsersStore = defineStore("users", {
       const user = users.find(
         (user) => user.email === email && user.password === password
       );
-      if (!user) return false;
+      if (!user)  return false;
 
       setLocalStorage("loggedUser", user.id);
       this.loggedUserID = user.id;
 
       return true;
+      
     },
 
     // SignOut
