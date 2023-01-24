@@ -87,7 +87,10 @@ import LockedBadges from "@/components/account/LockedBadges.vue";
           <!-- Edit Profile Button -->
           <div class="row">
             <div class="col-12 text-right">
-              <button class="btn edit-profile-btn px-4 py-0 mt-2">
+              <button
+                class="btn edit-profile-btn px-4 py-0 mt-2"
+                v-if="$route.params.id === 'me'"
+              >
                 Editar Perfil
               </button>
             </div>
@@ -183,7 +186,7 @@ export default {
 
     // Manage user
     if (this.userID === "me") {
-      if (!usersStore.isUserLogged()) this.$router.push({ name: "Login" });
+      if (!usersStore.isUserLogged()) this.$router.push({ name: "Authenticate" });
 
       const loggedUser = await usersStore.getLoggedUser();
       this.userID = loggedUser.id;
