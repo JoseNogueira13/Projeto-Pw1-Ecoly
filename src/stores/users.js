@@ -50,7 +50,6 @@ export const useUsersStore = defineStore("users", {
 
     // Authentication methods
     isUserLogged() {
-      // return !!(this.loggedUserID !== null || getLocalStorage("loggedUser") !== null);
       return this.loggedUserID !== null;
     },
 

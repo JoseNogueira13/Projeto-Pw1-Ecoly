@@ -30,9 +30,28 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
               <h3 class="text-left user-name-info">{{ user.name }}</h3>
             </div>
           </div>
-          <div class="row mt-3">
+          <div class="row mt-4">
             <div class="col-12">
               <p class="text-left user-email-info">{{ user.email }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="text-left user-school-info">
+                {{ userSchool }}
+              </p>
+            </div>
+          </div>
+          <div v-if="user.course" class="row">
+            <div class="col-12">
+              <p class="text-left user-school-info">
+                {{ user.course }}
+              </p>
+            </div>
+          </div>
+          <div v-if="user.year" class="row">
+            <div class="col-12">
+              <p class="text-left user-school-info">{{ user.year }} ano</p>
             </div>
           </div>
         </div>
@@ -45,6 +64,7 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
 
 <script>
 import { useUsersStore } from "@/stores/users";
+import { useSchoolsStore } from "@/stores/schools";
 export default {
   name: "Account",
 
@@ -54,12 +74,15 @@ export default {
     return {
       userID: this.$route.params.id,
       user: { photo: "", highlightedBadge: null },
+      userSchool: "",
     };
   },
 
   async created() {
     const usersStore = useUsersStore();
+    const schoolsStore = useSchoolsStore();
 
+    // Manage user
     if (this.userID === "me") {
       if (!usersStore.isUserLogged()) this.$router.push({ name: "Login" });
 
@@ -81,6 +104,18 @@ export default {
 
     const currentUser = await usersStore.getUserById(this.userID);
     this.user = currentUser;
+
+    // Manage school
+    const school = await schoolsStore.getSchoolById(this.user.schoolID);
+    this.userSchool = school.name;
+  },
+
+  // if the route changes, update the user
+  watch: {
+    $route() {
+      // reload
+      this.$router.go(0);
+    },
   },
 };
 </script>
@@ -119,10 +154,15 @@ $seventh-color: #c3fecb;
   color: $seventh-color;
 }
 
-.user-email-info {
+.user-email-info,
+.user-school-info {
   font-family: "Panton", sans-serif;
   font-size: 1.2rem;
   font-weight: 400;
   color: $seventh-color;
+}
+
+.user-school-info {
+  font-size: 1.1rem;
 }
 </style>
