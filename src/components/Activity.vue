@@ -72,7 +72,7 @@
           </p>
           <div class="data-begin-activity d-flex flex-column">
             <span class="date-begin">Data de Início</span>
-            <span class="date">{{ activity.initialDate }}</span>
+            <span class="date">{{ formatDate(activity.initialDate) }}</span>
           </div>
         </div>
       </div>
