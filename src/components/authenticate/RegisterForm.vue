@@ -108,6 +108,7 @@
             <button
               type="submit"
               class="authenticate-user-btn"
+              :disabled="!escola"
             >
               Sign up
             </button>
@@ -202,6 +203,12 @@ $fifth: #ffffff;
     background-color: $fourth;
   }
 }
+.authenticate-user-btn:disabled {
+    /* styles for the button when it is disabled */
+    background-color: #ccc;
+    color: #555;
+    cursor: not-allowed;
+  }
 
 
 .register-header {
