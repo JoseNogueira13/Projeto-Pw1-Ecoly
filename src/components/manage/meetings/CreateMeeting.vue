@@ -148,6 +148,18 @@ export default {
 
       await this.meetingsStore.addNewMeeting(meeting);
 
+      await this.usersStore.increaseMeetingsCreated();
+
+      // Unlock badge (create 1 meeting)
+      await this.usersStore.unlockBadge("3");
+      await this.usersStore.addSeeds("1");
+
+      // Unlock badge (create 3 meeting)
+      // Get the number of meetings created by the user
+      if (loggedUser.meetingsCreated === 3) {
+        await this.usersStore.unlockBadge("7");
+      }
+
       setTimeout(() => {
         this.$bvToast.toast("Reunião Criada", {
           title: "Sucesso!",

@@ -10,6 +10,7 @@
     "highlightedBadge": "2",
     "id": "1",
     "internalId": null,
+    "meetingsCreated": 0,
     "name": "Admin",
     "password": "Esmad_2223",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=admin",
@@ -19,6 +20,7 @@
   },
   {
     "badges": [
+      "0",
       "1",
       "3",
       "5"
@@ -28,6 +30,7 @@
     "highlightedBadge": "3",
     "id": "2",
     "internalId": "40210462",
+    "meetingsCreated": 0,
     "name": "User",
     "password": "Esmad_2223",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=student",
@@ -37,7 +40,7 @@
   },
   {
     "badges": [
-      "1",
+      "0",
       "2"
     ],
     "course": "TSIW",
@@ -45,6 +48,7 @@
     "highlightedBadge": "2",
     "id": "3",
     "internalId": "12345678",
+    "meetingsCreated": 0,
     "name": "Tiago Ribeiro",
     "password": "2525",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=tiago_ribeiro",
@@ -54,14 +58,15 @@
   },
   {
     "badges": [
-      "1",
-      "2"
+      "0",
+      "1"
     ],
     "course": "TSIW",
     "email": "pedro.teixeira@gmail.com",
     "highlightedBadge": "1",
     "id": "4",
     "internalId": "123456789",
+    "meetingsCreated": 0,
     "name": "Pedro Teixeira",
     "password": "123",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=pedro_teixeira",
@@ -71,14 +76,15 @@
   },
   {
     "badges": [
-      "1",
-      "2"
+      "0",
+      "3"
     ],
     "course": "TSIW",
     "email": "jose.nogueira@gmail.com",
-    "highlightedBadge": "1",
+    "highlightedBadge": "3",
     "id": "5",
     "internalId": "12345",
+    "meetingsCreated": 0,
     "name": "José Nogueira",
     "password": "12345",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=jose_nogueira",
@@ -88,15 +94,17 @@
   },
   {
     "badges": [
+      "0",
       "1",
-      "2",
-      "5"
+      "4",
+      "6"
     ],
     "course": "Multimédia",
     "email": "manuela.santos@outlook.pt",
-    "highlightedBadge": "5",
+    "highlightedBadge": "6",
     "id": "6",
     "internalId": "999",
+    "meetingsCreated": 0,
     "name": "Manuela Santos",
     "password": "123",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=manuela_santos",
@@ -106,15 +114,16 @@
   },
   {
     "badges": [
-      "1",
+      "6",
       "2",
       "5"
     ],
     "course": null,
     "email": "jorgelima@esmad.ipp.pt",
-    "highlightedBadge": "1",
+    "highlightedBadge": "6",
     "id": "7",
     "internalId": null,
+    "meetingsCreated": 0,
     "name": "Jorge Lima",
     "password": "123",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=jorge_lima",
@@ -129,6 +138,7 @@
     "highlightedBadge": null,
     "id": "8",
     "internalId": null,
+    "meetingsCreated": 0,
     "name": "Mário Pinto",
     "password": "123",
     "photo": "https://api.dicebear.com/5.x/personas/svg?seed=mario_pinto",
