@@ -11,7 +11,7 @@ export const useUsersStore = defineStore("users", {
   state: () => ({
     users: [],
     roles: [],
-    loggedUserID: "1", // null = loggedOut, 1 = admin, 2 = student
+    loggedUserID: getLocalStorage("loggedUser") || null,
   }),
 
   actions: {
@@ -49,36 +49,12 @@ export const useUsersStore = defineStore("users", {
 
     // Authentication methods
     isUserLogged() {
-      if (this.loggedUserID !== null) return true;
-
-      const loggedUser = getLocalStorage("loggedUser");
-      if (loggedUser) {
-        this.loggedUserID = parseInt(loggedUser);
-        return true;
-      }
-
-      return false;
+      return this.loggedUserID !== null;
     },
 
     async getLoggedUser() {
       const users = await this.getUsers();
       return users.find((user) => user.id === this.loggedUserID);
-    },
-
-    // Add user
-    async addUser(newUser) {
-      // name, password, email, school, internalId course, year
-      const users = await this.getUsers();
-      const userID = await this.getUserById(newUser.id)
-      const urlParam = newUser.name.replace(/\s/g, "").toLowerCase();
-      newUser.photo = `https://api.dicebear.com/5.x/personas/svg?seed=${urlParam}`;
-      
-      if (newUser.id !== userID) {
-        users.push({id: crypto.randomUUID(),role: "unsigned",badges: [], highlightedBadge: null, ...newUser});
-        setLocalStorage("users", users);
-        this.users = users;
-        return this.users
-      }
     },
 
     // Edit user data
@@ -122,7 +98,11 @@ export const useUsersStore = defineStore("users", {
     async unlockBadge(badgeId) {
       const users = await this.getUsers();
 
-      users.find((user) => user.id === this.loggedUserID).badges.push(badgeId);
+      const userBadges = users.find((user) => user.id === this.loggedUserID).badges;
+
+      if (userBadges.includes(badgeId)) return;
+
+      userBadges.push(badgeId);
 
       this.users = users;
       setLocalStorage("users", this.users);
@@ -156,8 +136,18 @@ export const useUsersStore = defineStore("users", {
       // check if user already exists
       if (users.find((user) => user.email === newUser.email)) return false;
 
+      const urlParam = newUser.name.replace(/\s/g, "").toLowerCase();
+
       // create new user
-      users.push({ id: crypto.randomUUID(), ...newUser });
+      users.push({
+        id: crypto.randomUUID(),
+        role: "unsigned",
+        badges: [],
+        highlightedBadge: null,
+        photo: `https://api.dicebear.com/5.x/personas/svg?seed=${urlParam}`,
+        meetingsCreated: 0,
+        ...newUser,
+      });
 
       this.users = users;
       setLocalStorage("users", this.users);
@@ -190,6 +180,62 @@ export const useUsersStore = defineStore("users", {
 
       this.roles = roles;
       setLocalStorage("roles", this.roles);
+    },
+
+    // get seeds from a user
+    async getSeeds(id, filterByMonth = false) {
+      const seeds = await fetchData("seeds");
+      let userSeeds = 0;
+
+      seeds.forEach((seed) => {
+        if (seed.userID === id) userSeeds += +seed.seeds;
+      });
+
+      if (!filterByMonth) return userSeeds;
+
+      // Get seeds from current month
+      const currentMonth = new Date().getMonth();
+      const currentYear = new Date().getFullYear();
+      let seedsFromCurrentMonth = 0;
+
+      seeds.forEach((seed) => {
+        const seedDate = new Date(seed.date);
+        if (
+          seed.userID === id &&
+          seedDate.getMonth() === currentMonth &&
+          seedDate.getFullYear() === currentYear
+        )
+          seedsFromCurrentMonth += +seed.seeds;
+      });
+
+      return seedsFromCurrentMonth;
+    },
+
+    // add seeds to current user
+    async addSeeds(seeds) {
+      const totalSeedsData = await fetchData("seeds");
+      const loggedUser = await this.getLoggedUser();
+      const newSeedData = {
+        id: crypto.randomUUID(),
+        userID: loggedUser.id,
+        seeds: seeds,
+        date: Date.now(),
+      };
+
+      totalSeedsData.push(newSeedData);
+      setLocalStorage("seeds", seeds);
+    },
+
+    // increase meetings created
+    async increaseMeetingsCreated() {
+      const users = await this.getUsers();
+      const loggedUser = await this.getLoggedUser();
+
+      const userIndex = users.findIndex((user) => user.id === loggedUser.id);
+      users[userIndex].meetingsCreated++;
+
+      this.users = users;
+      setLocalStorage("users", this.users);
     },
   },
 });

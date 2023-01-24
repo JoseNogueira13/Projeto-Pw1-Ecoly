@@ -1,5 +1,50 @@
 [
-	{
-		"BADGES": "//TODO: ADD BADGES DATA HERE"
-	}
+  {
+    "description": "Crie uma atividade",
+    "id": "0",
+    "src": "../data/badges/badge-1.svg",
+    "title": "Novato das atividades"
+  },
+  {
+    "description": "Crie dez atividades",
+    "id": "1",
+    "src": "../data/badges/badge-2.svg",
+    "title": "Veterano das atividades"
+  },
+  {
+    "description": "Finalize uma atividade no último dia de calendarização",
+    "id": "2",
+    "src": "../data/badges/badge-3.svg",
+    "title": "Preciso"
+  },
+  {
+    "description": "Marque uma reunião",
+    "id": "3",
+    "src": "../data/badges/badge-4.svg",
+    "title": "Novato das Reuniões"
+  },
+  {
+    "description": "Adiciona uma ata a uma reunião",
+    "id": "4",
+    "src": "../data/badges/badge-5.svg",
+    "title": "Supervisor das reuniões"
+  },
+  {
+    "description": "Contacte membros do conselho",
+    "id": "5",
+    "src": "../data/badges/badge-6.svg",
+    "title": "Mensageiro"
+  },
+  {
+    "description": "Publique uma notícia",
+    "id": "6",
+    "src": "../data/badges/badge-7.svg",
+    "title": "Jornalista amador"
+  },
+  {
+    "description": "Marque três reuniões",
+    "id": "7",
+    "src": "../data/badges/badge-8.svg",
+    "title": "Veterano das reuniões"
+  }
 ]

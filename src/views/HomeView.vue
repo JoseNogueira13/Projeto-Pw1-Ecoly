@@ -27,8 +27,8 @@ import Footer from "@/components/home/Footer.vue";
     </section>
     <section id="citation-section" class="my-4 py-5">
       <div class="citation">
-        "A ecologia deve estar inscrita no ADN de tudo o que fazemos diariamente e ainda
-        não entrou nos costumes."
+        "A ecologia deve estar inscrita no ADN de tudo o que fazemos diariamente e
+        ainda não entrou nos costumes."
         <span class="author">Yann Arthus Bertrand</span>
       </div>
     </section>
@@ -61,13 +61,13 @@ export default {
   },
 
   created() {
-      const activitiesStore = useActivitiesStore();
-      activitiesStore.getActivities().then((activities) => {
-        this.activities = activities.filter((activity) => {
-          return activity.status === "unfinished";
-        });
-        this.activities = this.activities.slice(0, 3);
+    const activitiesStore = useActivitiesStore();
+    activitiesStore.getActivities().then((activities) => {
+      this.activities = activities.filter((activity) => {
+        return activity.status === "unfinished";
       });
+      this.activities = this.activities.slice(0, 3);
+    });
   },
 };
 </script>

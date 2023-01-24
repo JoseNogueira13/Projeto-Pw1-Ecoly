@@ -17,7 +17,11 @@
       </router-link>
     </div>
     <div class="col-xl-2 col-lg-3">
-      <router-link class="fast-action-btn" :to="{ name: 'AdminMenu' }">
+      <router-link
+        class="fast-action-btn"
+        :to="{ name: 'AdminMenu' }"
+        v-if="isUserAdmin"
+      >
         Menu Admin
       </router-link>
     </div>
@@ -25,8 +29,20 @@
 </template>
 
 <script>
+import { useUsersStore } from "@/stores/users";
 export default {
   name: "FastActions",
+
+  data() {
+    return { isUserAdmin: false };
+  },
+
+  async created() {
+    const usersStore = useUsersStore();
+    const loggedUser = await usersStore.getLoggedUser();
+
+    this.isUserAdmin = loggedUser.role === "admin";
+  },
 };
 </script>
 

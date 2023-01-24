@@ -13,6 +13,7 @@ import ManageSection from "./ManageSection.vue";
       <div class="form-group mb-4">
         <select class="form-control" id="destinyInput" v-model="destiny">
           <option disabled selected value="null">Selecione o destinatário</option>
+          <option value="all">Todos os membros do conselho</option>
           <option v-for="user in users" :key="user" :value="user.id">
             {{ user.name }} ({{ user.email }}) - {{ user.role }}
           </option>
