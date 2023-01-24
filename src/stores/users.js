@@ -11,7 +11,6 @@ export const useUsersStore = defineStore("users", {
   state: () => ({
     users: [],
     roles: [],
-    // null = loggedOut, 1 = admin, 2 = student
     loggedUserID: getLocalStorage("loggedUser") || null,
   }),
 
@@ -189,6 +188,35 @@ export const useUsersStore = defineStore("users", {
 
       this.roles = roles;
       setLocalStorage("roles", this.roles);
+    },
+
+    // get seeds from a user
+    async getSeeds(id, filterByMonth = false) {
+      const seeds = await await fetchData("seeds");
+      let userSeeds = 0;
+
+      seeds.forEach((seed) => {
+        if (seed.userID === id) userSeeds += +seed.seeds;
+      });
+
+      if (!filterByMonth) return userSeeds;
+
+      // Get seeds from current month
+      const currentMonth = new Date().getMonth();
+      const currentYear = new Date().getFullYear();
+      let seedsFromCurrentMonth = 0;
+
+      seeds.forEach((seed) => {
+        const seedDate = new Date(seed.date);
+        if (
+          seed.userID === id &&
+          seedDate.getMonth() === currentMonth &&
+          seedDate.getFullYear() === currentYear
+        )
+          seedsFromCurrentMonth += +seed.seeds;
+      });
+
+      return seedsFromCurrentMonth;
     },
   },
 });

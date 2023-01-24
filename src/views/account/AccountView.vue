@@ -9,7 +9,8 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
   <div class="main text-center p-3 px-5">
     <Header title="PERFIL" />
 
-    <section class="profile-info-section border mx-5 mt-5 px-2 py-1">
+    <!-- Profile Information -->
+    <section class="profile-info-section mx-5 mt-5 px-2 py-1">
       <div class="row">
         <!-- Profile Image and Highlighted Badge -->
         <div class="col-2 my-2 pl-4 image-container">
@@ -89,6 +90,31 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
         </div>
       </div>
     </section>
+
+    <!-- User Seeds -->
+    <section class="profile-seeds-section border mx-5 mt-5 py-4">
+      <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-6">
+          <h2 class="seeds-title text-left ml-5">Sementes</h2>
+        </div>
+        <div class="col-3">
+          <span class="seeds-info"> Mensal: {{ monthlySeeds }} </span>
+          <img
+            src="@/assets/icons/seed.svg"
+            alt="Ícone de Semente"
+            class="ml-1 mb-2"
+          />
+        </div>
+        <div class="col-3">
+          <span class="seeds-info"> Total: {{ totalSeeds }} </span>
+          <img
+            src="@/assets/icons/seed.svg"
+            alt="Ícone de Semente"
+            class="ml-1 mb-2"
+          />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -105,6 +131,8 @@ export default {
       userID: this.$route.params.id,
       user: { photo: "", highlightedBadge: null },
       userSchool: "",
+      monthlySeeds: 0,
+      totalSeeds: 0,
     };
   },
 
@@ -148,6 +176,12 @@ export default {
     // Manage school
     const school = await schoolsStore.getSchoolById(this.user.schoolID);
     this.userSchool = school.name;
+
+    // Manage seeds
+    const totalSeeds = await usersStore.getSeeds(this.userID);
+    const monthlySeeds = await usersStore.getSeeds(this.userID, true);
+    this.totalSeeds = totalSeeds;
+    this.monthlySeeds = monthlySeeds;
   },
 
   // if the route changes, update the user
@@ -168,7 +202,8 @@ $fifth-color: #18516f;
 $sixth-color: #000;
 $seventh-color: #c3fecb;
 
-.profile-info-section {
+.profile-info-section,
+.profile-seeds-section {
   background-color: $primary-color;
   border-radius: 10px;
 }
@@ -232,5 +267,19 @@ $seventh-color: #c3fecb;
     background-color: $seventh-color;
     color: $primary-color;
   }
+}
+
+.seeds-title {
+  font-family: "Alkes", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $seventh-color;
+}
+
+.seeds-info {
+  font-family: "Panton", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $seventh-color;
 }
 </style>
