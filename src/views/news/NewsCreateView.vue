@@ -99,6 +99,7 @@ export default {
   methods: {
     async addNew() {
       const newsStore = useNewsStore();
+      const usersStore = useUsersStore();
 
       const newNew = {
         title: this.new_title,
@@ -112,6 +113,9 @@ export default {
         variant: "success",
         solid: true,
       });
+
+      // Unlock badge (create 1 new)
+      await usersStore.unlockBadge("6");
 
       // Redirect to news List
       newsStore.addNew(newNew).then(() => {

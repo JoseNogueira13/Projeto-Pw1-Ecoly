@@ -98,7 +98,11 @@ export const useUsersStore = defineStore("users", {
     async unlockBadge(badgeId) {
       const users = await this.getUsers();
 
-      users.find((user) => user.id === this.loggedUserID).badges.push(badgeId);
+      const userBadges = users.find((user) => user.id === this.loggedUserID).badges;
+
+      if (userBadges.includes(badgeId)) return;
+
+      userBadges.push(badgeId);
 
       this.users = users;
       setLocalStorage("users", this.users);
@@ -141,6 +145,7 @@ export const useUsersStore = defineStore("users", {
         badges: [],
         highlightedBadge: null,
         photo: `https://api.dicebear.com/5.x/personas/svg?seed=${urlParam}`,
+        meetingsCreated: 0,
         ...newUser,
       });
 
@@ -179,7 +184,7 @@ export const useUsersStore = defineStore("users", {
 
     // get seeds from a user
     async getSeeds(id, filterByMonth = false) {
-      const seeds = await await fetchData("seeds");
+      const seeds = await fetchData("seeds");
       let userSeeds = 0;
 
       seeds.forEach((seed) => {
@@ -204,6 +209,33 @@ export const useUsersStore = defineStore("users", {
       });
 
       return seedsFromCurrentMonth;
+    },
+
+    // add seeds to current user
+    async addSeeds(seeds) {
+      const totalSeedsData = await fetchData("seeds");
+      const loggedUser = await this.getLoggedUser();
+      const newSeedData = {
+        id: crypto.randomUUID(),
+        userID: loggedUser.id,
+        seeds: seeds,
+        date: Date.now(),
+      };
+
+      totalSeedsData.push(newSeedData);
+      setLocalStorage("seeds", seeds);
+    },
+
+    // increase meetings created
+    async increaseMeetingsCreated() {
+      const users = await this.getUsers();
+      const loggedUser = await this.getLoggedUser();
+
+      const userIndex = users.findIndex((user) => user.id === loggedUser.id);
+      users[userIndex].meetingsCreated++;
+
+      this.users = users;
+      setLocalStorage("users", this.users);
     },
   },
 });

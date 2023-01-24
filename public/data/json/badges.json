@@ -1,12 +1,12 @@
 [
   {
-    "description": "Crie 1 atividade",
+    "description": "Crie uma atividade",
     "id": "0",
     "src": "../data/badges/badge-1.svg",
     "title": "Novato das atividades"
   },
   {
-    "description": "Crie 10 atividades",
+    "description": "Crie dez atividades",
     "id": "1",
     "src": "../data/badges/badge-2.svg",
     "title": "Veterano das atividades"
