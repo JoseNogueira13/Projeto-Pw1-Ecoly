@@ -12,7 +12,7 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
     <section class="profile-info-section border mx-5 mt-5 px-2 py-1">
       <div class="row">
         <!-- Profile Image and Highlighted Badge -->
-        <div class="col-2 ml-3 my-2 image-container">
+        <div class="col-2 my-2 pl-4 image-container">
           <img
             :src="user.photo"
             alt="Profile Image"
@@ -24,7 +24,7 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
           />
         </div>
         <!-- Profile Info (name, email, school, course) -->
-        <div class="col-8">
+        <div class="col-5 mr-4">
           <div class="row mt-2">
             <div class="col-12">
               <h3 class="text-left user-name-info">{{ user.name }}</h3>
@@ -37,26 +37,56 @@ import HighlightBadge from "@/components/account/HighlightBadge.vue";
           </div>
           <div class="row">
             <div class="col-12">
-              <p class="text-left user-school-info">
-                {{ userSchool }}
-              </p>
+              <p class="text-left user-school-info">{{ userSchool }}</p>
             </div>
           </div>
-          <div v-if="user.course" class="row">
+          <div v-if="user.course && user.year" class="row">
             <div class="col-12">
               <p class="text-left user-school-info">
-                {{ user.course }}
+                {{ user.course }} - {{ user.year }} ano
               </p>
-            </div>
-          </div>
-          <div v-if="user.year" class="row">
-            <div class="col-12">
-              <p class="text-left user-school-info">{{ user.year }} ano</p>
             </div>
           </div>
         </div>
         <!-- Role and Edit Profile Button -->
-        <div class="col-2"></div>
+        <div class="ml-5 col-xl-4 col-3 mt-2">
+          <!-- Role Icon -->
+          <div class="row">
+            <div class="col-12 text-right">
+              <img
+                v-if="user.role === 'admin'"
+                src="@/assets/icons/admin.svg"
+                alt="Icon de Perfil"
+                class="profile-icon"
+              />
+              <img
+                v-else
+                src="@/assets/icons/profile.svg"
+                alt="Icon de Perfil"
+                class="profile-icon"
+              />
+            </div>
+          </div>
+          <!-- Role Title -->
+          <div v-if="user.role" class="row">
+            <div class="col-12 text-right">
+              <p
+                class="user-role-info mt-1"
+                :style="{ marginRight: user.role === 'admin' ? '0' : '1rem' }"
+              >
+                {{ getRoleName(user.role) }}
+              </p>
+            </div>
+          </div>
+          <!-- Edit Profile Button -->
+          <div class="row">
+            <div class="col-12 text-right">
+              <button class="btn edit-profile-btn px-4 py-0 mt-2">
+                Editar Perfil
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -76,6 +106,16 @@ export default {
       user: { photo: "", highlightedBadge: null },
       userSchool: "",
     };
+  },
+
+  methods: {
+    getRoleName(role) {
+      if (role === "admin") return "Administrador";
+      if (role === "unsigned") return "Sem Cargo";
+
+      // convert role to lowercase and capitalize first letter
+      return role.charAt(0).toUpperCase() + role.slice(1);
+    },
   },
 
   async created() {
@@ -113,7 +153,6 @@ export default {
   // if the route changes, update the user
   watch: {
     $route() {
-      // reload
       this.$router.go(0);
     },
   },
@@ -164,5 +203,34 @@ $seventh-color: #c3fecb;
 
 .user-school-info {
   font-size: 1.1rem;
+}
+
+.profile-icon {
+  width: 100px;
+  height: 100px;
+
+  margin-right: 12px;
+}
+
+.user-role-info {
+  font-family: "Panton", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $seventh-color;
+}
+
+.edit-profile-btn {
+  border: 2px solid $seventh-color;
+  border-radius: 10px;
+  font-family: "Panton", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $seventh-color;
+  margin-right: -13px;
+
+  &:hover {
+    background-color: $seventh-color;
+    color: $primary-color;
+  }
 }
 </style>
