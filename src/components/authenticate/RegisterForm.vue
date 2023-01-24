@@ -48,15 +48,27 @@
               type="password"
               required
             />
-            <input
+            <select
               v-model="escola"
               class="input-background"
               id="escola"
               name="escola"
-              placeholder="Nome da escola"
-              type="text"
               required
-            />
+            >
+              <option
+                disabled
+                value=""
+              >
+                Selecione a escola
+              </option>
+              <option
+                v-for="school in schools"
+                :value="school.id"
+              >
+                {{ school.name }}
+              </option>
+            </select>
+
             <input
               v-model="numInt"
               class="input-background"
@@ -107,6 +119,7 @@
 
 <script>
 import { useUsersStore } from "@/stores/users";
+import { useSchoolsStore } from "@/stores/schools"
 
 export default {
   data() {
@@ -120,8 +133,14 @@ export default {
       numInt: '',
       curso: '',
       anoCur: '',
-      passwordNotMatch: false
+      schools: [],
     }
+  },
+  async created() {
+    const schoolsStore = useSchoolsStore();
+    const school = await schoolsStore.getSchools();
+    this.schools = school
+    console.log(this.schools);
   },
   methods: {
   async addUser() {
@@ -139,19 +158,19 @@ export default {
         name: this.primNome + ' ' + this.ultNome,
         email: this.email,
         password: this.password,
-        escola: this.escola,
-        numInt: this.numInt,
-        curso: this.curso,
-        anoCur: this.anoCur
+        schoolID: this.escola,
+        internalId: this.numInt,
+        course: this.curso,
+        year: this.anoCur
       };
-      usersStore.addUser(newUser)
+      usersStore.createNewUser(newUser)
 
       this.$bvToast.toast("Utilizador adicionado com sucesso!", {
         title: "Utilizador criado!",
         variant: "success",
         solid: true,
       });
-    }
+    },
   },
 };
 
@@ -237,6 +256,12 @@ $fifth: #ffffff;
   background-repeat: no-repeat;
   padding-left: 30px;
   background-size: 25px;
+}
+select.input-background {
+    border-radius: 5px;
+    margin-top: 25px;
+    height: 40px;
+    
 }
 
 #primNome {
