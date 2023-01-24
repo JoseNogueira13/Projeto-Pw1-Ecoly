@@ -1,12 +1,22 @@
 <template>
   <div class="mt-4">
-    <div v-for="badge in badges" :key="badge.id" class="row text-center py-2 mr-5">
+    <div
+      v-for="badge in badges"
+      :key="badge.id"
+      class="row text-center py-2 mr-5"
+      @click="changeHighlightBadge(badge.id)"
+      style="cursor: pointer"
+    >
       <div class="col-2">
         <img :src="badge.src" alt="Badge Image" class="img-fluid badge-icon ml-3" />
       </div>
       <div class="col-10">
-        <h5 class="text-left badge-title">{{ badge.title }}</h5>
-        <p class="text-left badge-description">{{ badge.description }}</p>
+        <h5 class="text-left badge-title">
+          {{ badge.title }}
+        </h5>
+        <p class="text-left badge-description">
+          {{ badge.description }}
+        </p>
       </div>
     </div>
   </div>
@@ -22,6 +32,12 @@ export default {
       required: true,
     },
   },
+
+  methods: {
+    changeHighlightBadge(id) {
+      this.$emit("changeHighlightBadge", id);
+    },
+  },
 };
 </script>
 
@@ -33,6 +49,7 @@ $fourth-color: #ffffff;
 $fifth-color: #18516f;
 $sixth-color: #000;
 $seventh-color: #c3fecb;
+$eight-color: #57b894;
 
 .badge-icon {
   width: 60px;

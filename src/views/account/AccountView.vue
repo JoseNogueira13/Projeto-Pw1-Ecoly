@@ -87,7 +87,10 @@ import LockedBadges from "@/components/account/LockedBadges.vue";
           <!-- Edit Profile Button -->
           <div class="row">
             <div class="col-12 text-right">
-              <button class="btn edit-profile-btn px-4 py-0 mt-2">
+              <button
+                class="btn edit-profile-btn px-4 py-0 mt-2"
+                v-if="$route.params.id === 'me'"
+              >
                 Editar Perfil
               </button>
             </div>
@@ -129,7 +132,10 @@ import LockedBadges from "@/components/account/LockedBadges.vue";
           style="margin-left: -13px"
         >
           <h2 class="badges-section-title">Conquistas desbloqueadas</h2>
-          <UnlockedBadges :badges="unlockedBadges" />
+          <UnlockedBadges
+            :badges="unlockedBadges"
+            @changeHighlightBadge="changeHighlightBadge"
+          />
         </section>
       </div>
       <div class="col-lg-6">
@@ -174,6 +180,14 @@ export default {
       // convert role to lowercase and capitalize first letter
       return role.charAt(0).toUpperCase() + role.slice(1);
     },
+
+    async changeHighlightBadge(badgeID) {
+      const usersStore = useUsersStore();
+      await usersStore.updateHighlightedBadge(badgeID);
+      this.user.highlightedBadge = badgeID;
+      this.$forceUpdate();
+      this.$router.go();
+    },
   },
 
   async created() {
@@ -183,7 +197,7 @@ export default {
 
     // Manage user
     if (this.userID === "me") {
-      if (!usersStore.isUserLogged()) this.$router.push({ name: "Login" });
+      if (!usersStore.isUserLogged()) this.$router.push({ name: "Authenticate" });
 
       const loggedUser = await usersStore.getLoggedUser();
       this.userID = loggedUser.id;

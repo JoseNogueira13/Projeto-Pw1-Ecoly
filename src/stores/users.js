@@ -57,28 +57,6 @@ export const useUsersStore = defineStore("users", {
       return users.find((user) => user.id === this.loggedUserID);
     },
 
-    // Add user
-    async addUser(newUser) {
-      // name, password, email, school, internalId course, year
-      const users = await this.getUsers();
-      const userID = await this.getUserById(newUser.id);
-      const urlParam = newUser.name.replace(/\s/g, "").toLowerCase();
-      newUser.photo = `https://api.dicebear.com/5.x/personas/svg?seed=${urlParam}`;
-
-      if (newUser.id !== userID) {
-        users.push({
-          id: crypto.randomUUID(),
-          role: "unsigned",
-          badges: [],
-          highlightedBadge: null,
-          ...newUser,
-        });
-        setLocalStorage("users", users);
-        this.users = users;
-        return this.users;
-      }
-    },
-
     // Edit user data
     async editUser(id, newData) {
       const users = await this.getUsers();
@@ -154,8 +132,17 @@ export const useUsersStore = defineStore("users", {
       // check if user already exists
       if (users.find((user) => user.email === newUser.email)) return false;
 
+      const urlParam = newUser.name.replace(/\s/g, "").toLowerCase();
+
       // create new user
-      users.push({ id: crypto.randomUUID(), ...newUser });
+      users.push({
+        id: crypto.randomUUID(),
+        role: "unsigned",
+        badges: [],
+        highlightedBadge: null,
+        photo: `https://api.dicebear.com/5.x/personas/svg?seed=${urlParam}`,
+        ...newUser,
+      });
 
       this.users = users;
       setLocalStorage("users", this.users);
