@@ -132,7 +132,10 @@ import LockedBadges from "@/components/account/LockedBadges.vue";
           style="margin-left: -13px"
         >
           <h2 class="badges-section-title">Conquistas desbloqueadas</h2>
-          <UnlockedBadges :badges="unlockedBadges" />
+          <UnlockedBadges
+            :badges="unlockedBadges"
+            @changeHighlightBadge="changeHighlightBadge"
+          />
         </section>
       </div>
       <div class="col-lg-6">
@@ -176,6 +179,14 @@ export default {
 
       // convert role to lowercase and capitalize first letter
       return role.charAt(0).toUpperCase() + role.slice(1);
+    },
+
+    async changeHighlightBadge(badgeID) {
+      const usersStore = useUsersStore();
+      await usersStore.updateHighlightedBadge(badgeID);
+      this.user.highlightedBadge = badgeID;
+      this.$forceUpdate();
+      this.$router.go();
     },
   },
 
