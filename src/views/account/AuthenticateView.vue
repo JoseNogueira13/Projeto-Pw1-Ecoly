@@ -5,7 +5,7 @@
 <template>
 
   <div class="row">
-    <div class="col-6">
+    <div class="info col-6">
         <div class="home-button">
           <router-link to="/">
             <b-button class="btn-authenticate-home">Home</b-button>
@@ -23,7 +23,7 @@
         />
     </div>
       
-    <div class="col-6">
+    <div class="form col-6">
       <RegisterForm
       v-if="showRegisterForm"
         @switch-form="switchForm"
@@ -48,8 +48,8 @@ export default {
   },
   data() {
     return {
-      showRegisterForm: true,
-      showLoginForm: false
+      showRegisterForm: false,
+      showLoginForm: true
     }
   },
   methods: {
@@ -74,7 +74,6 @@ $fifth: #ffffff;
   top: 20px;
   left: 50px;
 }
-
 
 .btn-authenticate-home {
   font-family: "Panton", sans-serif;
@@ -111,6 +110,14 @@ $fifth: #ffffff;
   width: 900px;
   height: 900px;
 }
+.info {
+  overflow-y: hidden; 
+  overflow-x: hidden; 
+}
 
+.form {
+  overflow-y: hidden; 
+  overflow-x: hidden; 
+}
 
 </style>
