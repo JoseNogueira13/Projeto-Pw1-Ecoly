@@ -42,3 +42,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+  .img-fluid{
+    border-radius: 9px;
+    height: 150px;
+    width: 250px;
+  }
+</style>

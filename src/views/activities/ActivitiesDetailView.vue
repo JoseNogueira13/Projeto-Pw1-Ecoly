@@ -7,6 +7,7 @@ import Sidebar from "@/components/Sidebar.vue";
     <div class="center">
         <div class="activity-detail">
         <h2 class="activity-Title">{{ activityDetails.title }}</h2>
+        <span>{{ activityDetails.status }}</span>
         <h4>Diagnóstico</h4>
         <p>{{ activityDetails.diagnostic }}</p>
         <h4>Objetivos</h4>

@@ -61,10 +61,13 @@ export default {
   },
 
   created() {
-    const activitiesStore = useActivitiesStore();
-    activitiesStore.getActivities().then((activities) => {
-      this.activities = activities.slice(0, 3);
-    });
+      const activitiesStore = useActivitiesStore();
+      activitiesStore.getActivities().then((activities) => {
+        this.activities = activities.filter((activity) => {
+          return activity.status === "unfinished";
+        });
+        this.activities = this.activities.slice(0, 3);
+      });
   },
 };
 </script>

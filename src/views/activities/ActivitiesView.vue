@@ -177,9 +177,11 @@ export default {
       usersStore.getLoggedUser().then((user) => {
         schoolsStore.getSchoolById(user.schoolID).then((school) => {
           activitiesStore.getActivities().then((activities) => {
-            this.activities = activities.filter(
-              (activity) => activity.status === "unfinished"
-            );
+            this.activities = activities
+              .filter((activity) => activity.status === "unfinished")
+              .sort((a, b) => {
+                new Date(a.initialDate) - new Date(b.initialDate);
+              });
             this.activities = this.activities.filter(
               (activity) => activity.schoolID === school.id
             );
@@ -190,15 +192,17 @@ export default {
       });
     } else {
       activitiesStore.getActivities().then((activities) => {
-        this.activities = activities.filter(
-          (activity) => activity.status === "unfinished"
-        );
+        this.activities = activities
+          .filter((activity) => activity.status === "unfinished")
+          .sort((a, b) => {
+            new Date(a.initialDate) - new Date(b.initialDate);
+            console.log("Activities after sorting: ", activities);
+          });
         this.totalNumberOfActivities = this.activities.length;
         this.activities = this.activities.slice(0, this.numberOfActivities);
       });
     }
   },
-
   methods: {
     // to remove an activity from the list
     removeActivity(id) {
@@ -258,17 +262,16 @@ export default {
           activity.initialDate === this.initialDate &&
           activity.finalDate === this.finalDate
       );
-      // console.log(activity.id);
-      //finish activity and add the report
+      // finish activity
       activitiesStore.finishActivity(activity.id).then(() => {
+        // add report
         activitiesStore.addReport(activity.id, {
           description: this.reportDescription,
           images: this.reportImgs,
         });
       });
+      console.log(activity);
       this.$bvModal.hide("finish-activity-modal");
-      this.reportImgs = [];
-      this.reportDescription = "";
     },
   },
 };

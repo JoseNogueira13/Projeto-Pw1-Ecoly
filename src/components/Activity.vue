@@ -25,12 +25,9 @@
           @click="openModal(activity.initialDate, activity.finalDate)"
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
-            //show the button only the after final date of the activity
-            display:
-              activity.finalDate > new Date().toISOString().split('T')[0]
-                ? 'block'
-                : 'none',
-          }"
+            //show the button only if the final date is less than the current date
+            display: activity.finalDate < new Date().toISOString().split('T')[0] ? 'block' : 'none',
+}"
         >
           <img
             src="@/assets/icons/finish.svg"
