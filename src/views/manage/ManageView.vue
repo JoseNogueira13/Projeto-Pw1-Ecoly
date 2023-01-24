@@ -38,6 +38,10 @@ export default {
   async created() {
     const usersStore = useUsersStore();
     if (!usersStore.isUserLogged()) this.$router.push({ name: "Authenticate" });
+
+    const userLogged = await usersStore.getLoggedUser();
+
+    if (userLogged.role === "unsigned") this.$router.push({ name: "Home" });
   },
 };
 </script>
