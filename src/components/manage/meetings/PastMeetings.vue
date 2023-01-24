@@ -91,12 +91,14 @@
 
 <script>
 import { useMeetingsStore } from "@/stores/meetings";
+import { useUsersStore } from "@/stores/users";
 export default {
   name: "PastMeetings",
 
   data() {
     return {
       meetingsStore: useMeetingsStore(),
+      usersStore: useUsersStore(),
       meetings: [],
       currMeeting: { id: "", date: "", ata: { images: [], description: "" } },
       currImgs: [],
@@ -155,6 +157,9 @@ export default {
         images: this.currImgs,
         description: this.currDescription,
       });
+
+      await this.usersStore.unlockBadge("4");
+      await this.usersStore.addSeeds("1");
 
       setTimeout(() => {
         this.$bvToast.toast("Ata adicionada com sucesso...", {

@@ -74,12 +74,15 @@ export default {
   },
 
   methods: {
-    sendMsg() {
+    async sendMsg() {
       this.$bvToast.toast(`Enviando mensagem para os membros do conselho...`, {
         title: "Enviando",
         variant: "info",
         solid: true,
       });
+
+      await this.usersStore.unlockBadge("5");
+      await this.usersStore.addSeeds("1");
 
       setTimeout(() => {
         this.$bvToast.toast(`Mensagem enviada com sucesso`, {

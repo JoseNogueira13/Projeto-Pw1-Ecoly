@@ -116,6 +116,7 @@ export default {
 
       // Unlock badge (create 1 new)
       await usersStore.unlockBadge("6");
+      await usersStore.addSeeds("2");
 
       // Redirect to news List
       newsStore.addNew(newNew).then(() => {
