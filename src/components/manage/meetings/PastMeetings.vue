@@ -57,7 +57,7 @@
         <img
           v-for="(image, index) in currImgs"
           :key="index"
-          :src="image"
+          :src="image.includes('./data/images') ? '../' + image : image"
           class="img-fluid modal-img modal-add-img mx-2 rounded my-2"
           alt="Imagem da ata da reunião"
           @click="removeImage(index)"
