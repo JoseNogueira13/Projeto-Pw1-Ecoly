@@ -54,6 +54,8 @@ export default {
   },
 
   async created() {
+    window.scrollTo(0, 0);
+
     // new id from the url
     const id = this.$route.params.id;
 

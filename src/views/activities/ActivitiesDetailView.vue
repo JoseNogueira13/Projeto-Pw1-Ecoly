@@ -232,8 +232,9 @@ export default {
     };
   },
 
-  // when the component his created
   async created() {
+    window.scrollTo(0, 0);
+
     const themesStore = useThemesStore();
     const usersStore = useUsersStore();
 
@@ -567,8 +568,6 @@ $sixth-color: #7d8584;
   grid-template-rows: 1fr;
   margin-left: 11.5%;
   width: 82%;
-
-  // remove  scrollbar
   overflow-x: hidden;
   overflow-y: hidden;
 }
