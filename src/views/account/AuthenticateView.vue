@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-
+  
     <div class="home-button">
       <router-link to="/">
         <b-button class="btn-authenticate-home">Home</b-button>
@@ -91,7 +91,11 @@ $fifth: #ffffff;
 }
 
 .form {
-  overflow-y: hidden;
-  overflow-x: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
+
 </style>

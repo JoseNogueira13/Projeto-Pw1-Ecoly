@@ -225,8 +225,9 @@ $seventh-color: #57b894;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 30%);
+  transform: translate(-50%, -50%);
   width: 400px;
+  padding-bottom: 50px;
 }
 .register-form > h2 {
   font-family: "Panton", sans-serif;
@@ -322,5 +323,16 @@ $seventh-color: #57b894;
   border-color: $seventh-color;
   border-left: none;
   border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .register-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    width: 400px;
+    padding-bottom: 50px;
+  }
 }
 </style>
