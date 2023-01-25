@@ -97,7 +97,6 @@ $fifth: #ffffff;
 .info {
   overflow-y: hidden;
   overflow-x: hidden;
-  background: url("@/assets/images/Register_illustration.png") no-repeat;
   background-size: cover;
   background-position: center;
   position: relative;

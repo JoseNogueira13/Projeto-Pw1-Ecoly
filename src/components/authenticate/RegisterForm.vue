@@ -1,6 +1,7 @@
 <template>
-  <h2>CRIE A SUA CONTA E TORNE-SE NUM MEMBRO</h2>
+
   <form class="register-form" @submit.prevent="addUser">
+    <h2>CRIE A SUA CONTA E TORNE-SE NUM MEMBRO</h2>
     <!-- Input  first name-->
     <b-input-group class="mt-4">
       <template #prepend>
@@ -219,19 +220,16 @@ $fifth-color: #18516f;
 $sixth-color: #000;
 $seventh-color: #57b894;
 
-h2 {
-  position: absolute;
-  font-size: 1.3em;
-  width: 500px;
-  right: 275px;
-  top: 120px;
-}
 
 .register-form {
   position: absolute;
-  margin-top: 100px;
-  margin-right: 150px;
-  margin-left: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  width: 400px;
+}
+.register-form > h2 {
+  font-family: "Panton", sans-serif;
 }
 
 .authenticate-user-btn {

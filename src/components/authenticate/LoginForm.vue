@@ -84,6 +84,9 @@ $seventh-color: #57b894;
   transform: translate(-50%, -50%);
   width: 400px;
 }
+.login-form > h2 {
+  font-family: "Panton", sans-serif;;
+}
 
 .login-form > input {
   border-radius: 10px;
