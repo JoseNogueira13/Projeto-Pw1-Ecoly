@@ -225,7 +225,7 @@ $seventh-color: #57b894;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 40%);
+  transform: translate(-50%, 30%);
   width: 400px;
 }
 .register-form > h2 {

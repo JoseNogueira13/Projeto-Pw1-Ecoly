@@ -1,30 +1,19 @@
 <script setup></script>
 
 <template>
-  <div class="row">
-    <div class="info col-6">
-      <div class="home-button">
-        <router-link to="/">
-          <b-button class="btn-authenticate-home">Home</b-button>
-        </router-link>
-      </div>
 
-      <div class="logo-slogan-container">
-        <img
-          src="@/assets/logo/logo_exp_dark.png"
-          class="authenticate-logo"
-          alt="Logo"
-        />
-        <h2 class="authenticate-slogan">PLANTA O TEU FUTURO</h2>
-      </div>
+    <div class="home-button">
+      <router-link to="/">
+        <b-button class="btn-authenticate-home">Home</b-button>
+      </router-link>
     </div>
 
-    <div class="form col-6">
+    <div class="form">
       <RegisterForm v-if="showRegisterForm" @switch-form="switchForm" />
 
       <LoginForm v-else @switch-form="switchForm" />
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -97,8 +86,6 @@ $fifth: #ffffff;
 .info {
   overflow-y: hidden;
   overflow-x: hidden;
-  background-size: cover;
-  background-position: center;
   position: relative;
   height: 100vh;
 }

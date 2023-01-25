@@ -85,7 +85,7 @@ $seventh-color: #57b894;
   width: 400px;
 }
 .login-form > h2 {
-  font-family: "Panton", sans-serif;;
+  font-family: "Panton", sans-serif;
 }
 
 .login-form > input {
