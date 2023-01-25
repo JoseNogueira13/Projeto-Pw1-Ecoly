@@ -223,7 +223,7 @@ export const useUsersStore = defineStore("users", {
       };
 
       totalSeedsData.push(newSeedData);
-      setLocalStorage("seeds", seeds);
+      setLocalStorage("seeds", totalSeedsData);
     },
 
     // increase meetings created
