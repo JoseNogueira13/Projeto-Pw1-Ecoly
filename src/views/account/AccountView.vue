@@ -182,6 +182,8 @@ export default {
     },
 
     async changeHighlightBadge(badgeID) {
+      if (this.$route.params.id !== "me") return;
+
       const usersStore = useUsersStore();
       await usersStore.updateHighlightedBadge(badgeID);
       this.user.highlightedBadge = badgeID;
