@@ -1,65 +1,43 @@
 <script setup></script>
 
-<!-- TODO: Make the Login and Register Components to be displayed here -->
-
 <template>
-
-  <div class="row">
-    <div class="info col-6">
-        <div class="home-button">
-          <router-link to="/">
-            <b-button class="btn-authenticate-home">Home</b-button>
-          </router-link>
-        </div>
-        
-        <div class="logo-slogan-container">
-          <img src="@/assets/logo/logo_exp_dark.png" class="authenticate-logo" alt="Logo" />
-          <h2 class="authenticate-slogan">PLANTA O TEU FUTURO</h2>
-        </div>
-        <img
-          src="@/assets/images/Register_illustration.png"
-          class="authenticate-image"
-          alt="Ilustração"
-        />
+  
+    <div class="home-button">
+      <router-link to="/">
+        <b-button class="btn-authenticate-home">Home</b-button>
+      </router-link>
     </div>
-      
-    <div class="form col-6">
-      <RegisterForm
-      v-if="showRegisterForm"
-        @switch-form="switchForm"
-      />
 
-      <LoginForm
-        v-if="showLoginForm"
-        @switch-form="switchForm"
-      />
+    <div class="form">
+      <RegisterForm v-if="showRegisterForm" @switch-form="switchForm" />
+
+      <LoginForm v-else @switch-form="switchForm" />
     </div>
-  </div>
+
 </template>
 
 <script>
-import RegisterForm from '@/components/authenticate/RegisterForm.vue'
-import LoginForm from '@/components/authenticate/LoginForm.vue';
+import RegisterForm from "@/components/authenticate/RegisterForm.vue";
+import LoginForm from "@/components/authenticate/LoginForm.vue";
 
 export default {
-  components: { 
+  components: {
     RegisterForm,
-    LoginForm
+    LoginForm,
   },
   data() {
     return {
       showRegisterForm: false,
-      showLoginForm: true
-    }
+      showLoginForm: true,
+    };
   },
   methods: {
     switchForm() {
-      this.showRegisterForm = !this.showRegisterForm
-      this.showLoginForm = !this.showLoginForm
-    }
-  }
+      this.showRegisterForm = !this.showRegisterForm;
+      this.showLoginForm = !this.showLoginForm;
+    },
+  },
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -105,19 +83,19 @@ $fifth: #ffffff;
   font-family: "Panton", sans-serif;
 }
 
-.authenticate-image {
-  bottom: 0px;
-  width: 900px;
-  height: 900px;
-}
 .info {
-  overflow-y: hidden; 
-  overflow-x: hidden; 
+  overflow-y: hidden;
+  overflow-x: hidden;
+  position: relative;
+  height: 100vh;
 }
 
 .form {
-  overflow-y: hidden; 
-  overflow-x: hidden; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
 
 </style>

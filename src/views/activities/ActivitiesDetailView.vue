@@ -4,39 +4,38 @@ import Sidebar from "@/components/Sidebar.vue";
 
 <template>
   <Sidebar route="activities" />
-  <div class="images-section">
-    <div class="background">
-      <div class="main text-center p-3 px-5">
-        <div class="img-slider row">
-          <div class="row justify-content-center align-items-center">
-            <img
-              v-for="(image, index) in activityDetails.images"
-              :key="index"
-              :src="image.includes('./data/images') ? '/' + image : image"
-              class="addActivityImg img-fluid my-3 mx-3 rounded-lg shadow ml-4"
-              alt="Imagem da Atividade"
-            />
-          </div>
-        </div>
+  <!-- Images -->
+  <div class="row" style="max-width: 95%">
+    <div class="col-12">
+      <div class="main text-left p-3 px-5">
+        <img
+          v-for="(image, index) in activityDetails.images"
+          :key="index"
+          :src="image.includes('./data/images') ? '/' + image : image"
+          class="img-fluid my-3 mx-3 rounded-lg shadow ml-4"
+          alt="Imagem da Atividade"
+          style="width: 300px; height: 200px; object-fit: cover"
+        />
       </div>
     </div>
   </div>
 
+  <!-- Header -->
   <div class="header-activity">
     <b-form-rating
-      id="rating-inline"
-      class="rating-stars float-right"
+      class="complexity-info float-right mt-3"
       inline
-      value="0"
+      :value="activityDetails.complexity"
+      :readonly="true"
     ></b-form-rating>
     <div class="title">
       {{ activityDetails.title }}
     </div>
-    <div class="position-buttons my-5">
+    <div class="position-buttons my-5 mr-4">
       <div class="buttons-section d-flex float-right my-5">
         <button
           type="button"
-          class="remove-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-1"
+          class="btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-1 remove-btn"
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
           }"
@@ -53,7 +52,7 @@ import Sidebar from "@/components/Sidebar.vue";
         </button>
         <button
           type="button"
-          class="finish-btn btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2"
+          class="btn btn-sm rounded-pill float-right py-1 px-2 mt-2 mr-2 finish-btn"
           @click="openModal(activityDetails.initialDate, activityDetails.finalDate)"
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
@@ -62,7 +61,7 @@ import Sidebar from "@/components/Sidebar.vue";
               formatDate(activityDetails.finalDate) <
               new Date().toISOString().split('T')[0]
                 ? 'block'
-                : 'none',
+                : 'd-none',
           }"
         >
           <img
@@ -95,69 +94,60 @@ import Sidebar from "@/components/Sidebar.vue";
     <div class="line-divider"></div>
   </div>
 
-  <div class="main-section">
-    <div class="illustration-background">
-      <img
-        src="@/assets/images/activityDetail-ilustration.svg"
-        alt="ilustração do detalhe da atividade"
-        class="illustration-background-img"
-      />
-    </div>
-    <div class="rectangle-hide"></div>
-    <div class="Activity-detail">
-      <div class="left-side-father">
-        <div class="left-side">
-          <div class="diagnostic">
-            <div class="headings-details diagnostic-heading">Diagnóstico</div>
-            <div class="contents-details diagnostic-content">
-              {{ activityDetails.diagnostic }}
-            </div>
-          </div>
-          <div class="resources">
-            <div class="headings-details resources-heading">Recursos</div>
-            <div class="contents-details resources-content">
-              {{ activityDetails.resources }}
-            </div>
-          </div>
-          <div class="evaluationIndicator">
-            <div class="headings-details evaluationIndicator-heading">
-              Indicadores de avaliação
-            </div>
-            <div class="contents-details evaluationIndicator-content">
-              {{ activityDetails.evaluationIndicator }}
-            </div>
-          </div>
-        </div>
+  <!-- Activity Details -->
+  <div class="activity-details">
+    <div class="first pr-5 mr-4">
+      <div class="row mt-4 detail-info" style="height: 80px"></div>
+      <div class="row mt-5 detail-info" style="max-height: 240px">
+        <h2 class="d-flex justify-content-end w-100 text-right">Diagnóstico</h2>
+        <p class="py-2 d-flex justify-content-end w-100 text-right">
+          {{ activityDetails.diagnostic }}
+        </p>
       </div>
-      <div class="right-side-father">
-        <div class="right-side float-right d-flex flex-column">
-          <div class="objective">
-            <div class="headings-details objective-heading">Objetivos</div>
-            <div class="contents-details objective-content">
-              {{ activityDetails.objective }}
-            </div>
-          </div>
-          <div class="meta">
-            <div class="headings-details meta-heading">Metas</div>
-            <div class="contents-details meta-content">
-              {{ activityDetails.meta }}
-            </div>
-          </div>
-          <div class="participants">
-            <div class="headings-details participants-heading">Participantes</div>
-            <div class="contents-details participants-content">
-              {{ activityDetails.participants }}
-            </div>
-          </div>
-          <div class="evaluationMethod">
-            <div class="headings-details evaluationMethod-heading">
-              Instrumentos de avaliação
-            </div>
-            <div class="contents-details evaluationMethod-content">
-              {{ activityDetails.evaluationMethod }}
-            </div>
-          </div>
-        </div>
+      <div class="row mt-4 detail-info" style="height: 80px"></div>
+      <div class="row mt-5 detail-info" style="max-height: 240px">
+        <h2 class="d-flex justify-content-end w-100 text-right">Recursos</h2>
+        <p class="py-2 d-flex justify-content-end w-100 text-right">
+          {{ activityDetails.resources }}
+        </p>
+      </div>
+      <div class="row mt-4 detail-info" style="height: 80px"></div>
+      <div class="row mt-5 detail-info" style="max-height: 240px">
+        <h2 class="d-flex justify-content-end w-100 text-right">
+          Indicadores de avaliação
+        </h2>
+        <p class="py-2 d-flex justify-content-end w-100 text-right">
+          {{ activityDetails.evaluationIndicator }}
+        </p>
+      </div>
+      <div class="row mt-4 detail-info" style="height: 80px"></div>
+    </div>
+    <div class="second"></div>
+    <div class="third">
+      <div class="row mt-4 detail-info" style="max-height: 240px">
+        <h2 class="w-100">Objetivos</h2>
+        <p class="py-2 text-left">
+          {{ activityDetails.objective }}
+        </p>
+      </div>
+      <div class="row mt-4 detail-info" style="height: 80px"></div>
+      <div class="row mt-4 detail-info" style="max-height: 240px">
+        <h2 class="w-100">Metas</h2>
+        <p class="py-2 text-left">
+          {{ activityDetails.meta }}
+        </p>
+      </div>
+      <div class="row mt-4 detail-info" style="height: 100px"></div>
+      <div class="row mt-4 detail-info" style="max-height: 240px">
+        <h2 class="w-100">Participantes</h2>
+        <p class="py-2 text-left">
+          {{ activityDetails.participants }}
+        </p>
+      </div>
+      <div class="row mt-4 detail-info" style="height: 100px"></div>
+      <div class="row mt-4 detail-info" style="max-height: 240px">
+        <h2 class="w-100">Instrumentos de avaliação</h2>
+        <p class="py-2 text-left">{{ activityDetails.evaluationMethod }}</p>
       </div>
     </div>
   </div>
@@ -242,8 +232,9 @@ export default {
     };
   },
 
-  // when the component his created
   async created() {
+    window.scrollTo(0, 0);
+
     const themesStore = useThemesStore();
     const usersStore = useUsersStore();
 
@@ -331,7 +322,7 @@ export default {
       this.$router.push({ name: "Activities" });
     },
 
-   removeActivity(id) {
+    removeActivity(id) {
       const activitiesStore = useActivitiesStore();
       activitiesStore.removeActivity(id);
       this.activities = this.activities.filter((activity) => activity.id !== id);
@@ -339,16 +330,14 @@ export default {
       if (this.numberOfActivities > this.totalNumberOfActivities) {
         this.numberOfActivities = this.totalNumberOfActivities;
       }
-      this.activities = this.activities.slice(0, this.numberOfActivities);      
+      this.activities = this.activities.slice(0, this.numberOfActivities);
       this.$router.push({ name: "Activities" });
-
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// variables colors
 $primary-color: #343e3d;
 $secondary-color: #aedcc0;
 $third-color: #ffffff;
@@ -356,36 +345,8 @@ $fourth-color: #e4f0e8;
 $fifth-color: #3fc380;
 $sixth-color: #7d8584;
 
-.center {
-  display: flex;
-  justify-content: center;
-}
-
-.activity-detail {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1.5em;
-}
-
-.background {
-  background-color: $fourth-color;
-  height: 300px;
-}
-
-.addActivityImg {
-  width: 340px;
-  height: 200px;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-  }
-}
-
 .title {
   color: $primary-color;
-  //alkes family font
   font-family: "Alkes", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -491,15 +452,6 @@ $sixth-color: #7d8584;
   padding-top: 0.8em;
   gap: 0.3em;
 }
-.rating-stars {
-  display: flex;
-  justify-content: center;
-  gap: 0.1em;
-  padding-top: 0.5em;
-  border: none;
-  font-size: 1.4em;
-  padding-right: 4em;
-}
 
 .position-buttons {
   padding-right: 5em;
@@ -544,16 +496,9 @@ $sixth-color: #7d8584;
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
-    border: none;
-    opacity: 1;
+    border: 1px solid red;
+    opacity: 0.6;
   }
-}
-
-.modal-new-img:hover {
-  border: 1px solid red;
-  opacity: 0.6;
-  cursor: pointer;
-  transform: scale(1.05);
 }
 
 .add-report-description {
@@ -610,62 +555,101 @@ $sixth-color: #7d8584;
   color: $primary-color;
 }
 
-.illustration-background {
-  padding-left: 4.3em;
+.complexity-info {
+  margin-right: 120px;
+  border: none;
+  scale: 1.2;
 }
 
-.illustration-background-img {
-  position: relative;
-  top: -4em;
+.activity-details {
+  padding-top: 2em;
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr 1fr;
+  grid-template-rows: 1fr;
+  margin-left: 11.5%;
+  width: 82%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-.headings-details {
-  font-family: "Panton", sans-serif;
-  font-weight: bold;
-  font-size: 26.25px;
+.second {
+  background: url("@/assets/images/activityDetail-illustration.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 1300px;
+  animation: slideFromBottom 0.5s ease-in-out;
 }
 
-.contents-details {
-  font-family: "Panton", sans-serif;
-  font-weight: 400;
-  font-size: 18.5px;
-  letter-spacing: 0.05em;
-  line-height: 28px;
+.detail-info {
+  h2 {
+    font-family: "Panton", sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    color: $primary-color;
+  }
+
+  p {
+    font-family: "Panton", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: $primary-color;
+  }
 }
 
-.Activity-detail {
-  margin-top: -60em;
+.first {
+  animation: slideFromLeft 0.8s ease-in-out;
 }
 
-.rectangle-hide {
-  background-color: $secondary-color;
-  height: 100px;
-  width: 100%;
-  margin-top: -4em;
+.third {
+  animation: slideFromRight 0.8s ease-in-out;
 }
 
-.right-side {
-  display: flex;
-  gap: 6.5em;
-  margin-top: -41em;
-  width: 30%;
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
-.right-side-father {
-  margin-right: 17em;
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
-.left-side-father {
-  margin-left: 22em;
-  width: 20%;
+@keyframes slideFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
-.left-side {
-  display: flex;
-  flex-direction: column;
-  gap: 6.5em;
-  width: 85%;
-  position: relative;
-  top: -3em;
+@media (max-width: 1620px) {
+  .activity-details {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+}
+
+@media (max-width: 920px) {
+  .activity-details {
+    .second {
+      display: none;
+    }
+
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 2em;
+    width: 70%;
+    margin: 0 auto;
+  }
 }
 </style>

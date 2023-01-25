@@ -57,7 +57,7 @@
         <img
           v-for="(image, index) in currImgs"
           :key="index"
-          :src="image"
+          :src="image.includes('./data/images') ? '../' + image : image"
           class="img-fluid modal-img modal-add-img mx-2 rounded my-2"
           alt="Imagem da ata da reunião"
           @click="removeImage(index)"
@@ -132,14 +132,18 @@ export default {
     },
 
     addNewImage() {
-      //TODO: Instead of generating random images,
-      // allow the user to upload images from their computer
-
-      // Generate random image
-      const firstN = Math.floor(Math.random() * 400) + 100;
-      const secondN = Math.floor(Math.random() * 400) + 100;
-
-      this.currImgs.push(`https://picsum.photos/${firstN}/${secondN}`);
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.currImgs.push(reader.result);
+        };
+      };
+      input.click();
     },
 
     removeImage(index) {

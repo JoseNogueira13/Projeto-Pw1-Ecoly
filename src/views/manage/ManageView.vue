@@ -36,6 +36,8 @@ export default {
   },
 
   async created() {
+    window.scrollTo(0, 0);
+
     const usersStore = useUsersStore();
     if (!usersStore.isUserLogged()) this.$router.push({ name: "Authenticate" });
 
