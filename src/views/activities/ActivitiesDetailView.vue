@@ -567,6 +567,10 @@ $sixth-color: #7d8584;
   grid-template-rows: 1fr;
   margin-left: 11.5%;
   width: 82%;
+
+  // remove  scrollbar
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .second {
@@ -575,6 +579,7 @@ $sixth-color: #7d8584;
   background-size: cover;
   background-position: center;
   height: 1300px;
+  animation: slideFromBottom 0.5s ease-in-out;
 }
 
 .detail-info {
@@ -590,6 +595,41 @@ $sixth-color: #7d8584;
     font-weight: 600;
     font-size: 20px;
     color: $primary-color;
+  }
+}
+
+.first {
+  animation: slideFromLeft 0.8s ease-in-out;
+}
+
+.third {
+  animation: slideFromRight 0.8s ease-in-out;
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
