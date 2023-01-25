@@ -180,9 +180,20 @@ export default {
   },
   methods: {
     async addUser() {
+
+       // check if the passwords match
       if (this.password !== this.confPass) {
         this.$bvToast.toast("A palavra passe e a sua confirmação não coincidem!", {
           title: "Palavras passe não coincidem",
+          variant: "danger",
+          solid: true,
+        });
+        return;
+      }
+        // check if any of the inputs is empty
+      if(this.primNome === "" || this.ultNome === "" || this.email === "" || this.password === "" || this.confPass === "" || this.escola === "" || this.numInt === "" || this.curso === "" || this.anoCur === "") {
+        this.$bvToast.toast("Por favor, preencha todos os campos!", {
+          title: "Campos vazios",
           variant: "danger",
           solid: true,
         });
@@ -199,6 +210,7 @@ export default {
         course: this.curso,
         year: this.anoCur,
       };
+      
       usersStore.createNewUser(newUser);
 
       this.$bvToast.toast("Utilizador adicionado com sucesso!", {
