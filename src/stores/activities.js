@@ -38,7 +38,8 @@ export const useActivitiesStore = defineStore("activities", {
       const activities = await this.getActivities();
       activities.push({
         id: crypto.randomUUID(),
-        date: Date.now(),
+        report: {},
+        status: "unfinished",
         ...newActivity,
       });
       setLocalStorage("activities", activities);
@@ -74,7 +75,6 @@ export const useActivitiesStore = defineStore("activities", {
       setLocalStorage("activities", activities);
     },
 
- 
     // Add a report
     async addReport(id, report) {
       const activities = await this.getActivities();

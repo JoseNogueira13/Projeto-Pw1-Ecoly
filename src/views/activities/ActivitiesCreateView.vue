@@ -8,6 +8,7 @@ import Sidebar from "@/components/Sidebar.vue";
   <div class="main text-center p-3 px-5">
     <Header title="ADICIONAR ATIVIDADE" />
     <main>
+      <!-- Images -->
       <div class="row justify-content-center align-items-center">
         <img
           v-for="(image, index) in activity_images"
@@ -27,151 +28,158 @@ import Sidebar from "@/components/Sidebar.vue";
         />
       </div>
 
-      <form class="w-50 mx-auto mt-5" @submit.prevent="addActivity">
-        <div class="form-inputs">
-          <div class="grid-layout-first">
-            <div class="title mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="activity_title"
-                aria-describedby="tituloAtividade"
+      <form @submit.prevent="createNewActivity">
+        <div class="row mt-5">
+          <!-- Left Column -->
+          <div class="col-lg-6 pl-lg-5 mt-5">
+            <!-- Title -->
+            <div class="form-group ml-lg-5 pl-lg-5">
+              <textarea
+                class="form-control w-75 mx-auto"
                 placeholder="Título"
-                v-model="activity_title"
+                maxlength="50"
                 required
-              />
+                v-model="title"
+              ></textarea>
             </div>
-            <div class="objective mb-3">
+            <!-- Objectives -->
+            <div class="form-group ml-lg-5 pl-lg-5">
               <textarea
-                type="text"
-                class="form-control"
-                id="activity_objective"
+                class="form-control w-75 mx-auto"
                 placeholder="Objetivos"
-                v-model="activity_objective"
+                maxlength="125"
                 required
+                v-model="objectives"
               ></textarea>
             </div>
-            <div class="meta mb-3">
+            <!-- Metas -->
+            <div class="form-group ml-lg-5 pl-lg-5">
               <textarea
-                type="text"
-                class="form-control"
-                id="activity_meta"
+                class="form-control w-75 mx-auto"
                 placeholder="Metas"
-                v-model="activity_meta"
+                maxlength="100"
                 required
+                v-model="metas"
               ></textarea>
             </div>
-            <div class="resources mb-3">
+            <!-- Recursos -->
+            <div class="form-group ml-lg-5 pl-lg-5">
               <textarea
-                type="text"
-                class="form-control"
-                id="activity_resources"
+                class="form-control w-75 mx-auto"
                 placeholder="Recursos"
-                v-model="activity_resources"
+                maxlength="75"
                 required
-              ></textarea>
-            </div>
-            <div class="diagnostic mb-3">
-              <textarea
-                type="text"
-                class="form-control"
-                id="activity_diagnostic"
-                placeholder="Diagnóstico"
-                v-model="activity_diagnostic"
-                required
-              ></textarea>
-            </div>
-            <div class="participants mb-3">
-              <textarea
-                type="text"
-                class="form-control"
-                id="activity_participants"
-                placeholder="Participantes"
-                v-model="activity_participants"
-                required
-              ></textarea>
-            </div>
-            <div class="evaluationIndicator mb-3">
-              <textarea
-                type="text"
-                class="form-control"
-                id="activity_evaluationIndicator"
-                placeholder="Indicadores de Avaliação"
-                v-model="activity_evaluationIndicator"
-                required
-              ></textarea>
-            </div>
-            <div class="evaluationMethod mb-3">
-              <textarea
-                type="text"
-                class="form-control"
-                id="activity_evaluationMethod"
-                placeholder="Instrumentos de Avaliação"
-                v-model="activity_evaluationMethod"
-                required
+                v-model="resources"
               ></textarea>
             </div>
           </div>
 
-          <div class="activity_theme mb-3">
-            <label for="activity_theme" class="label">Tema</label>
-            <select
-              class="form-control"
-              id="activity_theme"
-              v-model="activity_theme"
-              required
-            >
-              <option v-for="theme in themes" :value="theme.name">
-                {{ theme.name }}
-              </option>
-            </select>
-          </div>
-          <div class="date-section-select mb-3">
-            <div class="initial-date mb-3">
-              <div class="initial-date-label mb-3">
-                <label for="initialDate" class="label">Data de Início</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="activity_initialDate"
-                  placeholder="Data de Início"
-                  v-model="activity_initialDate"
-                  required
-                />
-              </div>
+          <!-- Right Column -->
+          <div class="col-lg-6 pr-lg-5 mt-lg-5">
+            <!-- Diagnostic -->
+            <div class="form-group mr-lg-5 pr-lg-5">
+              <textarea
+                class="form-control w-75 mx-auto"
+                placeholder="Diagnóstico"
+                maxlength="100"
+                required
+                v-model="diagnostic"
+              ></textarea>
             </div>
-            <div class="final-date mb-3">
-              <div class="final-date-label mb-3">
-                <label for="finalDate" class="label">Data Fim</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="activity_finalDate"
-                  placeholder="Data Fim"
-                  v-model="activity_finalDate"
-                  required
-                />
-              </div>
+            <!-- Participants -->
+            <div class="form-group mr-lg-5 pr-lg-5">
+              <textarea
+                class="form-control w-75 mx-auto"
+                placeholder="Participantes"
+                maxlength="75"
+                required
+                v-model="participants"
+              ></textarea>
             </div>
-            <div class="complexity-section">
-              <label for="complexity" class="label">Complexidade</label>
-              <b-form-rating
-                id="rating-inline"
-                class="rating-stars float-right"
-                inline
-                v-model="activity_complexity"
-                :value="{ activity_complexity }"
-              ></b-form-rating>
+            <!-- Evaluation Indicators -->
+            <div class="form-group mr-lg-5 pr-lg-5">
+              <textarea
+                class="form-control w-75 mx-auto"
+                placeholder="Indicadores de Avaliação"
+                maxlength="75"
+                required
+                v-model="evaluationIndicators"
+              ></textarea>
+            </div>
+            <!-- Evaluation Methods -->
+            <div class="form-group mr-lg-5 pr-lg-5">
+              <textarea
+                class="form-control w-75 mx-auto"
+                placeholder="Instrumentos de Avaliação"
+                maxlength="75"
+                required
+                v-model="evaluationMethods"
+              ></textarea>
             </div>
           </div>
         </div>
-        <button
-          type="submit"
-          class="addActivityBtn btn pl-5 pr-5"
-          :disabled="!new_title || !new_content || new_images.length === 0"
-        >
-          Criar Atividade
-        </button>
+
+        <div class="row mt-4">
+          <div class="col-lg-6 ml-lg-5 pl-lg-5 mt-4">
+            <!-- Theme select -->
+            <div class="form-group">
+              <select class="form-control w-50 mx-auto" required v-model="themeID">
+                <option value="" disabled selected>Selecione um tema</option>
+                <option v-for="theme in themes" :key="theme.id" :value="theme.id">
+                  {{ theme.name }}
+                </option>
+              </select>
+            </div>
+            <!-- Select Complexity -->
+            <div class="form-group mt-5">
+              <b class="mr-5">Complexidade</b>
+              <b-form-rating
+                class="complexity-info border-0"
+                inline
+                v-model="complexity"
+              ></b-form-rating>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <!-- Initial Date (day-month-year) -->
+            <div class="form-group ml-lg-5 pl-lg-5">
+              <span class="d-flex flex-row justify-content-start">
+                Data de Início
+              </span>
+              <input
+                type="date"
+                class="form-control w-75 date-input"
+                placeholder="Data de Início"
+                required
+                v-model="initialDate"
+              />
+            </div>
+
+            <!-- Final Date (day-month-year) -->
+            <div class="form-group ml-lg-5 pl-lg-5">
+              <span class="d-flex flex-row justify-content-start pt-1">
+                Data Final
+              </span>
+              <input
+                type="date"
+                class="form-control w-75 date-input"
+                placeholder="Data de Início"
+                required
+                v-model="finalDate"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button
+            class="btn mx-auto mt-5 px-4 create-activity-btn"
+            type="submit"
+            :disabled="isFormValid"
+          >
+            Criar Atividade
+          </button>
+        </div>
       </form>
     </main>
   </div>
@@ -190,45 +198,71 @@ export default {
   data() {
     return {
       themes: [],
-      creatorID: "",
-      schoolID: "",
       activity_images: [],
-      activity_title: "",
-      activity_objective: "",
-      activity_meta: "",
-      activity_resources: "",
-      activity_diagnostic: "",
-      activity_participants: "",
-      activity_evaluationIndicator: "",
-      activity_evaluationMethod: "",
-      activity_theme: "Selecione um tema",
-      activity_complexity: "1",
-      activity_initialDate: "",
-      activity_finalDate: "",
-      activity_status: "unfinished",
-      usersStore: useUsersStore(),
+      title: "",
+      objectives: "",
+      metas: "",
+      resources: "",
+      diagnostic: "",
+      participants: "",
+      evaluationIndicators: "",
+      evaluationMethods: "",
+      themeID: "",
+      complexity: 3,
+      initialDate: new Date().toISOString().slice(0, 10),
+      finalDate: new Date().toISOString().slice(0, 10),
     };
   },
 
   async created() {
     const usersStore = useUsersStore();
-    const schoolsStore = useSchoolsStore();
-    const loggedUser = await usersStore.getLoggedUser();
-    const loggedUserSchoolId = loggedUser.schoolID;
-
-    // Check if the user is logged in
-    if (!usersStore.isUserLogged()) {
-      this.$router.push({ name: "Activities" });
-    } else {
-      this.creatorID = loggedUser.id;
-      this.schoolID = loggedUserSchoolId;
-    }
-    //get all themes from the store
     const themesStore = useThemesStore();
-    this.themes = await themesStore.getThemes();
+
+    // verify if the user is logged in
+    if (!usersStore.isUserLogged()) {
+      this.$router.push({ name: "Authenticate" });
+    }
+
+    // verify if the logged user has a valid role
+    const loggedUser = await usersStore.getLoggedUser();
+    if (loggedUser.role === "unsigned") {
+      this.$router.push({ name: "Home" });
+    }
+
+    // get all active themes
+    const themes = await themesStore.getActiveThemes();
+    this.themes = themes;
   },
 
-  computed: {},
+  computed: {
+    isFormValid() {
+      return (
+        !this.title ||
+        !this.objectives ||
+        !this.metas ||
+        !this.resources ||
+        !this.diagnostic ||
+        !this.participants ||
+        !this.evaluationIndicators ||
+        !this.evaluationMethods ||
+        !this.themeID ||
+        !this.initialDate ||
+        !this.finalDate ||
+        this.title.trim() === "" ||
+        this.objectives.trim() === "" ||
+        this.metas.trim() === "" ||
+        this.resources.trim() === "" ||
+        this.diagnostic.trim() === "" ||
+        this.participants.trim() === "" ||
+        this.evaluationIndicators.trim() === "" ||
+        this.evaluationMethods.trim() === "" ||
+        this.initialDate.trim() === "" ||
+        this.finalDate.trim() === "" ||
+        this.activity_images.length === 0 ||
+        this.initialDate > this.finalDate
+      );
+    },
+  },
 
   methods: {
     addNewImage() {
@@ -246,6 +280,7 @@ export default {
       };
       input.click();
     },
+
     removeImage(index) {
       this.activity_images.splice(index, 1);
     },
@@ -256,35 +291,44 @@ export default {
       return new Date(`${dateArray[2]}/${dateArray[1]}/${dateArray[0]}`);
     },
 
-    async addActivity() {
+    async createNewActivity() {
+      const usersStore = useUsersStore();
       const activitiesStore = useActivitiesStore();
-      //get all activities
-      const activities = await activitiesStore.getActivities();
 
-      const activity = {
-        complexity: this.activity_complexity,
-        creatorID: this.creatorID,
-        diagnostic: this.activity_diagnostic,
-        evaluationIndicator: this.activity_evaluationIndicator,
-        evaluationMethod: this.activity_evaluationMethod,
-        finalDate: this.reverseDate(this.activity_finalDate),
+      const initialDate = new Date(this.initialDate).getTime();
+      const finalDate = new Date(this.finalDate).getTime();
+
+      // get logged user id
+      const loggedUser = await usersStore.getLoggedUser();
+
+      const newActivity = {
+        complexity: this.complexity.toString(),
+        creatorID: loggedUser.id,
+        diagnostic: this.diagnostic,
+        evaluationIndicator: this.evaluationIndicators,
+        evaluationMethod: this.evaluationMethods,
+        finalDate: finalDate,
         images: this.activity_images,
-        initialDate: this.reverseDate(this.activity_initialDate),
-        meta: this.activity_meta,
-        objective: this.activity_objective,
-        participants: this.activity_participants,
-        resources: this.activity_resources,
-        schoolID: this.schoolID,
-        status: this.activity_status,
-        theme: this.activity_theme,
-        title: this.activity_title,
+        initialDate: initialDate,
+        meta: this.metas,
+        objective: this.objectives,
+        participants: this.participants,
+        resources: this.resources,
+        schoolID: loggedUser.schoolID,
+        themeID: this.themeID,
+        title: this.title,
       };
 
-      // Redirect to news List
-      activitiesStore.addActivity(activity).then(() => {
-        this.$router.push({ name: "Activities" });
-        console.log(activities);
+      // create new activity
+      await activitiesStore.addActivity(newActivity);
+
+      this.$bvToast.toast("Nova Atividade Criada com sucesso!", {
+        title: "Atividade Criada",
+        variant: "success",
+        solid: true,
       });
+
+      this.$router.push({ name: "Activities" });
     },
   },
 };
@@ -299,12 +343,6 @@ $fifth-color: #18516f;
 
 .main {
   min-height: 100vh;
-}
-
-.title {
-  font-family: "Alkes", sans-serif;
-  font-weight: bold;
-  font-size: 35px;
 }
 
 .addNewImg {
@@ -325,58 +363,68 @@ $fifth-color: #18516f;
   opacity: 1;
 }
 
-form input,
-form textarea {
-  width: 40%;
-  font-family: "Panton", sans-serif;
-  font-size: 17px;
-  font-weight: 500;
-  border: 2px solid $tertiary-color;
-  border-radius: 15px;
-}
-form input:focus,
-form textarea:focus {
-  border: 2px solid $tertiary-color;
-  box-shadow: 0 0 0 1px $secondary-color;
-}
-form input {
-  padding: 20px;
-}
-form textarea {
-  height: 200px;
+textarea {
+  resize: none;
+  height: 100px;
   padding: 10px 15px;
-  max-height: 400px;
+  border-radius: 25px;
+  border: 1px solid $tertiary-color;
+  font-family: "Panton", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $primary-color;
 }
 
-.addActivityBtn {
+select {
+  border-radius: 25px;
+  border: 1px solid $tertiary-color;
+  font-family: "Panton", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $primary-color;
+}
+
+b {
+  font-family: "Panton", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: $primary-color;
+}
+
+.complexity-info {
+  color: $tertiary-color;
+  scale: 1.5;
+}
+
+.date-input {
+  border-radius: 25px;
+  border: 1px solid $tertiary-color;
+  font-family: "Panton", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $primary-color;
+}
+
+span {
+  font-family: "Panton", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $primary-color;
+  margin-left: 15px;
+}
+
+.create-activity-btn {
   background-color: $primary-color;
   color: $fourth-color;
-  border-radius: 15px;
+  border-radius: 25px;
+
+  font-family: "Panton", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+
   &:hover {
     background-color: $fifth-color;
+    color: $fourth-color;
   }
-  &:disabled {
-    background-color: $primary-color;
-    opacity: 0.5;
-  }
-}
-
-.label {
-  font-family: "Panton", sans-serif;
-  font-size: 17px;
-  font-weight: bold;
-  color: $primary-color;
-}
-
-.rating-stars {
-  color: $primary-color;
-  font-size: 20px;
-  margin-right: 5px;
-  border: none;
-}
-
-.grid-layout-first{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
 </style>
