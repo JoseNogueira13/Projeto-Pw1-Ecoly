@@ -42,7 +42,7 @@
       <b-form-input
         class="register-input"
         placeholder="Email"
-        type="text"
+        type="email"
         v-model="email"
       ></b-form-input>
     </b-input-group>
