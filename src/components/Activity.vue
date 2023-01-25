@@ -64,7 +64,7 @@
           </router-link>
         </h2>
         <span class="theme text-center">
-          {{ themes.name }}
+          {{ activity.theme}}
         </span>
         <div class="activity-info-2 d-flex flex-column my-4">
           <p class="activity-text text-left">
@@ -99,6 +99,8 @@ export default {
       type: Object,
       required: true,
     },
+
+
   },
 
   methods: {
@@ -126,6 +128,7 @@ export default {
       const newDate = new Date(date);
       return newDate.toLocaleDateString("pt-PT");
     },
+    
   },
 };
 </script>
