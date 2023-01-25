@@ -73,9 +73,13 @@ import Header from "@/components/Header.vue";
       <div class="header-modal">
         <span class="modal-title">Relatório</span>
         <div class="dates-report-title">
-          <span class="modal-title-date-begin-activity">{{ formatDate(initialDate) }}</span>
+          <span class="modal-title-date-begin-activity">{{
+            formatDate(initialDate)
+          }}</span>
           <span class="modal-space-between-dates">-</span>
-          <span class="modal-title-date-finish-activity">{{ formatDate(finalDate) }}</span>
+          <span class="modal-title-date-finish-activity">{{
+            formatDate(finalDate)
+          }}</span>
         </div>
       </div>
     </template>
@@ -173,7 +177,7 @@ export default {
     });
 
     // get all activities with status "unfinished" of the school of the user logged in otherwise if not logged in will get all activities with status "unfinished"
-     if (this.userInfo.isLogged || this.userInfo.isAdmin) {
+    if (this.userInfo.isLogged || this.userInfo.isAdmin) {
       usersStore.getLoggedUser().then((user) => {
         schoolsStore.getSchoolById(user.schoolID).then((school) => {
           activitiesStore.getActivities().then((activities) => {
@@ -197,8 +201,6 @@ export default {
         this.activities = this.activities.slice(0, this.numberOfActivities);
       });
     }
-    
-   
   },
   methods: {
     // to remove an activity from the list

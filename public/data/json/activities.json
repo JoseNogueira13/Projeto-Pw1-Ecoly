@@ -5,7 +5,7 @@
     "diagnostic": "Falta de local para colocação de lixo nas zonas ajardinadas",
     "evaluationIndicator": "Número de caixotes do lixo instalados",
     "evaluationMethod": "Foto dos caixotes do lixo",
-    "finalDate": 1671052422918,
+    "finalDate": "26/01/2023",
     "id": "1",
     "images": [
       "./data/images/Activities/lixo.png",
@@ -13,7 +13,7 @@
       "./data/images/Activities/image20.png"
     ],
     "initialDate": 1670973744743,
-    "meta": "Colocação de 10 caixotes do lixo nas zonas relvadas da ESAG ",
+    "meta": "Colocação de 10 caixotes do lixo nas zonas relvadas da ESMAD ",
     "objective": "Contribuir para a limpeza dos espaços exteriores e estimular a utilização das zonas ajardinadas",
     "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
     "report": {},
