@@ -48,22 +48,52 @@ export default {
     return {
       email: "",
       password: "",
+      users: [],
     };
   },
+
   methods: {
     async login() {
       const usersStore = useUsersStore();
-      usersStore.login(this.email, this.password);
+      const user = await usersStore.getUsers()
+      this.users = user
+      
+      const userExists = this.users.find(user => user.email === this.email)
 
-      this.$bvToast.toast("Entraste na aplicação!", {
-        title: "Login com sucesso",
-        variant: "success",
-        solid: true,
-      });
-      setTimeout(() => {
-        this.$router.push({ name: "Home" });
-      }, 1000);
+      if(userExists){
+        if(userExists.password === this.password) {
+
+          usersStore.login(this.email, this.password);
+  
+  
+          this.$bvToast.toast("Entraste na aplicação!", {
+          title: "Login com sucesso",
+          variant: "success",
+          solid: true,
+         });
+         
+         setTimeout(() => {
+            this.$router.push({ name: "Home" });
+          }, 1000);
+        }
+        else {
+          this.$bvToast.toast("A palavra passe está incorreta!", {
+          title: "Dados de acesso incorretos",
+          variant: "danger",
+          solid: true,
+        });
+        }
+      }
+      else {
+          this.$bvToast.toast("O email inserido não existe!", {
+          title: "Dados de acesso incorretos",
+          variant: "danger",
+          solid: true,
+        });
+      }
+      
     },
+
   },
 };
 </script>
