@@ -27,7 +27,8 @@ import Sidebar from "@/components/Sidebar.vue";
       id="rating-inline"
       class="rating-stars float-right"
       inline
-      value="0"
+      :value="activityDetails.complexity"
+      :readonly="true"
     ></b-form-rating>
     <div class="title">
       {{ activityDetails.title }}
@@ -331,7 +332,7 @@ export default {
       this.$router.push({ name: "Activities" });
     },
 
-   removeActivity(id) {
+    removeActivity(id) {
       const activitiesStore = useActivitiesStore();
       activitiesStore.removeActivity(id);
       this.activities = this.activities.filter((activity) => activity.id !== id);
@@ -339,9 +340,8 @@ export default {
       if (this.numberOfActivities > this.totalNumberOfActivities) {
         this.numberOfActivities = this.totalNumberOfActivities;
       }
-      this.activities = this.activities.slice(0, this.numberOfActivities);      
+      this.activities = this.activities.slice(0, this.numberOfActivities);
       this.$router.push({ name: "Activities" });
-
     },
   },
 };

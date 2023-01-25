@@ -1,224 +1,204 @@
 <template>
-    <h2>CRIE A SUA CONTA E TORNE-SE NUM MEMBRO</h2>
-    <form class="register-form" @submit.prevent="addUser">
-      
-      <!-- Input  first name-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-input
-          class="register-input"
-          placeholder="Primeiro Nome"
-          type="text"
-          v-model="primNome"
-        ></b-form-input>
-      </b-input-group>
+  <h2>CRIE A SUA CONTA E TORNE-SE NUM MEMBRO</h2>
+  <form class="register-form" @submit.prevent="addUser">
+    <!-- Input  first name-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-input
+        class="register-input"
+        placeholder="Primeiro Nome"
+        type="text"
+        v-model="primNome"
+      ></b-form-input>
+    </b-input-group>
 
-      <!-- Input last name-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-input
-          class="register-input"
-          placeholder="Ultimo Nome"
-          type="text"
-          v-model="ultNome"
-        ></b-form-input>
-      </b-input-group>
-      
-      <!-- Input email-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-input
-          class="register-input"
-          placeholder="Email"
-          type="text"
-          v-model="email"
-        ></b-form-input>
-      </b-input-group>
+    <!-- Input last name-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-input
+        class="register-input"
+        placeholder="Ultimo Nome"
+        type="text"
+        v-model="ultNome"
+      ></b-form-input>
+    </b-input-group>
 
-      <!-- Input password-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-input
-          class="register-input"
-          placeholder="Password"
-          type="password"
-          v-model="password"
-        ></b-form-input>
-      </b-input-group>
+    <!-- Input email-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-input
+        class="register-input"
+        placeholder="Email"
+        type="text"
+        v-model="email"
+      ></b-form-input>
+    </b-input-group>
 
-      <!-- Input confirm password-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-input
-          class="register-input"
-          placeholder="Confirm password"
-          type="password"
-          v-model="confPass"
-        ></b-form-input>
-      </b-input-group>
+    <!-- Input password-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-input
+        class="register-input"
+        placeholder="Password"
+        type="password"
+        v-model="password"
+      ></b-form-input>
+    </b-input-group>
 
-      <!-- Select school-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-select
-            v-model="escola"
-            class="register-input"
-            id="escola"
-            name="escola"
-            required
-            >
-            <option
-              disabled
-              value=""
-            >
-              Selecione a escola
-            </option>
-            <option
-              v-for="school in schools"
-              :value="school.id"
-            >
-              {{ school.name }}
-          </option>
-        </b-form-select>
-      </b-input-group>
+    <!-- Input confirm password-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-input
+        class="register-input"
+        placeholder="Confirm password"
+        type="password"
+        v-model="confPass"
+      ></b-form-input>
+    </b-input-group>
 
-
-      <!-- Input Internal Number-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-input
-          class="register-input"
-          placeholder="Internal Number"
-          type="text"
-          v-model="numInt"
-        ></b-form-input>
-      </b-input-group>
-
-
-        <!-- Input Course-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-input
-          class="register-input"
-          placeholder="Course"
-          type="text"
-          v-model="curso"
-        ></b-form-input>
-      </b-input-group>
-      
-        <!-- Input Course-->
-      <b-input-group class="mt-4">
-        <template #prepend>
-          <b-input-group-text class="register-input-img">
-            <img src="@/assets/icons/search.svg" alt="search" width="20" />
-          </b-input-group-text>
-        </template>
-        <b-form-input
-          class="register-input"
-          placeholder="Year"
-          type="text"
-          v-model="anoCur"
-        ></b-form-input>
-      </b-input-group>
-      
-      <button
-        @click="$emit('switch-form')"
-        class="switchToLogin"
+    <!-- Select school-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-select
+        v-model="escola"
+        class="register-input"
+        id="escola"
+        name="escola"
+        required
       >
-          Já é membro? Entre aqui
-      </button>
+        <option disabled value="">Selecione a escola</option>
+        <option v-for="school in schools" :value="school.id">
+          {{ school.name }}
+        </option>
+      </b-form-select>
+    </b-input-group>
 
+    <!-- Input Internal Number-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-input
+        class="register-input"
+        placeholder="Internal Number"
+        type="text"
+        v-model="numInt"
+      ></b-form-input>
+    </b-input-group>
 
-      <button
-        type="submit"
-        class="authenticate-user-btn"
-        :disabled="!escola"
-      >
-        Sign up
-      </button>
-      
-    </form>
+    <!-- Input Course-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-input
+        class="register-input"
+        placeholder="Course"
+        type="text"
+        v-model="curso"
+      ></b-form-input>
+    </b-input-group>
+
+    <!-- Input Course-->
+    <b-input-group class="mt-4">
+      <template #prepend>
+        <b-input-group-text class="register-input-img">
+          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+        </b-input-group-text>
+      </template>
+      <b-form-input
+        class="register-input"
+        placeholder="Year"
+        type="text"
+        v-model="anoCur"
+      ></b-form-input>
+    </b-input-group>
+
+    <button @click="$emit('switch-form')" class="switchToLogin">
+      Já é membro? Entre aqui
+    </button>
+
+    <button type="submit" class="authenticate-user-btn" :disabled="!escola">
+      Sign up
+    </button>
+  </form>
 </template>
 
 <script>
 import { useUsersStore } from "@/stores/users";
-import { useSchoolsStore } from "@/stores/schools"
+import { useSchoolsStore } from "@/stores/schools";
 
 export default {
   data() {
     return {
-      primNome: '',
-      ultNome: '',
-      email: '',
-      password: '',
-      confPass: '',
-      escola: '',
-      numInt: '',
-      curso: '',
-      anoCur: '',
+      primNome: "",
+      ultNome: "",
+      email: "",
+      password: "",
+      confPass: "",
+      escola: "",
+      numInt: "",
+      curso: "",
+      anoCur: "",
       schools: [],
-    }
+    };
   },
   async created() {
     const schoolsStore = useSchoolsStore();
     const school = await schoolsStore.getSchools();
-    this.schools = school
+    this.schools = school;
     console.log(this.schools);
   },
   methods: {
-  async addUser() {
-      if(this.password !== this.confPass) {
+    async addUser() {
+      if (this.password !== this.confPass) {
         this.$bvToast.toast("A palavra passe e a sua confirmação não coincidem!", {
-        title: "Palavras passe não coincidem",
-        variant: "danger",
-        solid: true,
-      });
-        return
+          title: "Palavras passe não coincidem",
+          variant: "danger",
+          solid: true,
+        });
+        return;
       }
 
       const usersStore = useUsersStore();
       const newUser = {
-        name: this.primNome + ' ' + this.ultNome,
+        name: this.primNome + " " + this.ultNome,
         email: this.email,
         password: this.password,
         schoolID: this.escola,
         internalId: this.numInt,
         course: this.curso,
-        year: this.anoCur
+        year: this.anoCur,
       };
-      usersStore.createNewUser(newUser)
+      usersStore.createNewUser(newUser);
 
       this.$bvToast.toast("Utilizador adicionado com sucesso!", {
         title: "Utilizador criado!",
@@ -228,8 +208,6 @@ export default {
     },
   },
 };
-
-
 </script>
 
 <style lang="scss" scoped>
@@ -241,7 +219,6 @@ $fifth-color: #18516f;
 $sixth-color: #000;
 $seventh-color: #57b894;
 
-
 h2 {
   position: absolute;
   font-size: 1.3em;
@@ -249,13 +226,13 @@ h2 {
   right: 275px;
   top: 120px;
 }
-.register-form{
+
+.register-form {
   position: absolute;
   margin-top: 100px;
   margin-right: 150px;
   margin-left: 20px;
 }
-
 
 .authenticate-user-btn {
   position: absolute;
@@ -275,12 +252,10 @@ h2 {
   }
 }
 .authenticate-user-btn:disabled {
-    /* styles for the button when it is disabled */
-    background-color: #ccc;
-    color: #555;
-    cursor: not-allowed;
-  }
-
+  background-color: #ccc;
+  color: #555;
+  cursor: not-allowed;
+}
 
 .register-header {
   position: absolute;
@@ -291,10 +266,10 @@ h2 {
   font-size: 20px;
 }
 
-.form-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .register-form {
@@ -306,15 +281,15 @@ h2 {
   right: 200px;
 }
 
-.switchToLogin{
-    position: absolute;
-    border: none;
-    background-color: transparent;
-    width: 200px;
-    margin-top: 645px;
-    margin-left: 100px;
+.switchToLogin {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  width: 200px;
+  margin-top: 645px;
+  margin-left: 100px;
 
-    &:hover {
+  &:hover {
     color: $seventh-color;
   }
 }
@@ -350,5 +325,4 @@ h2 {
   border-left: none;
   border-radius: 10px;
 }
-
 </style>
