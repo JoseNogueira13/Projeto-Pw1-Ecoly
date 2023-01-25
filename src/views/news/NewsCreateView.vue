@@ -125,14 +125,19 @@ export default {
     },
 
     addNewImage() {
-      //TODO: Instead of generating random images,
-      // allow the user to upload images from their computer
-
-      // Generate random image
-      const firstN = Math.floor(Math.random() * 400) + 100;
-      const secondN = Math.floor(Math.random() * 400) + 100;
-
-      this.new_images.push(`https://picsum.photos/${firstN}/${secondN}`);
+     // for the user upload images from their computer
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.new_images.push(reader.result);
+        };
+      };
+      input.click();
     },
 
     removeImage(index) {
