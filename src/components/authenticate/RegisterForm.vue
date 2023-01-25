@@ -325,14 +325,14 @@ $seventh-color: #57b894;
   border-radius: 10px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .register-form {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -55%);
     width: 400px;
-    padding-bottom: 50px;
+    margin-bottom: 50px;
   }
 }
 </style>
