@@ -6,7 +6,7 @@
     <b-input-group class="mt-4">
       <template #prepend>
         <b-input-group-text class="login-input-img">
-          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          <img src="@/assets/icons/email.svg" alt="search" width="20" />
         </b-input-group-text>
       </template>
       <b-form-input
@@ -21,7 +21,7 @@
     <b-input-group class="mt-4">
       <template #prepend>
         <b-input-group-text class="login-input-img">
-          <img src="@/assets/icons/search.svg" alt="search" width="20" />
+          <img src="@/assets/icons/password.svg" alt="search" width="20" />
         </b-input-group-text>
       </template>
       <b-form-input
