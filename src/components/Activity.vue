@@ -26,8 +26,11 @@
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
             //show the button only if the final date is less than the current date
-            display: formatDate(activity.finalDate) < new Date().toISOString().split('T')[0] ? 'block' : 'none',
-}"
+            display:
+              formatDate(activity.finalDate) < new Date().toISOString().split('T')[0]
+                ? 'block'
+                : 'none',
+          }"
         >
           <img
             src="@/assets/icons/finish.svg"
@@ -64,7 +67,7 @@
           </router-link>
         </h2>
         <span class="theme text-center">
-          {{ activity.theme}}
+          {{ themes.name }}
         </span>
         <div class="activity-info-2 d-flex flex-column my-4">
           <p class="activity-text text-left">
@@ -99,8 +102,6 @@ export default {
       type: Object,
       required: true,
     },
-
-
   },
 
   methods: {
@@ -128,7 +129,6 @@ export default {
       const newDate = new Date(date);
       return newDate.toLocaleDateString("pt-PT");
     },
-    
   },
 };
 </script>
