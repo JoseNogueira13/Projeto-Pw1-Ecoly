@@ -5,7 +5,7 @@
     "diagnostic": "Falta de local para colocação de lixo nas zonas ajardinadas",
     "evaluationIndicator": "Número de caixotes do lixo instalados",
     "evaluationMethod": "Foto dos caixotes do lixo",
-    "finalDate": "26/01/2023",
+    "finalDate": 1671052422918,
     "id": "1",
     "images": [
       "./data/images/Activities/lixo.png",
@@ -122,5 +122,49 @@
     "status": "finished",
     "themeID": "3",
     "title": "Construção de Bancos de Jardim 5"
+  },
+   {
+    "complexity": "3",
+    "creatorID": "1",
+    "diagnostic": "Falta de bancos de jardim no espaço exterior da escola",
+    "evaluationIndicator": "Número de bancos de jardim construídos",
+    "evaluationMethod": "Foto dos bancos de jardim construídos",
+    "finalDate": 1671052422918,
+    "id": "6",
+    "images": [
+      "./data/images/Activities/bancos.png"
+    ],
+    "initialDate": 1670973744743,
+    "meta": "Construir 4 bancos de jardim",
+    "objective": "Construir bancos de jardim para que os alunos possam descansar e usufruir do espaço exterior da escola",
+    "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
+    "report": {},
+    "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
+    "schoolID": "0",
+    "status": "unfinished",
+    "themeID": "2",
+    "title": "Construção de Bancos de Jardim 7"
+  },
+   {
+    "complexity": "3",
+    "creatorID": "1",
+    "diagnostic": "Falta de bancos de jardim no espaço exterior da escola",
+    "evaluationIndicator": "Número de bancos de jardim construídos",
+    "evaluationMethod": "Foto dos bancos de jardim construídos",
+    "finalDate": 1671052422918,
+    "id": "7",
+    "images": [
+      "./data/images/Activities/bancos.png"
+    ],
+    "initialDate": 1670973744743,
+    "meta": "Construir 4 bancos de jardim",
+    "objective": "Construir bancos de jardim para que os alunos possam descansar e usufruir do espaço exterior da escola",
+    "participants": "Alunos do 9º ano da Escola Secundária de Vila Nova de Gaia",
+    "report": {},
+    "resources": "Madeira, pregos, martelo, serras, lixas, tinta",
+    "schoolID": "0",
+    "status": "unfinished",
+    "themeID": "2",
+    "title": "Construção de Bancos de Jardim 8"
   }
 ]

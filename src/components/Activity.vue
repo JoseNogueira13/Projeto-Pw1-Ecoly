@@ -26,7 +26,7 @@
           :style="{
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
             //show the button only if the final date is less than the current date
-            display: activity.finalDate < new Date().toISOString().split('T')[0] ? 'block' : 'none',
+            display: formatDate(activity.finalDate) < new Date().toISOString().split('T')[0] ? 'block' : 'none',
 }"
         >
           <img

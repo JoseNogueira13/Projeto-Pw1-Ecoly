@@ -59,7 +59,8 @@ import Sidebar from "@/components/Sidebar.vue";
             visibility: userInfo.isLogged || userInfo.isAdmin ? 'visible' : 'hidden',
             //show the button only if the final date is less than the current date
             display:
-              activityDetails.finalDate < new Date().toISOString().split('T')[0]
+              formatDate(activityDetails.finalDate) <
+              new Date().toISOString().split('T')[0]
                 ? 'block'
                 : 'none',
           }"
@@ -87,7 +88,7 @@ import Sidebar from "@/components/Sidebar.vue";
         <div class="circle"></div>
         <div class="date-end-section">
           <div class="date-end-title">Data de Fim</div>
-          <div class="date-end">{{ activityDetails.finalDate }}</div>
+          <div class="date-end">{{ formatDate(activityDetails.finalDate) }}</div>
         </div>
       </div>
     </div>
@@ -228,6 +229,7 @@ export default {
   data() {
     return {
       components: { Sidebar },
+      activities: [],
       activityDetails: {},
       theme: "",
       reportImgs: [],
@@ -235,6 +237,8 @@ export default {
       finalDate: "",
       userInfo: { isLogged: false, isAdmin: false },
       reportDescription: "",
+      totalNumberOfActivities: 0,
+      numberOfActivities: 5,
     };
   },
 
@@ -309,10 +313,10 @@ export default {
       // add the report to the activity
       const activitiesStore = useActivitiesStore();
       // find the activity id of the list
-      const activity = this.activityDetails.find(
+      const activity = this.activities.find(
         (activity) =>
-          activity.initialDate === this.initialDate &&
-          activity.finalDate === this.finalDate
+          activity.initialDate === this.formatDate(initialDate) &&
+          activity.finalDate === this.formatDate(finalDate)
       );
       // finish activity
       activitiesStore.finishActivity(activity.id).then(() => {
@@ -322,7 +326,22 @@ export default {
           images: this.reportImgs,
         });
       });
+      console.log(activity);
       this.$bvModal.hide("finish-activity-modal");
+      this.$router.push({ name: "Activities" });
+    },
+
+   removeActivity(id) {
+      const activitiesStore = useActivitiesStore();
+      activitiesStore.removeActivity(id);
+      this.activities = this.activities.filter((activity) => activity.id !== id);
+      this.totalNumberOfActivities -= 1;
+      if (this.numberOfActivities > this.totalNumberOfActivities) {
+        this.numberOfActivities = this.totalNumberOfActivities;
+      }
+      this.activities = this.activities.slice(0, this.numberOfActivities);      
+      this.$router.push({ name: "Activities" });
+
     },
   },
 };
@@ -649,5 +668,4 @@ $sixth-color: #7d8584;
   position: relative;
   top: -3em;
 }
-
 </style>
