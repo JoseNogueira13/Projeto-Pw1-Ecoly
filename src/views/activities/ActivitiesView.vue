@@ -201,9 +201,16 @@ export default {
         this.activities = this.activities.slice(0, this.numberOfActivities);
       });
     }
+
+    // when the user scrolls to the bottom of the page, the number of activities to be displayed increases by 5
+    window.addEventListener("scroll", this.loadMoreActivities);
   },
+
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.loadMoreActivities);
+  },
+
   methods: {
-    // to remove an activity from the list
     removeActivity(id) {
       const activitiesStore = useActivitiesStore();
       activitiesStore.removeActivity(id);
@@ -271,6 +278,22 @@ export default {
       });
       console.log(activity);
       this.$bvModal.hide("finish-activity-modal");
+    },
+
+    loadMoreActivities() {
+      const windowHeight = window.innerHeight + document.documentElement.scrollTop;
+      const documentHeight = document.documentElement.offsetHeight;
+
+      if (windowHeight - 5 > documentHeight - 6) {
+        // wait half second before loading more activities
+        setTimeout(() => {
+          this.numberOfActivities += 5;
+          const activitiesStore = useActivitiesStore();
+          activitiesStore.getActivities().then((activities) => {
+            this.activities = activities.slice(0, this.numberOfActivities);
+          });
+        }, 500);
+      }
     },
   },
 };
